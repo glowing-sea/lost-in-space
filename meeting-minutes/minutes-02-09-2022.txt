@@ -1,0 +1,23 @@
+Software Engineering Group 2
+Meeting minutes
+26/8/2022
+Written: Albert Yu
+Late/absent: William Bartor
+
+- Mohan: suggested we discuss the concept of Features first
+- Albert, team: brought up the idea of choosing a main theme.
+          afterwards, the team had a major discussion on this topic
+		  - space theme
+		  - story about pilot and spaceship crash landing on a distant planet
+		  - parts of spaceship scattered around in planet, and pilot must fend of aliens and retrieve all parts of craft to return back to home planet
+- Haoting, Mohan, Albert: nut out details of theme, and have general disucssion to imbibe and expand on things related to the assignment
+- Zhishang: compiled a TODO list
+- Haoting: suggested FRAMEWORK.  Haoting will being a prototype.
+- Team: SCRUM daily meeting was suggested
+- Team: discussed testing strategy: system tests, integration test, unit tests
+
+TASKS
+- Albert: Draw up plan for automated testing
+- Haoting: Prototype
+- Will and Haoting: Plan and high-level design
+- Mohan: to do the story
