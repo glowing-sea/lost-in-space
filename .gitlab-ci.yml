@@ -1,3 +1,5 @@
+## Author: Albert Yu
+
 job:
   script:
     - call C:\GitLab-Runner\test.bat
