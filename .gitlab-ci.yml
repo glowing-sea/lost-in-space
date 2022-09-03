@@ -1,3 +1,2 @@
-build:
-  script:
-    - /bin/true
+before_script:
+  - call C:\GitLab-Runner\test.bat
