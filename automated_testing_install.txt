@@ -1,0 +1,10 @@
+## Automated Testing Installation instructions
+## Author: Albert Yu
+##
+
+SOURCE: https://docs.gitlab.com/runner/install/windows.html
+1. Follow instructions in section "Installation". Ensure your runner is shown in Settings > CI/CD > Runners > Available specific runners
+2. Set registered gitlab-runner's parameter "Can run untagged jobs."
+3. Edit and install the "test.bat" file
+4. Install latest PowerShell: run the follwing command "winget install Microsoft.PowerShell" in PowerShell.
+5. The automated job should be shown in CI/CD > Pipelines.
