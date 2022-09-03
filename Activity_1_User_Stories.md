@@ -32,4 +32,7 @@ As a gamer, I want to save and load my previous game so that I can start from wh
 
 As a gamer, I want my game to auto save in a appropriate frequency in case I leave without saving.
 
+## Automated testing
 
+As a tester, I want to create an automated testing prototype so that I can eventually develop the full automated
+testing suite for the project.
