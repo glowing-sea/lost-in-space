@@ -1,2 +1,3 @@
-before_script:
-  - call C:\GitLab-Runner\test.bat
+job:
+  script:
+    - call C:\GitLab-Runner\test.bat
