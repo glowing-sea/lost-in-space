@@ -1,3 +1,4 @@
+package src.main;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -36,6 +37,16 @@ public class Main {
                 case "d" -> st.player.right();
                 case "a" -> st.player.left();
             }
+
+            if(input.equals("f")) {
+                if(st.finish()){
+                    break;
+                }else {
+                    Location current =  st.player.getLoc();
+                    Location destination = GameConfiguration.LEVEL0_LEVEL_UP.getLocation();
+                    System.out.println("You are in (" + current.getX() + ", " + current.getY() + "), go to: (" + destination.getX() + ", " + destination.getY() + ")!");
+                }
+            }
             System.out.println(st);
         } while (!Objects.equals(input, "q"));
 
@@ -43,6 +54,6 @@ public class Main {
 
 
         State st1 = new State(GameConfiguration.LEVEL1_MAP, GameConfiguration.LEVEL1_PLAYER, GameConfiguration.LEVEL1_ENEMY, GameConfiguration.LEVEL1_DIALOGUE, 1);
-        // System.out.println(st1);
+        System.out.println(st1);
     }
 }

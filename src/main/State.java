@@ -1,3 +1,4 @@
+package src.main;
 import java.util.List;
 
 public class State {
@@ -14,6 +15,12 @@ public class State {
         this.enemies = enemies;
         this.level = level;
         this.dialogue = dialogue;
+    }
+
+    public Boolean finish(){ // check the player win or not
+        Location current = player.getLoc();
+        Location finish = GameConfiguration.LEVEL0_LEVEL_UP.getLocation();
+        return current.getX() == finish.getX() && current.getY() == finish.getY();
     }
 
     @Override
