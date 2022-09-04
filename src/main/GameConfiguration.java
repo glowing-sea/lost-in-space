@@ -27,7 +27,7 @@ public class GameConfiguration {
                 "         "};
 
         LEVEL0_MAP = new Map(0, map);
-        LEVEL0_PLAYER = new Player("Jack", 100, 100, 100, new Location(0,1), 0, 0);
+        LEVEL0_PLAYER = new Player("Jack", 100, 100, 100, new Location(0,1), 0, 0,LEVEL0_MAP);
         LEVEL0_ENEMY = null;
         LEVEL0_DIALOGUE = "You are lost on this planet. You (X) should find a way back to your spaceship (H)";
         LEVEL0_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
@@ -53,7 +53,7 @@ public class GameConfiguration {
                 "  H| |H  ",
                 "  H|_|H  "};
         LEVEL1_MAP = new Map(0, map);
-        LEVEL1_PLAYER = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(4,4), Integer.MIN_VALUE, Integer.MIN_VALUE);
+        LEVEL1_PLAYER = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(4,4), Integer.MIN_VALUE, Integer.MIN_VALUE,LEVEL1_MAP);
         LEVEL1_ENEMY = null;
         LEVEL1_DIALOGUE = "You Win!";
         LEVEL1_LEVEL_UP = null;

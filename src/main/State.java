@@ -47,6 +47,9 @@ public class State {
 
                 // If the player is at this location, display X instead of others
                 if (playerX == i && playerY == j){
+                    if(!map.unreach(player.getLoc())){
+                        System.out.println("Ouch!"); //hit a wall "-","|","+"
+                    }
                     line.append('X').append(" ");
                 } else {
                     line.append(m[i].charAt(j)).append(" ");

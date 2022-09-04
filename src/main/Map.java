@@ -24,7 +24,14 @@ public class Map {
     public void setMap(String[] map) {
         this.map = map;
     }
-
+    public Boolean unreach(Location loc){ //cannot pass -, |, +
+        int X = loc.getX();
+        int Y = loc.getY();
+        if(map[X].charAt(Y) == '-' ||map[X].charAt(Y) == '|' || map[X].charAt(Y) == '+' ) {
+            return false;
+        }
+        return true;
+    }
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
