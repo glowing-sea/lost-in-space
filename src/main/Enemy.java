@@ -1,3 +1,4 @@
+package src.main;
 public class Enemy extends Character{
     boolean isDead;
 

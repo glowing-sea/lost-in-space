@@ -1,3 +1,5 @@
+package src.main;
+
 public class Map {
     private int mapID;
     private String[] map;

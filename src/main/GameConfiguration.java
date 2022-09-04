@@ -1,3 +1,4 @@
+package src.main;
 import java.util.List;
 
 public class GameConfiguration {
@@ -29,7 +30,7 @@ public class GameConfiguration {
         LEVEL0_PLAYER = new Player("Jack", 100, 100, 100, new Location(0,1), 0, 0);
         LEVEL0_ENEMY = null;
         LEVEL0_DIALOGUE = "You are lost on this planet. You (X) should find a way back to your spaceship (H)";
-        LEVEL0_LEVEL_UP = new GameLevelUpRequirement(new Location(9,7));
+        LEVEL0_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
 
 

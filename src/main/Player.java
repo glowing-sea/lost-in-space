@@ -1,3 +1,4 @@
+package src.main;
 public class Player extends Character{
     private int exp;
     private int playerLevel;
@@ -25,4 +26,6 @@ public class Player extends Character{
         int newY = getLoc().getY() - 1;
         if (newY >= 0 && newY <= 8)
             getLoc().setY(newY);}
+
 }
+

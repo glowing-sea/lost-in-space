@@ -1,3 +1,4 @@
+package src.main;
 public class GameLevelUpRequirement {
 
     private Location location;
