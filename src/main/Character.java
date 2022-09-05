@@ -6,15 +6,15 @@ public abstract class Character {
     private int def;
     private Location loc;
 
-    private Map map;
+    // Not sure if it is necessary to store the map. We can find characters in the map in a state.
+    // private Map map;
 
-    public Character(String name, int hp, int atk, int def, Location loc,Map map) {
+    public Character(String name, int hp, int atk, int def, Location loc) {
         this.name = name;
         this.hp = hp;
         this.atk = atk;
         this.def = def;
         this.loc = loc;
-        this.map = map;
     }
 
     public String getName() {
@@ -36,7 +36,6 @@ public abstract class Character {
     public Location getLoc() {
         return loc;
     }
-    public Map getMap(){return map;}
     public void setName(String name) {
         this.name = name;
     }

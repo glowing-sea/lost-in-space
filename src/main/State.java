@@ -23,6 +23,26 @@ public class State {
         return current.getX() == finish.getX() && current.getY() == finish.getY();
     }
 
+    public void gameLevelUp(State newGameState){
+        if (newGameState.map != null)
+            map = newGameState.map;
+        if (newGameState.enemies != null)
+            enemies = newGameState.enemies;
+        level = newGameState.level;
+        dialogue = newGameState.dialogue;
+
+
+        // Update player state in the next level
+        Player newStats = newGameState.player;
+        if (newStats.getName() != null) this.player.setName(newStats.getName());
+        if (newStats.getHp() != Integer.MIN_VALUE) this.player.setHp(newStats.getHp());
+        if (newStats.getAtk() != Integer.MIN_VALUE) this.player.setAtk(newStats.getAtk());
+        if (newStats.getDef() != Integer.MIN_VALUE) this.player.setDef(newStats.getDef());
+        if (newStats.getLoc() != null) this.player.setLoc(newStats.getLoc());
+        if (newStats.getExp() != Integer.MIN_VALUE) this.player.setExp(newStats.getExp());
+        if (newStats.getPlayerLevel() != Integer.MIN_VALUE) this.player.setPlayerLevel(newStats.getPlayerLevel());
+    }
+
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
@@ -47,9 +67,6 @@ public class State {
 
                 // If the player is at this location, display X instead of others
                 if (playerX == i && playerY == j){
-                    if(!map.unreach(player.getLoc())){
-                        System.out.println("Ouch!"); //hit a wall "-","|","+"
-                    }
                     line.append('X').append(" ");
                 } else {
                     line.append(m[i].charAt(j)).append(" ");

@@ -22,4 +22,8 @@ public class GameLevelUpRequirement {
 
     For example, if the player get to (5,5), the game moves to the next level.
      */
+
+    public boolean requirementSatisfied(State st){
+        return location.equals(st.player.getLoc());
+    }
 }

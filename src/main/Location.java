@@ -24,4 +24,10 @@ public class Location {
     public int getY() {
         return y;
     }
+
+
+    // Check if two locations are equal
+    public boolean equals(Location obj) {
+        return this.x == obj.x && this.y == obj.y;
+    }
 }
