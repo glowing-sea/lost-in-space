@@ -43,7 +43,6 @@ public class GameConfiguration {
         String dialogue = "You are lost on this planet. You (X) should find a way back to your spaceship (H)";
         LEVEL0_INITIAL_STATE = new State(mapOBJ, player, null, dialogue, 0);
         LEVEL0_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
-
     }
 
 
