@@ -1,4 +1,9 @@
 package src.main;
+
+/**
+ * An object storing the attributes of a character, such as the player or an enemy.
+ */
+
 public abstract class Character {
     private String name;
     private int hp;

@@ -1,4 +1,9 @@
 package src.main;
+
+/**
+ * An object storing the attributes and method of an enemy.
+ */
+
 public class Enemy extends Character{
     boolean isDead;
 

@@ -1,14 +1,24 @@
 package src.main;
 import java.util.List;
 
+/**
+ * This class tells what the game look like. This includes,
+ * 1. the initial game state at each game level.
+ * 2. the requirement for a state to move to the next level.
+ * 3. which game state level indicate a finished game.
+ * ...
+ */
+
 public class GameConfiguration {
 
-    // When State.level == 1, the game is completed
+    // The state level indicating a finished game.
     public static int FINISH_REQUIREMENT = 1;
+    // An array of sequential game from start to finish.
+    public static State[] starr;
 
 
 
-    // Level 0 Configuration
+    // Level 0 configuration
 
     // The initial state when the game reach level0
     public static State LEVEL0_INITIAL_STATE;
@@ -60,7 +70,9 @@ public class GameConfiguration {
         LEVEL1_LEVEL_UP = null;
     }
 
-    public static State[] starr = new State[] {
-            LEVEL0_INITIAL_STATE,
-            LEVEL1_INITIAL_STATE};
+    static {
+        starr = new State[] {
+                LEVEL0_INITIAL_STATE,
+                LEVEL1_INITIAL_STATE};
+    }
 }

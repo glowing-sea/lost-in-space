@@ -1,5 +1,9 @@
 package src.main;
 
+/**
+ * A object shoring a location (x and y coordinate).
+ */
+
 public class Location {
     private int x;
     private int y;
@@ -26,7 +30,11 @@ public class Location {
     }
 
 
-    // Check if two locations are equal
+    /**
+     * Check if two locations are equal
+     * @param obj the other location
+     * @return true if the two location are equal
+     */
     public boolean equals(Location obj) {
         return this.x == obj.x && this.y == obj.y;
     }

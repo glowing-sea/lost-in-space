@@ -1,6 +1,10 @@
 package src.main;
 import java.util.List;
 
+/**
+ * An object shoring the current game state
+ */
+
 public class State {
     Map map;
     Player player;
@@ -17,12 +21,19 @@ public class State {
         this.dialogue = dialogue;
     }
 
-    public Boolean finish(){ // check the player win or not
-        Location current = player.getLoc();
-        Location finish = GameConfiguration.LEVEL0_LEVEL_UP.getLocation();
-        return current.getX() == finish.getX() && current.getY() == finish.getY();
+    /**
+     * Check whether the game state is a finish state (last state of the whole game).
+     * @return ture or false
+     */
+    public Boolean isFinish(){ // check the player win or not
+        return level == GameConfiguration.FINISH_REQUIREMENT;
     }
 
+    /**
+     * Update the current game state according to the input game state
+     * Any fields in the new game state that has null or Integer.MIN_VALUE means that this field do not need to update.
+     * @param newGameState the next game state.
+     */
     public void gameLevelUp(State newGameState){
         if (newGameState.map != null)
             map = newGameState.map;
@@ -30,7 +41,6 @@ public class State {
             enemies = newGameState.enemies;
         level = newGameState.level;
         dialogue = newGameState.dialogue;
-
 
         // Update player state in the next level
         Player newStats = newGameState.player;
@@ -43,6 +53,10 @@ public class State {
         if (newStats.getPlayerLevel() != Integer.MIN_VALUE) this.player.setPlayerLevel(newStats.getPlayerLevel());
     }
 
+    /**
+     * Print a game state into the terminal
+     * @return a graphical view of a game state.
+     */
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
@@ -75,7 +89,6 @@ public class State {
             output.append(line).append('‖').append("\n");
         }
         output.append("====================\n");
-
 
         return output.toString();
     }

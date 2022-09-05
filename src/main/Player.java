@@ -1,4 +1,9 @@
 package src.main;
+
+/**
+ * An object storing the attributes and method of the current player.
+ */
+
 public class Player extends Character {
     private int exp;
     private int playerLevel;
@@ -9,6 +14,11 @@ public class Player extends Character {
         this.playerLevel = playerLevel;
     }
 
+    /**
+     * Move the character one step forward provided that they can go there.
+     * @param map the map where the character is in
+     * @return true if the character has moved
+     */
     public boolean forward(Map map) {
         int newX = getLoc().getX() - 1;
         Location newLoc = new Location(newX, getLoc().getY());
@@ -19,6 +29,11 @@ public class Player extends Character {
             return false;
     }
 
+    /**
+     * Move the character one step backward provided that they can go there.
+     * @param map the map where the character is in
+     * @return true if the character has moved
+     */
     public boolean backward(Map map) {
         int newX = getLoc().getX() + 1;
         Location newLoc = new Location(newX, getLoc().getY());
@@ -29,6 +44,11 @@ public class Player extends Character {
             return false;
     }
 
+    /**
+     * Move the character one step to the right provided that they can go there.
+     * @param map the map where the character is in
+     * @return true if the character has moved
+     */
     public boolean right(Map map) {
         int newY = getLoc().getY() + 1;
         Location newLoc = new Location(getLoc().getX(), newY);
@@ -39,6 +59,11 @@ public class Player extends Character {
             return false;
     }
 
+    /**
+     * Move the character one step to the left provided that they can go there.
+     * @param map the map where the character is in
+     * @return true if the character has moved
+     */
     public boolean left(Map map) {
         int newY = getLoc().getY() - 1;
         Location newLoc = new Location(getLoc().getX(), newY);

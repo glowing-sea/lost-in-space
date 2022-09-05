@@ -2,36 +2,26 @@ package src.main;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * This the main class where the game runs.
+ */
+
 public class Main {
     public static void main(String[] args) {
-        // System.out.println("+-----------+\n0123456789\n1\n2\n3\n4\n5\n6\n7\n8\n9\n+-----------+");
 
-        // make a map
-        // make a character
-        // make enemies
-        // create a game state
-
-        // create state
-
-        // loop input *
-
-        // update state
-
-        // display state
-
-        // back to *
-
-        // if state.progress == 1, finish
-
+        // Get and print the initial game state from starr
         State st = GameConfiguration.starr[0];
-        Action act = new Action(st, null);
         System.out.println(st);
 
+        // Set up the scanner
         Scanner in = new Scanner(System.in);
         String input;
+
+        // keep taking key input until a "q" is found.
         do {
             input = in.next();
 
+            // Update the game state according to the inputs
             switch (input){
                 case "w" -> st.player.forward(st.map);
                 case "s" -> st.player.backward(st.map);
@@ -54,13 +44,8 @@ public class Main {
 //                }
 //            }
 
+            // Print out the updated game state
             System.out.println(st);
         } while (!Objects.equals(input, "q"));
-
-
-
-
-//        State st1 = new State(GameConfiguration.LEVEL1_MAP, GameConfiguration.LEVEL1_PLAYER, GameConfiguration.LEVEL1_ENEMY, GameConfiguration.LEVEL1_DIALOGUE, 1);
-//        System.out.println(st1);
     }
 }

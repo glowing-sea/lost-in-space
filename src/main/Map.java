@@ -1,10 +1,16 @@
 package src.main;
 
+/**
+ * An object storing a map in a game
+ */
 
 public class Map {
     private int mapID;
 
+    // If a location (x,y) contain one of the characters in walls, this location is unreachable.
     private char[] walls;
+
+    // Map is stored as an array (size 9) of string (size 9)
     private String[] map;
 
     public Map(int mapID, String[] map, char[] walls) {
@@ -13,21 +19,32 @@ public class Map {
         this.walls = walls;
     }
 
+    // Getter and setter methods
     public int getMapID() {
         return mapID;
     }
-
     public String[] getMap() {
         return map;
     }
-
     public void setMapID(int mapID) {
         this.mapID = mapID;
     }
-
     public void setMap(String[] map) {
         this.map = map;
     }
+    public char[] getWalls() {
+        return walls;
+    }
+    public void setWalls(char[] walls) {
+        this.walls = walls;
+    }
+
+
+    /**
+     * Check if a location is reachable in the map
+     * @param loc the location that a character wants to go
+     * @return true if the character can go there
+     */
     public Boolean reachable(Location loc){ //cannot pass -, |, +
         int X = loc.getX();
         int Y = loc.getY();
@@ -38,14 +55,6 @@ public class Map {
                 return false;
         }
         return true;
-    }
-
-    public char[] getWalls() {
-        return walls;
-    }
-
-    public void setWalls(char[] walls) {
-        this.walls = walls;
     }
 
 //    @Override
