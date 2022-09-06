@@ -5,9 +5,9 @@
  * > test.bat
  * > gitlab-runner.exe
  *
- * .gitlab-ci.yml specifies the test suite
- * test.bat executes things
- * gitlab-runner is the main entity in the background that automates running of the tests
+ *  .gitlab-ci.yml specifies the test suite
+ *  test.bat executes things
+ *  gitlab-runner is the main entity in the background that automates running of the tests
  *
  * Everytime we check in things from your IDE to GitLab, test.bat will be run, and the CI/DI pipeline will hold the job, and run it in the pipeline.
  *
