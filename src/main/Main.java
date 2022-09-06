@@ -10,42 +10,31 @@ public class Main {
     public static void main(String[] args) {
 
         // Get and print the initial game state from starr
-        State st = GameConfiguration.starr[0];
-        System.out.println(st);
+        State state = GameConfiguration.starr[0];
+        System.out.println(state);
 
         // Set up the scanner
-        Scanner in = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String input;
 
         // keep taking key input until a "q" is found.
         do {
-            input = in.next();
+            input = scanner.next();
 
             // Update the game state according to the inputs
             switch (input){
-                case "w" -> st.player.forward(st.map);
-                case "s" -> st.player.backward(st.map);
-                case "d" -> st.player.right(st.map);
-                case "a" -> st.player.left(st.map);
+                case "w" -> state.player.forward(state.map);
+                case "s" -> state.player.backward(state.map);
+                case "d" -> state.player.right(state.map);
+                case "a" -> state.player.left(state.map);
             }
 
             // If the requirement to moving to the next game level is satisfied, move to the next game level.
-            if (GameConfiguration.LEVEL0_LEVEL_UP.requirementSatisfied(st))
-                st.gameLevelUp(GameConfiguration.starr[st.level + 1]);
-
-
-//            if(input.equals("f")) {
-//                if(st.finish()){
-//                    break;
-//                }else {
-//                    Location current =  st.player.getLoc();
-//                    Location destination = GameConfiguration.LEVEL0_LEVEL_UP.getLocation();
-//                    System.out.println("You are in (" + current.getX() + ", " + current.getY() + "), go to: (" + destination.getX() + ", " + destination.getY() + ")!");
-//                }
-//            }
+            if (GameConfiguration.LEVEL0_LEVEL_UP.requirementSatisfied(state))
+                state.gameLevelUp(GameConfiguration.starr[state.level + 1]);
 
             // Print out the updated game state
-            System.out.println(st);
+            System.out.println(state);
         } while (!Objects.equals(input, "q"));
     }
 }

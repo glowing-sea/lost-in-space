@@ -11,9 +11,6 @@ public abstract class Character {
     private int def;
     private Location loc;
 
-    // Not sure if it is necessary to store the map. We can find characters in the map in a state.
-    // private Map map;
-
     public Character(String name, int hp, int atk, int def, Location loc) {
         this.name = name;
         this.hp = hp;

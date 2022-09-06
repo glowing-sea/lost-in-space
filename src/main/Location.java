@@ -35,7 +35,7 @@ public class Location {
      * @param obj the other location
      * @return true if the two location are equal
      */
-    public boolean equals(Location obj) {
-        return this.x == obj.x && this.y == obj.y;
+    public boolean equals(Location otherLoc) {
+        return this.x == otherLoc.x && this.y == otherLoc.y;
     }
 }

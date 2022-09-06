@@ -42,12 +42,12 @@ public class Map {
 
     /**
      * Check if a location is reachable in the map
-     * @param loc the location that a character wants to go
+     * @param location the location that a character wants to go
      * @return true if the character can go there
      */
-    public Boolean reachable(Location loc){ //cannot pass -, |, +
-        int X = loc.getX();
-        int Y = loc.getY();
+    public Boolean reachable(Location location){ //cannot pass -, |, +
+        int X = location.getX();
+        int Y = location.getY();
         if (X < 0 || X > 8 || Y < 0 || Y > 8)
             return false;
         for (char wall : walls){
@@ -56,20 +56,4 @@ public class Map {
         }
         return true;
     }
-
-//    @Override
-//    public String toString() {
-//        StringBuilder output = new StringBuilder();
-//        output.append("====================\n");
-//        for (int i = 0; i < map.length; i++) {
-//            StringBuilder line = new StringBuilder();
-//            line.append('‖');
-//            for (int j = 0; j < map[i].length(); j++) {
-//                line.append(map[i].charAt(j)).append(" ");
-//            }
-//            output.append(line).append('‖').append("\n");
-//        }
-//        output.append("====================\n");
-//        return output.toString();
-//    }
 }
