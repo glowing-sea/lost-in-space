@@ -21,6 +21,7 @@ public class GameLevelUpRequirement {
 
     // FIXME
     /*
+
     The current requirement of moving to the next game level is only based on the character's location.
     There may be more requirements (fields) in the future.
 
