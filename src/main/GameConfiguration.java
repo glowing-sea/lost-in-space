@@ -61,7 +61,7 @@ public class GameConfiguration {
                 "  A| |A  ",
                 "  H| |H  ",
                 "  H|_|H  "};
-        Map mapOBJ = new Map(0, map, new char[] {'A', '|', 'H','-'});
+        Map mapOBJ = new Map(0, map, new char[] {'A', '|', 'H','_'});
         Player player = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(4,4), Integer.MIN_VALUE, Integer.MIN_VALUE);
         List<Enemy> enemies = null;
         String dialogue = "You Win!";
