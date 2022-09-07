@@ -62,6 +62,7 @@ public class GameConfiguration {
 
     static {
         String[] map = new String[] {
+
                 "         ",
                 "         ",
                 "------ --",

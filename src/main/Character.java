@@ -34,10 +34,7 @@ public abstract class Character {
         int Y = my.getY();
         int EX = other.getX();
         int EY = other.getY();
-        if ((X == (EX - 1) && Y == EY) || (X == (EX + 1) && Y == EY) || (X == EX && Y == (EY + 1)) || (X == EX && Y == (EY - 1))) {
-            return true;
-        }
-        return false;
+        return (X == (EX - 1) && Y == EY) || (X == (EX + 1) && Y == EY) || (X == EX && Y == (EY + 1)) || (X == EX && Y == (EY - 1));
     }
     public int getHp() {
         return hp;

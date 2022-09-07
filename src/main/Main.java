@@ -66,7 +66,7 @@ public class Main {
                             System.out.println("you win! left hp: "+st.player.getHp());
                         }
                     }
-                    Location tomb = new Location(-1, -1);
+                    Location tomb = new Location(-1, -1); //sent enemies to tomb, get out of my way
                     enemy.setLoc(tomb);
                 }
             }
