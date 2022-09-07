@@ -11,5 +11,4 @@ public class Enemy extends Character{
         super(name, hp, atk, def, loc);
         this.isDead = isDead;
     }
-    
 }
