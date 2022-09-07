@@ -1,5 +1,8 @@
 package src.main;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * An object storing a map in a game
  */
@@ -18,6 +21,8 @@ public class Map {
         this.map = map;
         this.walls = walls;
     }
+
+
 
     // Getter and setter methods
     public int getMapID() {

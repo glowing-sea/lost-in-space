@@ -23,6 +23,22 @@ public abstract class Character {
         return name;
     }
 
+    /**
+     * check if a particulr is nearby this character
+     * @param other a location you want to test
+     * @return nearby you or not
+     */
+    public boolean nearby(Location other) {
+        Location my = this.loc;
+        int X = my.getX();
+        int Y = my.getY();
+        int EX = other.getX();
+        int EY = other.getY();
+        if ((X == (EX - 1) && Y == EY) || (X == (EX + 1) && Y == EY) || (X == EX && Y == (EY + 1)) || (X == EX && Y == (EY - 1))) {
+            return true;
+        }
+        return false;
+    }
     public int getHp() {
         return hp;
     }
