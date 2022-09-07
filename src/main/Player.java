@@ -1,4 +1,4 @@
-package src.main;
+package main;
 
 /**
  * An object storing the attributes and method of the current player.

@@ -1,4 +1,4 @@
-package src.main;
+package main;
 
 /**
  * This class stores the requirement for a current game state to move to the next game state

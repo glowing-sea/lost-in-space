@@ -1,4 +1,4 @@
-package src.main;
+package main;
 
 /**
  * An object storing the attributes of a character, such as the player or an enemy.

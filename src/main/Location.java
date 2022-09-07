@@ -1,4 +1,4 @@
-package src.main;
+package main;
 
 /**
  * A object shoring a location (x and y coordinate).
@@ -8,7 +8,7 @@ public class Location {
     private int x;
     private int y;
 
-    Location (int x, int y){
+    public Location (int x, int y){
         this.x = x;
         this.y = y;
     }
