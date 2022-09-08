@@ -67,7 +67,7 @@ public class GameConfiguration {
                 "         ",
                 "------ --",
                 "   E     ",
-                "-- ------",
+                "-- -E----",
                 "         ",
                 "  E    H ",
                 "---------",
@@ -77,7 +77,8 @@ public class GameConfiguration {
         Player player = new Player("Jack", gamerhp, gameratk, gamerdef, new Location(0,1), gamerexp, gamerlevel);
 
         ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-        enemies.add(new Enemy("Goblin1",30,20,30,new Location(3,3),false));
+        enemies.add(new Enemy("Goblin1",30,120,30,new Location(3,3),false));
+        enemies.add(new Enemy("Goblin3",30,120,30,new Location(4,4),false));
         enemies.add(new Enemy("Goblin2",30,120,80,new Location(6,2),false));
 
         String dialogue = "fight against an enemy";
