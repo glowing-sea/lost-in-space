@@ -1,0 +1,19 @@
+Software Engineering Group 2
+Meeting minutes -2
+7/9/2022
+Written: Zhishang Bian
+Late/absent: William Bartor
+
+William go travelling and we briefly talk about what we should do in future
+
+Currently we have:
+- Albert: create CI and read instructions about how to build our own runner.
+- Haoting: compiled a TODO list
+- Haoting: successfully build a game skeleton and make a merge request
+- Zhishang: create some user stories
+- Team: approve Haoting's merge request and merge it to main. We decide to do branch out and do the work on to-do list individually.
+- Team: discussed unit test
+TASKS
+- Since everyone has different expectation, we decide that everyone can add features we want with branch out
+- Zhishang will finish the enemy branch and unit testing by 8/9/2022. Then he will do a merge request (finished on time)
+- Everyone are suggest to review other's merge request and see if program runs
