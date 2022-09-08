@@ -14,10 +14,10 @@ build-code-job:
   script:
     - echo "Auto-building Project..."
     - javac -d C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\production\comp2120-2022-group-assignment\main src\main\*.*
-    - javac -cp C:\Users\yenga\.m2\repository\junit\junit\4.13.1 -cp C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\production\comp2120-2022-group-assignment\main -d C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\test\comp2120-2022-group-assignment\main JUnit\main\*.*
+    - javac -cp C:\Users\yenga\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar -cp C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\production\comp2120-2022-group-assignment\main -d C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\test\comp2120-2022-group-assignment\main JUnit\main\*.*
 
 test-code-job1:
   stage: test
   script:
     - echo "Auto-running test-job1..."
-    - java -cp C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\test\comp2120-2022-group-assignment-2\main -cp C:\Users\yenga\.m2\repository\junit\junit\4.13.1 C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\test\comp2120-2022-group-assignment-2\main\EnemyUnitTests.class
+    - java -cp C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\test\comp2120-2022-group-assignment-2\main -cp C:\Users\yenga\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\test\comp2120-2022-group-assignment-2\main\EnemyUnitTests.class
