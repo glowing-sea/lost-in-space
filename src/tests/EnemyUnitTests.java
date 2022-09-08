@@ -1,11 +1,10 @@
 package tests;
 
+import main.Enemy;
+import main.Location;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
-
-import main.Enemy;
-import main.Location;
 
 /**
  * @Author Albert Yu
