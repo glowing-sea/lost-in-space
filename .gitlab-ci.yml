@@ -1,6 +1,22 @@
 ## .gitlab-ci.yml
 ## Author: Albert Yu
 
-job:
+##job:
+##  script:
+##    - C:\GitLab-Runner\test.bat
+
+stages:
+  - build
+  - test
+
+build-code-job:
+  stage: build
   script:
-    - C:\GitLab-Runner\test.bat
+    - echo "Building Project..."
+    - javac -d C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\test\comp2120-2022-group-assignment\main JUnit\main\*.*
+
+test-code-job1:
+  stage: test
+  script:
+    - echo "Running test-job1..."
+    - java -cp C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\test\comp2120-2022-group-assignment-2\main -cp C:\Users\yenga\.m2\repository\junit\junit\4.13.1 C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\test\comp2120-2022-group-assignment-2\main\EnemyUnitTests.class
