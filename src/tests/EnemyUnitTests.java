@@ -1,7 +1,7 @@
 package tests;
 
-import main.Enemy;
-import main.Location;
+import base.Enemy;
+import base.Location;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
