@@ -32,7 +32,7 @@ public class Location {
 
     /**
      * Check if two locations are equal
-     * @param obj the other location
+     * @param otherLoc the other location
      * @return true if the two location are equal
      */
     public boolean equals(Location otherLoc) {
