@@ -1,4 +1,4 @@
-package main;
+package base;
 
 /**
  * A object shoring a location (x and y coordinate).

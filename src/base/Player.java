@@ -1,4 +1,4 @@
-package main;
+package base;
 
 /**
  * An object storing the attributes and method of the current player.

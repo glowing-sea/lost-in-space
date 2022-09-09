@@ -1,4 +1,4 @@
-package main;
+package base;
 
 /**
  * An object storing the attributes of a character, such as the player or an enemy.

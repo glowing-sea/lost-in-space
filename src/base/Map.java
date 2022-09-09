@@ -1,4 +1,4 @@
-package main;
+package base;
 
 /**
  * An object storing a map in a game
