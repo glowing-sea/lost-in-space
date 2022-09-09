@@ -4,10 +4,10 @@
 
 ##job:
 ##  script:
-##    - C:\GitLab-Runner\test.bat
+##    - C:/GitLab-Runner/test.bat
 
 variables:
-  - JUNIT_DIR: "C:\Users\yenga\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar"
+  - JUNIT_DIR: "C:/Users/yenga/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar"
 
 stages:
   - build
@@ -17,8 +17,8 @@ build-code-job:
   stage: build
   script:
     - echo "Auto-building Project..."
-    - javac src\base\*.*
-    - javac -cp $JUNIT_DIR src\tests\*.*
+    - javac src/base/*.*
+    - javac -cp $JUNIT_DIR src/tests/*.*
 
 test-code-job1:
   stage: test
