@@ -1,8 +1,8 @@
-package base;
+package src.base;
 import java.util.Objects;
 import java.util.Scanner;
 
-import static src.main.Player.interact;
+import static src.base.Player.interact;
 
 /**
  * This the main class where the game runs.

@@ -1,4 +1,4 @@
-package base;
+package src.base;
 
 /**
  * An object storing the attributes and method of an enemy.
