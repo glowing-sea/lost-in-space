@@ -12,6 +12,7 @@
  * Everytime we check in things from your IDE to GitLab, test.bat will be run, and the CI/DI pipeline will hold the job, and run it in the pipeline.
  *
  * If you have any questions, feel free to shoot me a message. I'll continually maintain and improve this subsystem.
+ *
  */
 public class autotesting_prototype {
 

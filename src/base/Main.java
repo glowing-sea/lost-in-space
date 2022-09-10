@@ -1,6 +1,8 @@
-package base;
+package src.base;
 import java.util.Objects;
 import java.util.Scanner;
+
+import static src.base.Player.interact;
 
 /**
  * This the main class where the game runs.
@@ -27,12 +29,15 @@ public class Main {
                 case "s" -> state.player.backward(state.map);
                 case "d" -> state.player.right(state.map);
                 case "a" -> state.player.left(state.map);
+                case "i" -> Player.getDestination(state); //print current location and destination location
+                case "f" -> Player.interact(state);
             }
 
             // If the requirement to moving to the next game level is satisfied, move to the next game level.
             if (GameConfiguration.LEVEL0_LEVEL_UP.requirementSatisfied(state))
                 state.gameLevelUp(GameConfiguration.starr[state.level + 1]);
-
+            if (GameConfiguration.LEVEL1_LEVEL_UP.requirementSatisfied(state))
+                state.gameLevelUp(GameConfiguration.starr[state.level + 1]);
             // Print out the updated game state
             System.out.println(state);
         } while (!Objects.equals(input, "q"));

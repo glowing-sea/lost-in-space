@@ -1,4 +1,4 @@
-package base;
+package src.base;
 
 /**
  * An object storing the attributes of a character, such as the player or an enemy.
@@ -22,6 +22,21 @@ public abstract class Character {
     public String getName() {
         return name;
     }
+
+    /**
+     * check if a particulr is nearby this character
+     * @param other a location you want to test
+     * @return nearby you or not
+     */
+    public boolean nearby(Location other) {
+        Location my = this.loc;
+        int X = my.getX();
+        int Y = my.getY();
+        int EX = other.getX();
+        int EY = other.getY();
+        return (X == (EX - 1) && Y == EY) || (X == (EX + 1) && Y == EY) || (X == EX && Y == (EY + 1)) || (X == EX && Y == (EY - 1));
+    }
+
 
     public int getHp() {
         return hp;
