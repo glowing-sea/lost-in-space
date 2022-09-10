@@ -7,9 +7,9 @@
 ##    - C:\GitLab-Runner\test.bat
 
 variables:
-  - JUNIT_DIR:
-      - value: "C:/Users/yenga/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar"
-      - description: "This key-value pair indicates to GitLab the directory where you place your JUnit JAR file"
+  JUNIT_DIR:
+    value: "C:/Users/yenga/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar"
+    description: "This key-value pair indicates to GitLab the directory where you place your JUnit JAR file"
 
 stages:
   - build
