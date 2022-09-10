@@ -1,7 +1,7 @@
-package src.tests;
+package tests;
 
 import org.junit.Test;
-import src.base.*;
+import base.*;
 
 import java.util.ArrayList;
 
