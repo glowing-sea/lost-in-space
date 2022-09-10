@@ -1,6 +1,6 @@
-package tests;
+package src.tests;
 
-import base.Map;
+import src.base.Map;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
