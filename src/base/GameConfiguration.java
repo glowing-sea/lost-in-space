@@ -50,7 +50,7 @@ public class GameConfiguration {
         Player player = new Player("Jack", gamerhp, gameratk, gamerdef, new Location(0,1), gamerexp, gamerlevel);
         List<Enemy> enemies = null;
         String dialogue = "You are lost on this planet. You (X) should find a way back to your spaceship (H)";
-        LEVEL0_INITIAL_STATE = new State(mapOBJ, player, null, dialogue, 0);
+        LEVEL0_INITIAL_STATE = new State(mapOBJ, player, null, dialogue, 0,null);
         LEVEL0_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
     // Level 1 configuration
@@ -82,7 +82,7 @@ public class GameConfiguration {
         enemies.add(new Enemy("Goblin2",30,120,80,new Location(6,2),false));
 
         String dialogue = "fight against an enemy";
-        LEVEL1_INITIAL_STATE = new State(mapO1, player, enemies, dialogue, 1);
+        LEVEL1_INITIAL_STATE = new State(mapO1, player, enemies, dialogue, 1,null);
         LEVEL1_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
 
@@ -105,7 +105,7 @@ public class GameConfiguration {
         Player player = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(4,4), Integer.MIN_VALUE, Integer.MIN_VALUE);
         List<Enemy> enemies = null;
         String dialogue = "You Win!";
-        LEVEL10_INITIAL_STATE = new State(mapOBJ, player, null, dialogue, 2);
+        LEVEL10_INITIAL_STATE = new State(mapOBJ, player, null, dialogue, 2,null);
         LEVEL10_LEVEL_UP = null;
     }
 

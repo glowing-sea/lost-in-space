@@ -1,6 +1,7 @@
 package src.base;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An object storing the attributes and method of the current player.
@@ -9,11 +10,14 @@ import java.util.ArrayList;
 public class Player extends Character {
     private int exp;
     private int playerLevel;
+    private List<Item> ItemsHeld=new ArrayList<>();
+    private int maxitemsheld;
 
     public Player(String name, int hp, int atk, int def, Location loc, int exp, int playerLevel) {
         super(name, hp, atk, def, loc);
         this.exp = exp;
         this.playerLevel = playerLevel;
+        this.maxitemsheld = 2;
     }
 
 
@@ -37,7 +41,36 @@ public class Player extends Character {
         if(st.enemies != null) {
             st.enemies.removeAll(deletethem);
         }
+
+        //interact with items nearby
+        if(st.Items != null && !st.Items.isEmpty()) {
+            for (Item item : st.Items) {
+                if ((item.pickupitemvalid(st)) && (st.player.canaddItem(item))) {
+                    st.player.addItem(item);
+                    item.pickupitem();
+                }
+            }
+        }
+
+        }
+
+    public static void useItem(State st, int inventorynumber){
+
+        switch (st.player.getItem(inventorynumber).getType()) {
+            case HP_Boost:
+                //boost hp by 1 when item used
+                st.player.setHp(st.player.getHp() + 1);
+                st.player.ItemsHeld.remove(st.player.getItem(inventorynumber));
+                st.Items.get(inventorynumber).use_item();
+                break;
+
+            default:
+                break;
+        }
+
     }
+
+
 
     public static void getDestination(State st){
         Map map = st.map;
@@ -119,9 +152,26 @@ public class Player extends Character {
     public int getExp() {
         return exp;
     }
+    public boolean canaddItem(Item item) {
+        if(this.ItemsHeld.size() <= this.maxitemsheld) {
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    public void addItem(Item item) {
+            this.ItemsHeld.add(item);
+
+    }
 
     public int getPlayerLevel() {
         return playerLevel;
+    }
+
+    public Item getItem(int inventorynumber) {
+        return this.ItemsHeld.get(inventorynumber);
     }
 
     public void setExp(int exp) {

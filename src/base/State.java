@@ -11,15 +11,17 @@ public class State {
     Player player;
     List<Enemy> enemies;
     int level;
+    List<Item> Items;
     String dialogue;
 
     // A new game
-    public State(Map map, Player player, List<Enemy> enemies, String dialogue, int level) {
+    public State(Map map, Player player, List<Enemy> enemies, String dialogue, int level, List<Item> items) {
         this.map = map;
         this.player = player;
         this.enemies = enemies;
         this.level = level;
         this.dialogue = dialogue;
+        this.Items = items;
     }
 
     /**
