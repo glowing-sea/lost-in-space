@@ -7,6 +7,7 @@ import org.junit.Test;
 
 /**
  * @author Albert Yu
+ *
  */
 public class MapUnitTests {
 

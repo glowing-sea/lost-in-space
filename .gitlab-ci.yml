@@ -1,9 +1,13 @@
 ## .gitlab-ci.yml
 ## Author: Albert Yu
+##
 
 ##job:
 ##  script:
-##    - C:\GitLab-Runner\test.bat
+##    - C:/GitLab-Runner/test.bat
+
+variables:
+  - JUNIT_DIR: "C:/Users/yenga/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar"
 
 stages:
   - build
@@ -13,11 +17,11 @@ build-code-job:
   stage: build
   script:
     - echo "Auto-building Project..."
-    - javac src\main\*.*
-    - javac -cp C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\production\comp2120-2022-group-assignment-2\main -cp C:\Users\yenga\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar src\tests\*.*
+    - javac src/base/*.*
+    - javac -cp $JUNIT_DIR src/tests/*.*
 
 test-code-job1:
   stage: test
   script:
     - echo "Auto-running test-job1..."
-    - java -cp C:\Users\yenga\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar EnemyUnitTests
+    - java -cp $JUNIT_DIR EnemyUnitTests
