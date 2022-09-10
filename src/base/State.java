@@ -1,4 +1,5 @@
 package src.base;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,16 +73,24 @@ public class State {
         String[] m = map.getMap();
         int playerX = player.getLoc().getX();
         int playerY = player.getLoc().getY();
-        // FIXME display enemies locations
+
+        // display enemies locations
+        ArrayList<Location> enemiesloc = new ArrayList<>(); // where the enemies are
+        if(this.enemies!=null) {
+            for (Enemy enemy : this.enemies) {
+                enemiesloc.add(enemy.getLoc());
+            }
+        }
         output.append("====================\n");
         for (int i = 0; i < m.length; i++) {
             StringBuilder line = new StringBuilder();
             line.append('‖');
             for (int j = 0; j < m[i].length(); j++) {
-
                 // If the player is at this location, display X instead of others
                 if (playerX == i && playerY == j){
                     line.append('X').append(" ");
+                } else if ((new Location(i,j).isin(enemiesloc))) {
+                    line.append('E').append(" ");
                 } else {
                     line.append(m[i].charAt(j)).append(" ");
                 }

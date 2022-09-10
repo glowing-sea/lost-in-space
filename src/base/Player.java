@@ -1,5 +1,7 @@
 package src.base;
 
+import java.util.ArrayList;
+
 /**
  * An object storing the attributes and method of the current player.
  */
@@ -25,10 +27,15 @@ public class Player extends Character {
      */
     public static void interact(State st){
         //interact with enemies nearby you!
+        ArrayList<Enemy> deletethem = new ArrayList<>();
         if(st.enemies != null && !st.enemies.isEmpty()) { //there exist enemies
             for (Enemy enemy : st.enemies) {
-                enemy.fight(st); //fight against them
+                Enemy deleteit = enemy.fight(st); //fight against them
+                deletethem.add(deleteit);
             }
+        }
+        if(st.enemies != null) {
+            st.enemies.removeAll(deletethem);
         }
     }
 
