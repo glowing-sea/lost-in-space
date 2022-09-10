@@ -18,10 +18,10 @@ build-code-job:
   script:
     - echo "Auto-building Project..."
     - javac src/base/*.*
-    - javac -cp $JUNIT_DIR src/tests/*.*
+    - javac -cp ${JUNIT_DIR} src/tests/*.*
 
 test-code-job1:
   stage: test
   script:
     - echo "Auto-running test-job1..."
-    - java -cp $JUNIT_DIR EnemyUnitTests
+    - java -cp ${JUNIT_DIR} EnemyUnitTests
