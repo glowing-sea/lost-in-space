@@ -4,7 +4,7 @@ package src.base;
  * An object storing the attributes and method of the current player.
  */
 
-public class Player extends Character {
+public class Player extends Character implements PlayerInterface {
     private int exp;
     private int playerLevel;
 
@@ -52,6 +52,7 @@ public class Player extends Character {
      * @param map the map where the character is in
      * @return true if the character has moved
      */
+    @Override
     public boolean forward(Map map) {
         int newX = getLoc().getX() - 1;
         Location newLoc = new Location(newX, getLoc().getY());
@@ -67,6 +68,7 @@ public class Player extends Character {
      * @param map the map where the character is in
      * @return true if the character has moved
      */
+    @Override
     public boolean backward(Map map) {
         int newX = getLoc().getX() + 1;
         Location newLoc = new Location(newX, getLoc().getY());
@@ -82,6 +84,7 @@ public class Player extends Character {
      * @param map the map where the character is in
      * @return true if the character has moved
      */
+    @Override
     public boolean right(Map map) {
         int newY = getLoc().getY() + 1;
         Location newLoc = new Location(getLoc().getX(), newY);
@@ -97,6 +100,7 @@ public class Player extends Character {
      * @param map the map where the character is in
      * @return true if the character has moved
      */
+    @Override
     public boolean left(Map map) {
         int newY = getLoc().getY() - 1;
         Location newLoc = new Location(getLoc().getX(), newY);
