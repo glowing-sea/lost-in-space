@@ -83,6 +83,13 @@ public class State {
                 enemiesloc.add(enemy.getLoc());
             }
         }
+        // display item locations
+        ArrayList<Location> itemsloc = new ArrayList<>(); // where the items are
+        if(this.Items!=null) {
+            for (Item item : this.Items) {
+                itemsloc.add(item.getLocation());
+            }
+        }
         output.append("====================\n");
         for (int i = 0; i < m.length; i++) {
             StringBuilder line = new StringBuilder();
@@ -93,6 +100,8 @@ public class State {
                     line.append('X').append(" ");
                 } else if ((new Location(i,j).isin(enemiesloc))) {
                     line.append('E').append(" ");
+                } else if ((new Location(i,j).isin(itemsloc))) {
+                    line.append('i').append(" ");
                 } else {
                     line.append(m[i].charAt(j)).append(" ");
                 }

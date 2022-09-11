@@ -48,6 +48,7 @@ public class Player extends Character {
                 if ((item.pickupitemvalid(st)) && (st.player.canaddItem(item))) {
                     st.player.addItem(item);
                     item.pickupitem();
+
                 }
             }
         }
@@ -56,18 +57,21 @@ public class Player extends Character {
 
     public static void useItem(State st, int inventorynumber){
 
-        switch (st.player.getItem(inventorynumber).getType()) {
-            case HP_Boost:
-                //boost hp by 1 when item used
-                st.player.setHp(st.player.getHp() + 1);
-                st.player.ItemsHeld.remove(st.player.getItem(inventorynumber));
-                st.Items.get(inventorynumber).use_item();
-                break;
+        if ((st.player.ItemsHeld != null) && !(st.player.ItemsHeld.isEmpty())) {
+            switch (st.player.getItem(inventorynumber -1).getType()) {
+                case HP_Boost:
+                    //boost hp by 1 when item used
+                    st.player.setHp(st.player.getHp() + 1);
+                    st.player.ItemsHeld.remove(st.player.getItem(inventorynumber -1));
+                    st.Items.get(inventorynumber -1).use_item();
+                    System.out.print("Used Boost");
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
+
         }
-
     }
 
 

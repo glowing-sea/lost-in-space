@@ -49,8 +49,10 @@ public class GameConfiguration {
         Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|'});
         Player player = new Player("Jack", gamerhp, gameratk, gamerdef, new Location(0,1), gamerexp, gamerlevel);
         List<Enemy> enemies = null;
+        ArrayList<Item> items = new ArrayList<Item>();
+        items.add(new Item(new Location(1,2), Item_Type.HP_Boost));
         String dialogue = "You are lost on this planet. You (X) should find a way back to your spaceship (H)";
-        LEVEL0_INITIAL_STATE = new State(mapOBJ, player, null, dialogue, 0,null);
+        LEVEL0_INITIAL_STATE = new State(mapOBJ, player, enemies, dialogue, 0,items);
         LEVEL0_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
     // Level 1 configuration

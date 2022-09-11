@@ -31,6 +31,7 @@ public class Main {
                 case "a" -> state.player.left(state.map);
                 case "i" -> Player.getDestination(state); //print current location and destination location
                 case "f" -> Player.interact(state);
+                case "1" -> Player.useItem(state,1);
             }
 
             // If the requirement to moving to the next game level is satisfied, move to the next game level.

@@ -15,6 +15,10 @@ public class Item {
         return this.type;
     }
 
+    public Location getLocation() {
+        return this.loc;
+    }
+
     public void use_item() {
         valid = false;
     }
