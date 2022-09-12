@@ -33,12 +33,23 @@ public class Main {
                 case "f" -> Player.interact(state);
                 case "1" -> Player.useItem(state,1);
             }
-
+            Location initial = new Location(0,1);
             // If the requirement to moving to the next game level is satisfied, move to the next game level.
-            if (GameConfiguration.LEVEL0_LEVEL_UP.requirementSatisfied(state))
+            if (GameConfiguration.LEVEL0_LEVEL_UP.requirementSatisfied(state)) {
+                System.out.println("continue adventure");
+                state.clearall();
                 state.gameLevelUp(GameConfiguration.starr[state.level + 1]);
-            if (GameConfiguration.LEVEL1_LEVEL_UP.requirementSatisfied(state))
+            }
+            if (GameConfiguration.LEVEL1_LEVEL_UP.requirementSatisfied(state)) {
+                System.out.println("next level: continue");
+                state.clearall();
                 state.gameLevelUp(GameConfiguration.starr[state.level + 1]);
+            }
+            if (GameConfiguration.LEVEL3_LEVEL_UP.requirementSatisfied(state)) {
+                System.out.println("next level: finish");
+                state.clearall();
+                state.gameLevelUp(GameConfiguration.starr[state.level + 1]);
+            }
             // Print out the updated game state
             System.out.println(state);
         } while (!Objects.equals(input, "q"));

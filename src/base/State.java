@@ -25,6 +25,18 @@ public class State {
     }
 
     /**
+     * clear the stuff left in last level when we want to level up
+     */
+    public void clearall(){
+        if(this.enemies!=null) {
+            this.enemies.clear();
+        }
+        if(this.Items!=null){
+            this.Items.clear();
+        }
+    }
+
+    /**
      * Check whether the game state is a finish state (last state of the whole game).
      * @return ture or false
      */
