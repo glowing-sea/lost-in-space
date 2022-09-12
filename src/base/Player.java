@@ -27,46 +27,97 @@ public class Player extends Character {
      *
      * currently realize:
      *  interact with enemies without UI
+     *  interact with items nearby
+     *      Store Items in Inventory
+     *      Use Items which don't need to be stored eg. exp boost
      * @param st the board state
      */
     public static void interact(State st){
         //interact with enemies nearby you!
         ArrayList<Enemy> deletethem = new ArrayList<>();
+        //boolean used to make sure only 1 action is done for each press of interact
+        boolean canaction = true;
+
         if(st.enemies != null && !st.enemies.isEmpty()) { //there exist enemies
             for (Enemy enemy : st.enemies) {
                 Enemy deleteit = enemy.fight(st); //fight against them
                 deletethem.add(deleteit);
             }
+            if ((deletethem.isEmpty()) || (deletethem == null)) canaction = false;
         }
         if(st.enemies != null) {
             st.enemies.removeAll(deletethem);
         }
 
-        //interact with items nearby
-        if(st.Items != null && !st.Items.isEmpty()) {
+        //interact with items nearby to pick them up
+        if((st.Items != null && !st.Items.isEmpty()) && canaction) {
+
             for (Item item : st.Items) {
-                if ((item.pickupitemvalid(st)) && (st.player.canaddItem(item))) {
+                //check for items with Instant usage
+                if (item.pickupitemvalid(st)) {
+                switch (item.getType()) {
+                    case Inventory_Boost:
+                        //boost inventory by 1 when item used up to a max of 5 places
+                        if (!(st.player.getMaxitemsheld() +1 > 5)) st.player.setMaxitemsheld(st.player.getMaxitemsheld() + 1);
+                        //remove item from existance
+                            item.use_item();
+                            item.pickupitem();
+                        System.out.print("Got Inventory Boost");
+                        canaction = false;
+                        break;
+                    case EX_Boost:
+                        //boost exp by 1 when item used
+                        st.player.setExp(st.player.getExp() + 1);
+                        //remove item from existance
+                        item.use_item();
+                        item.pickupitem();
+                        System.out.print("Got EXP Boost");
+                        canaction = false;
+                        break;
+                    default:
+                        break;
+                }
+
+                // items to be stored in inventory if they are valid
+                 if (st.player.canaddItem() && canaction) {
                     st.player.addItem(item);
                     item.pickupitem();
-
+                    canaction = false;
                 }
             }
         }
-
         }
 
+        //If No items or enemys are nearby, drop items
+
+        }
+    /**
+     * Use the items within the players inventory at the requested number.
+     * @param st the state the game is currently in
+     * @param  inventorynumber the inventory position which item is being used
+     * @return void
+     */
     public static void useItem(State st, int inventorynumber){
 
+        int tempinventorynum = inventorynumber;
+
+        if (tempinventorynum > st.player.getItemCount()) {
+        tempinventorynum = st.player.getItemCount();
+        }
+
         if ((st.player.ItemsHeld != null) && !(st.player.ItemsHeld.isEmpty())) {
-            switch (st.player.getItem(inventorynumber -1).getType()) {
+            switch (st.player.getItem(tempinventorynum -1).getType()) {
                 case HP_Boost:
                     //boost hp by 1 when item used
                     st.player.setHp(st.player.getHp() + 1);
-                    st.player.ItemsHeld.remove(st.player.getItem(inventorynumber -1));
-                    st.Items.get(inventorynumber -1).use_item();
-                    System.out.print("Used Boost");
-                    break;
 
+                    if(st.Items.contains(st.player.getItem(tempinventorynum -1))) {
+                        st.Items.get(tempinventorynum - 1).use_item();
+                    }
+
+                    st.player.ItemsHeld.remove(st.player.getItem(tempinventorynum -1));
+                    System.out.print("Used HP Boost");
+                    break;
                 default:
                     break;
             }
@@ -153,21 +204,28 @@ public class Player extends Character {
 
     }
 
-    public int getExp() {
-        return exp;
-    }
-    public boolean canaddItem(Item item) {
-        if(this.ItemsHeld.size() <= this.maxitemsheld) {
+    public boolean canaddItem() {
+        if(this.ItemsHeld.size()+1  <= this.maxitemsheld) {
             return true;
         } else {
-
             return false;
         }
     }
 
+    public int getMaxitemsheld() {
+        return this.maxitemsheld;
+    }
+
+    public void setMaxitemsheld(int newItemsheld){
+        this.maxitemsheld = newItemsheld;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
     public void addItem(Item item) {
             this.ItemsHeld.add(item);
-
     }
 
     public int getPlayerLevel() {
@@ -180,6 +238,9 @@ public class Player extends Character {
 
     public void setExp(int exp) {
         this.exp = exp;
+    }
+    public int getItemCount() {
+        return this.ItemsHeld.size();
     }
 
     public void setPlayerLevel(int playerLevel) {

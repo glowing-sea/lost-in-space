@@ -31,7 +31,13 @@ public class Main {
                 case "a" -> state.player.left(state.map);
                 case "i" -> Player.getDestination(state); //print current location and destination location
                 case "f" -> Player.interact(state);
+
+                //For each potential inventory state, code won't break and will use the most currently occupied slot
                 case "1" -> Player.useItem(state,1);
+                case "2" -> Player.useItem(state,2);
+                case "3" -> Player.useItem(state,3);
+                case "4" -> Player.useItem(state,4);
+                case "5" -> Player.useItem(state,5);
             }
             Location initial = new Location(0,1);
             // If the requirement to moving to the next game level is satisfied, move to the next game level.
