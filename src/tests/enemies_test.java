@@ -28,7 +28,7 @@ public class enemies_test {
             "         "};
     char[] testwalls = new char[] {'-','E'};
     Map testmap = new Map(-1,maptest,testwalls);
-    State teststate = new State(testmap,player1,enemies,"abc",0);
+    State teststate = new State(testmap,player1,enemies,"abc",0,null);
 
     @Test
     public void farAway(){
