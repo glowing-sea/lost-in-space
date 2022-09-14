@@ -36,9 +36,13 @@ public class Utility {
         enemies.add(e1);
         enemies.add(e2);
 
+        Item i1 = new Item(new Location(1,1), Item_Type.EX_Boost);
+        List<Item> i = new ArrayList<>();
+        i.add(i1);
+
         Player p1 = new Player("talon", 100, 100, 100, new Location(10,20), 0, 1);
 
-        State s = new State(new Map(0, map, new char[] {'-', '+', '|'}), p1, enemies,  "dual", 10);
+        State s = new State(new Map(0, map, new char[] {'-', '+', '|'}), p1, enemies,  "dual", 10, i);
 
         writeToJSON(s);
         //readFromJSON();
@@ -71,6 +75,8 @@ public class Utility {
         Gson gson = builder.create();
 
         System.out.println(gson.toJson(s));
+
+        writeToFile("utility_testing_txt.json", gson.toJson(s));
     }
 
     public static void readFromJSON() {
