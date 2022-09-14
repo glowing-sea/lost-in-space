@@ -9,6 +9,7 @@ import com.google.gson.stream.JsonReader;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,8 +45,8 @@ public class Utility {
 
         State s = new State(new Map(0, map, new char[] {'-', '+', '|'}), p1, enemies,  "dual", 10, i);
 
-        writeToJSON(s);
-        //readFromJSON();
+        //writeToJSON(s);
+        readFromJSON();
     }
 
     public static void writeToFile(String fileName, String data) {
@@ -83,23 +84,28 @@ public class Utility {
         try {
             String line;
             String buildStr="";
-            BufferedReader in = new BufferedReader(new FileReader(ROOT_DIR + "/" + "foo.json"));
+            BufferedReader in = new BufferedReader(new FileReader(ROOT_DIR + "/" + "utility_testing_txt.json"));
 
-            //JsonReader jr = new JsonReader(in);
+            JsonReader jr = null;
+            final Type CUS_LIST_TYPE = new TypeToken<State>() {}.getType();
 
             Gson g = new Gson();
-            while((line = in.readLine()) != null) {
-                buildStr = buildStr.concat(line);
+            try {
+                jr = new JsonReader(in);
             }
-            System.out.println(buildStr);
+            catch(Exception e) {
+                System.err.println(e);
+            }
 
-            //SmallerState ss = g.fromJson(buildStr, SmallerState.class);
+            State s;
 
-            Type collectionType = new TypeToken<SmallerState>(){}.getType();
-            SmallerState ss = (SmallerState) new Gson().fromJson( buildStr , collectionType);
-
-            System.out.println(ss.level);
-            System.out.println(ss.dialogue);
+            if(jr != null ) {
+                s = (State) g.fromJson(jr, CUS_LIST_TYPE);
+                System.out.println(s.toString());
+            }
+            else {
+                s = null;
+            }
 
             in.close();
         }
