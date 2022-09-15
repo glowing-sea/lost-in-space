@@ -54,7 +54,7 @@ public class Utility {
         writeToFile(fn, gson.toJson(s));
     }
 
-    public static void readFromJSON(String filename) {
+    public static State readFromJSON(String filename) {
         try {
             String line;
             String buildStr="";
@@ -75,16 +75,22 @@ public class Utility {
 
             if(jr != null ) {
                 s = (State) g.fromJson(jr, CUS_LIST_TYPE);
-                System.out.println(s.toString());
+                //System.out.println(s.toString());
+
+                in.close();
+                return s;
             }
             else {
                 s = null;
+                in.close();
+                return s;
             }
 
-            in.close();
+
         }
         catch(Exception e) {
             System.err.println(e);
+            return null;
         }
     }
 }

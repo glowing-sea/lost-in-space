@@ -56,6 +56,9 @@ public class UtilityUnitTests {
 
     @Test
     public void testReadFromJson() {
-
+        State p = Utility.readFromJSON(ROOT_DIR + "/" + fn);
+        Assert.assertTrue(p != null);
+        Assert.assertEquals("dual", p.toString());    // TODO Team: what is the best and proper way of obtaining the "dialogue" variable from State?
+                                                              //    presently, dialogue is not made public, thus this class cannot obtain this data.
     }
 }
