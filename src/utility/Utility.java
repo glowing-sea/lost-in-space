@@ -13,6 +13,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Albert Yu
+ *
+ * This class contains methods that serve as utility functions for this game.
+ */
 public class Utility {
     //private static final String ROOT_DIR = "C:/temp";
     private static String jsonString = "{\"level\":1, \"dialogue\":\"one\", \"enemies\":[{\"name\":\"Evil\", \"hp\":10, \"atk\": 10, \"def\": 11, \"location\":{\"x\":0, \"y\":0}, \"isDead\": false}]}";

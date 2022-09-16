@@ -10,6 +10,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * @author Albert Yu
+ */
 public class UtilityUnitTests {
 
     static String fn;
@@ -52,13 +56,20 @@ public class UtilityUnitTests {
         Utility.writeToJSON (ROOT_DIR + "/" + fn, s);
         File f = new File(ROOT_DIR + "/" + fn);
         Assert.assertTrue(f.exists());
+
+        // second test
+
     }
 
     @Test
     public void testReadFromJson() {
         State p = Utility.readFromJSON(ROOT_DIR + "/" + fn);
         Assert.assertTrue(p != null);
-        Assert.assertEquals("dual", p.toString());    // TODO Team: what is the best and proper way of obtaining the "dialogue" variable from State?
-                                                              //    presently, dialogue is not made public, thus this class cannot obtain this data.
+        Assert.assertEquals("dual", p.getDialogue());    // TODO Team: what is the best and proper way of obtaining the "dialogue" variable from State?
+                                                                 //    presently, dialogue is not made public, thus this class cannot obtain this data.
+        // second test
+        Assert.assertEquals(10, p.getLevel());
+
+
     }
 }
