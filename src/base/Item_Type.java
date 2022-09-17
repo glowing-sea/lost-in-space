@@ -1,4 +1,4 @@
-package src.base;
+package base;
 
 public enum Item_Type {
     HP_Boost,
