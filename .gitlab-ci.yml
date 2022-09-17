@@ -25,7 +25,7 @@ build-code-job:
   script:
     - echo "Auto-building Project..."
     - javac src/base/*.*
-    - javac -cp ${JUNIT_DIR} -cp ${SRC_DIR} src/tests/*.*
+    ##- javac -cp ${JUNIT_DIR} -cp ${SRC_DIR} src/tests/*.*
 
 test-code-job1:
   stage: test
