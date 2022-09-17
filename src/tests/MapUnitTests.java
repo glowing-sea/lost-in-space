@@ -1,12 +1,13 @@
-package src.tests;
+package tests;
 
-import src.base.Map;
+import base.Map;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
  * @author Albert Yu
+ *
  */
 public class MapUnitTests {
 

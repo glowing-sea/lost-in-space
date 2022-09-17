@@ -1,4 +1,5 @@
-package src.base;
+package base;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,15 +11,36 @@ public class State {
     Player player;
     List<Enemy> enemies;
     int level;
+    List<Item> Items;
     String dialogue;
 
     // A new game
-    public State(Map map, Player player, List<Enemy> enemies, String dialogue, int level) {
+    public State(Map map, Player player, List<Enemy> enemies, String dialogue, int level, List<Item> items) {
         this.map = map;
         this.player = player;
         this.enemies = enemies;
         this.level = level;
         this.dialogue = dialogue;
+        this.Items = items;
+    }
+
+    public String getDialogue() {
+        return dialogue;
+    }
+    public int getLevel() {
+        return level;
+    }
+
+    /**
+     * clear the stuff left in last level when we want to level up
+     */
+    public void clearall(){
+        if(this.enemies!=null) {
+            this.enemies.clear();
+        }
+        if(this.Items!=null){
+            this.Items.clear();
+        }
     }
 
     /**
@@ -72,16 +94,33 @@ public class State {
         String[] m = map.getMap();
         int playerX = player.getLoc().getX();
         int playerY = player.getLoc().getY();
-        // FIXME display enemies locations
+
+        // display enemies locations
+        ArrayList<Location> enemiesloc = new ArrayList<>(); // where the enemies are
+        if(this.enemies!=null) {
+            for (Enemy enemy : this.enemies) {
+                enemiesloc.add(enemy.getLoc());
+            }
+        }
+        // display item locations
+        ArrayList<Location> itemsloc = new ArrayList<>(); // where the items are
+        if(this.Items!=null) {
+            for (Item item : this.Items) {
+                itemsloc.add(item.getLocation());
+            }
+        }
         output.append("====================\n");
         for (int i = 0; i < m.length; i++) {
             StringBuilder line = new StringBuilder();
             line.append('‖');
             for (int j = 0; j < m[i].length(); j++) {
-
                 // If the player is at this location, display X instead of others
                 if (playerX == i && playerY == j){
                     line.append('X').append(" ");
+                } else if ((new Location(i,j).isin(enemiesloc))) {
+                    line.append('E').append(" ");
+                } else if ((new Location(i,j).isin(itemsloc))) {
+                    line.append('i').append(" ");
                 } else {
                     line.append(m[i].charAt(j)).append(" ");
                 }

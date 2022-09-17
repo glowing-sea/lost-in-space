@@ -1,6 +1,4 @@
-package src.base;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+package base;
 
 /**
  * An object storing a map in a game
@@ -59,5 +57,30 @@ public class Map {
                 return false;
         }
         return true;
+    }
+    /**
+     * input location, the char you will replace with
+     * output replace the location with the char you set
+     * @param location
+     * @param newchar
+     * @param st
+     */
+    // currently no function is using this due to refactoring on 10/9 by Zhishang
+    // feel free to use this
+    public static void refreshLocation(State st, Location location, char newchar){ // entre the new string and location where you want the string to be
+        int X = location.getX();
+        int Y = location.getY();
+        Map map = st.map;
+        if(X<0||X>8||Y<0||Y>8){
+            throw new NullPointerException("this is <0 or >8");
+        }else{
+//            Map newmap = new Map(this.mapID,this.map,this.walls);
+            String[] thenew = map.getMap();
+            char[] newline = thenew[X].toCharArray();
+            newline[Y] = newchar;
+            thenew[X] = String.valueOf(newline);
+            st.map = new Map(map.getMapID(),thenew,map.getWalls());
+
+        }
     }
 }

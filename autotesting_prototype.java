@@ -12,11 +12,13 @@
  * Everytime we check in things from your IDE to GitLab, test.bat will be run, and the CI/DI pipeline will hold the job, and run it in the pipeline.
  *
  * If you have any questions, feel free to shoot me a message. I'll continually maintain and improve this subsystem.
+ *
  */
 public class autotesting_prototype {
 
     /**
      * Author: Albert Yu
+     *
      *
      * Class created to test automated testing.  Initial prototype.
      * @param args
@@ -24,6 +26,7 @@ public class autotesting_prototype {
     public static void main(String[] args) {
 
         System.out.println("Hello world!");
+        System.out.println("Testing again.");
 
     }
 
