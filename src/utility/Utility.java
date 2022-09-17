@@ -1,15 +1,45 @@
 package utility;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import base.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 
+import java.io.*;
+import java.lang.reflect.Type;
+import java.util.List;
+
+/**
+ * @author Albert Yu
+ *
+ * This class contains methods that serve as utility functions for this game.
+ */
 public class Utility {
-    private static final String ROOT_DIR = "C:/temp";
 
+    // Following used for testing purposes
+    private static String jsonString = "{\"level\":1, \"dialogue\":\"one\", \"enemies\":[{\"name\":\"Evil\", \"hp\":10, \"atk\": 10, \"def\": 11, \"location\":{\"x\":0, \"y\":0}, \"isDead\": false}]}";
+    private static String jsonStringSmall = "{\"level\":1, \"dialogue\":\"one\"}";
+
+    /**
+     * Main used for testing purposes
+     * @param args
+     */
+    public static void main(String[] args) {
+        // used for testing purposes:
+        //writeToJSON(s);
+        //readFromJSON();
+    }
+
+    /**
+     * Writes String data to a persistent file.
+     * @param fileName
+     * @param data
+     */
     public static void writeToFile(String fileName, String data) {
 
         try {
-            FileWriter fw = new FileWriter(ROOT_DIR + "/" + fileName);
+            FileWriter fw = new FileWriter( fileName);
 
             fw.write(data);
 
@@ -17,6 +47,71 @@ public class Utility {
         }
         catch(IOException ioe) {
             System.err.println(ioe.toString());
+        }
+    }
+
+    /**
+     * Writes a State object instance to a persistent JSON file.
+     * @param fn
+     * @param s
+     */
+    public static void writeToJSON(String fn, State s) {
+
+        Map map;
+        Player player;
+        List<Enemy> enemies;
+        int level;
+        String dialogue;
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+
+        //System.out.println(gson.toJson(s));
+
+        writeToFile(fn, gson.toJson(s));
+    }
+
+    /**
+     * Reads a persistent JSON file, and places the data onto a State object.
+     * @param filename
+     * @return
+     */
+    public static State readFromJSON(String filename) {
+        try {
+            String line;
+            String buildStr="";
+            BufferedReader in = new BufferedReader(new FileReader(filename));
+
+            JsonReader jr = null;
+            final Type CUS_LIST_TYPE = new TypeToken<State>() {}.getType();
+
+            Gson g = new Gson();
+            try {
+                jr = new JsonReader(in);
+            }
+            catch(Exception e) {
+                System.err.println(e);
+            }
+
+            State s;
+
+            if(jr != null ) {
+                s = (State) g.fromJson(jr, CUS_LIST_TYPE);
+                //System.out.println(s.toString());
+
+                in.close();
+                return s;
+            }
+            else {
+                s = null;
+                in.close();
+                return s;
+            }
+        }
+        catch(Exception e) {
+            System.err.println(e);
+            return null;
         }
     }
 }

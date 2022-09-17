@@ -24,6 +24,13 @@ public class State {
         this.Items = items;
     }
 
+    public String getDialogue() {
+        return dialogue;
+    }
+    public int getLevel() {
+        return level;
+    }
+
     /**
      * clear the stuff left in last level when we want to level up
      */
