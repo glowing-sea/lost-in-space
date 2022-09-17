@@ -3,14 +3,11 @@ package utility;
 import base.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,15 +16,26 @@ import java.util.List;
  * This class contains methods that serve as utility functions for this game.
  */
 public class Utility {
-    //private static final String ROOT_DIR = "C:/temp";
+
+    // Following used for testing purposes
     private static String jsonString = "{\"level\":1, \"dialogue\":\"one\", \"enemies\":[{\"name\":\"Evil\", \"hp\":10, \"atk\": 10, \"def\": 11, \"location\":{\"x\":0, \"y\":0}, \"isDead\": false}]}";
     private static String jsonStringSmall = "{\"level\":1, \"dialogue\":\"one\"}";
 
+    /**
+     * Main used for testing purposes
+     * @param args
+     */
     public static void main(String[] args) {
+        // used for testing purposes:
         //writeToJSON(s);
         //readFromJSON();
     }
 
+    /**
+     * Writes String data to a persistent file.
+     * @param fileName
+     * @param data
+     */
     public static void writeToFile(String fileName, String data) {
 
         try {
@@ -42,6 +50,11 @@ public class Utility {
         }
     }
 
+    /**
+     * Writes a State object instance to a persistent JSON file.
+     * @param fn
+     * @param s
+     */
     public static void writeToJSON(String fn, State s) {
 
         Map map;
@@ -59,6 +72,11 @@ public class Utility {
         writeToFile(fn, gson.toJson(s));
     }
 
+    /**
+     * Reads a persistent JSON file, and places the data onto a State object.
+     * @param filename
+     * @return
+     */
     public static State readFromJSON(String filename) {
         try {
             String line;
@@ -90,8 +108,6 @@ public class Utility {
                 in.close();
                 return s;
             }
-
-
         }
         catch(Exception e) {
             System.err.println(e);

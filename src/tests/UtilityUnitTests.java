@@ -10,13 +10,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * @author Albert Yu
+ *
+ * Unit test cases for Utility.java
  */
 public class UtilityUnitTests {
 
-    static String fn;
+    static String fn = "SoftwareEngineering-TestingWriteToFile.json";
     private final String ROOT_DIR = "C:/temp";
     private static State s;
 
@@ -47,8 +48,6 @@ public class UtilityUnitTests {
         Player p1 = new Player("talon", 100, 100, 100, new Location(10,20), 0, 1);
 
         s = new State(new Map(0, map, new char[] {'-', '+', '|'}), p1, enemies,  "dual", 10, i);
-
-        fn = "SoftwareEngineering-TestingWriteToFile.json";
     }
     @Test
     public void testWriteToJson() {
@@ -56,20 +55,18 @@ public class UtilityUnitTests {
         Utility.writeToJSON (ROOT_DIR + "/" + fn, s);
         File f = new File(ROOT_DIR + "/" + fn);
         Assert.assertTrue(f.exists());
-
-        // second test
-
     }
 
     @Test
     public void testReadFromJson() {
+        // first test
         State p = Utility.readFromJSON(ROOT_DIR + "/" + fn);
         Assert.assertTrue(p != null);
-        Assert.assertEquals("dual", p.getDialogue());    // TODO Team: what is the best and proper way of obtaining the "dialogue" variable from State?
-                                                                 //    presently, dialogue is not made public, thus this class cannot obtain this data.
+
         // second test
+        Assert.assertEquals("dual", p.getDialogue());
+
+        // third test
         Assert.assertEquals(10, p.getLevel());
-
-
     }
 }
