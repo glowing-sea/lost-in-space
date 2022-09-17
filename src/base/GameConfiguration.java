@@ -1,4 +1,4 @@
-package base;
+package src.base;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class GameConfiguration {
         Player player = new Player("Jack", gamerhp, gameratk, gamerdef, new Location(0,1), gamerexp, gamerlevel);
 
         List<Enemy> enemies = null;
-        ArrayList<Item> items = new ArrayList<Item>();
+        ArrayList<Item> items = new ArrayList<>();
         items.add(new Item(new Location(1,2), Item_Type.HP_Boost));
         items.add(new Item(new Location(3,2), Item_Type.Inventory_Boost));
         items.add(new Item(new Location(5,2), Item_Type.HP_Boost));
@@ -82,7 +82,7 @@ public class GameConfiguration {
         Map mapO1 = new Map(1, map, new char[] {'-', '+', '|','E'});
         Player player = new Player("Jack", gamerhp, gameratk, gamerdef, new Location(0,1), gamerexp, gamerlevel);
 
-        ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+        ArrayList<Enemy> enemies = new ArrayList<>();
         enemies.add(new Enemy("Goblin1",30,120,30,new Location(3,3),false));
         enemies.add(new Enemy("Goblin3",30,120,30,new Location(4,4),false));
         enemies.add(new Enemy("Goblin2",30,120,80,new Location(6,2),false));
@@ -109,7 +109,7 @@ public class GameConfiguration {
                 "         "};
 
         Map mapO3 = new Map(3, map, new char[] {'-', '+', '|','E'});
-        ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+        ArrayList<Enemy> enemies = new ArrayList<>();
         enemies.add(new Enemy("Goblin1",30,120,30,new Location(6,6),false));
         enemies.add(new Enemy("Goblin3",30,120,30,new Location(5,7),false));
         enemies.add(new Enemy("Goblin2",30,120,80,new Location(7,6),false));

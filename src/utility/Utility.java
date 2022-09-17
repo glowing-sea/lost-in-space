@@ -1,12 +1,18 @@
-package utility;
+package src.utility;
 
-import base.*;
+
+import src.base.Enemy;
+import src.base.Map;
+import src.base.Player;
+import src.base.State;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -23,7 +29,6 @@ public class Utility {
 
     /**
      * Main used for testing purposes
-     * @param args
      */
     public static void main(String[] args) {
         // used for testing purposes:
@@ -46,7 +51,7 @@ public class Utility {
             fw.close();
         }
         catch(IOException ioe) {
-            System.err.println(ioe.toString());
+            System.err.println(ioe);
         }
     }
 
@@ -67,15 +72,13 @@ public class Utility {
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        //System.out.println(gson.toJson(s));
-
         writeToFile(fn, gson.toJson(s));
     }
 
     /**
      * Reads a persistent JSON file, and places the data onto a State object.
      * @param filename
-     * @return
+     * @return State
      */
     public static State readFromJSON(String filename) {
         try {
@@ -97,8 +100,7 @@ public class Utility {
             State s;
 
             if(jr != null ) {
-                s = (State) g.fromJson(jr, CUS_LIST_TYPE);
-                //System.out.println(s.toString());
+                s = g.fromJson(jr, CUS_LIST_TYPE);
 
                 in.close();
                 return s;

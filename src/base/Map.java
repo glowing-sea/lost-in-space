@@ -1,4 +1,4 @@
-package base;
+package src.base;
 
 /**
  * An object storing a map in a game

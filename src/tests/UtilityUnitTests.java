@@ -1,10 +1,9 @@
-package tests;
-
-import base.*;
+package src.tests;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import utility.Utility;
+import src.base.*;
+import src.utility.Utility;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -61,7 +60,7 @@ public class UtilityUnitTests {
     public void testReadFromJson() {
         // first test
         State p = Utility.readFromJSON(ROOT_DIR + "/" + fn);
-        Assert.assertTrue(p != null);
+        Assert.assertNotNull(p);
 
         // second test
         Assert.assertEquals("dual", p.getDialogue());

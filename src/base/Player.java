@@ -1,4 +1,4 @@
-package base;
+package src.base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class Player extends Character implements PlayerInterface {
                 Enemy deleteit = enemy.fight(st); //fight against them
                 deletethem.add(deleteit);
             }
-            if ((deletethem.isEmpty()) || (deletethem == null)) canaction = false;
+            if (deletethem.isEmpty()) canaction = false;
         }
         if(st.enemies != null) {
             st.enemies.removeAll(deletethem);
@@ -95,7 +95,6 @@ public class Player extends Character implements PlayerInterface {
      * Use the items within the players inventory at the requested number.
      * @param st the state the game is currently in
      * @param  inventorynumber the inventory position which item is being used
-     * @return void
      */
     public static void useItem(State st, int inventorynumber){
 
@@ -106,20 +105,15 @@ public class Player extends Character implements PlayerInterface {
         }
 
         if ((st.player.ItemsHeld != null) && !(st.player.ItemsHeld.isEmpty())) {
-            switch (st.player.getItem(tempinventorynum -1).getType()) {
-                case HP_Boost:
-                    //boost hp by 1 when item used
-                    st.player.setHp(st.player.getHp() + 1);
+            if (st.player.getItem(tempinventorynum - 1).getType() == Item_Type.HP_Boost) {//boost hp by 1 when item used
+                st.player.setHp(st.player.getHp() + 1);
 
-                    if(st.Items.contains(st.player.getItem(tempinventorynum -1))) {
-                        st.Items.get(tempinventorynum - 1).use_item();
-                    }
+                if (st.Items.contains(st.player.getItem(tempinventorynum - 1))) {
+                    st.Items.get(tempinventorynum - 1).use_item();
+                }
 
-                    st.player.ItemsHeld.remove(st.player.getItem(tempinventorynum -1));
-                    System.out.print("Used HP Boost");
-                    break;
-                default:
-                    break;
+                st.player.ItemsHeld.remove(st.player.getItem(tempinventorynum - 1));
+                System.out.print("Used HP Boost");
             }
 
         }
@@ -209,11 +203,7 @@ public class Player extends Character implements PlayerInterface {
     }
 
     public boolean canaddItem() {
-        if(this.ItemsHeld.size()+1  <= this.maxitemsheld) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.ItemsHeld.size() + 1 <= this.maxitemsheld;
     }
 
     public int getMaxitemsheld() {
