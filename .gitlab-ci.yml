@@ -1,7 +1,9 @@
 ## .gitlab-ci.yml
 ## Author: Albert Yu
+## Purpose: automated unit tests using GitLab
 ##
 
+## The following code was used for testing purposes:
 ##job:
 ##  script:
 ##    - C:\GitLab-Runner\test.bat
@@ -10,6 +12,9 @@ variables:
   JUNIT_DIR:
     value: "C:/Users/yenga/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar"
     description: "This key-value pair indicates to GitLab the directory where you place your JUnit JAR file"
+  SRC_DIR:
+    value: "C:\Users\yenga\IdeaProjects\comp2120-2022-group-assignment-2\out\production\comp2120-2022-group-assignment-2\base"
+    description: "This key-value pair indicates the src.base class files of the game"
 
 stages:
   - build
@@ -20,10 +25,10 @@ build-code-job:
   script:
     - echo "Auto-building Project..."
     - javac src/base/*.*
-    - javac -cp ${JUNIT_DIR} src/tests/*.*
+    - javac -cp ${JUNIT_DIR} -cp ${SRC_DIR} src/tests/*.*
 
 test-code-job1:
   stage: test
   script:
     - echo "Auto-running test-job1..."
-    - java -cp ${JUNIT_DIR} EnemyUnitTests
+    - java -cp ${JUNIT_DIR} -cp ${SRC_DIR} src/tests/EnemyUnitTests
