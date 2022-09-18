@@ -1,10 +1,9 @@
-package tests;
-
-import base.Enemy;
-import base.Location;
+package src.tests;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
+import src.base.Enemy;
+import src.base.Location;
 
 /**
  * @Author Albert Yu

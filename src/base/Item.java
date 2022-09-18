@@ -1,4 +1,4 @@
-package base;
+package src.base;
 
 public class Item {
     private Location loc;
@@ -33,20 +33,14 @@ public class Item {
      * @return true if the item can be picked up
      */
     public boolean pickupitemvalid(State st){
-        if ((st.player.nearby(this.loc)) && valid) {
-            return true;
-        } else {
-            return false;
-        }
+        return (st.player.nearby(this.loc)) && valid;
     }
 
     /**
      * Moves item off of the map once picked up
-     * @return void
      */
     public void pickupitem() {
-        Location outofmap = new Location(-1, -1); //sent items to tomb, get out of my way
-        this.loc = (outofmap);
+        this.loc = (new Location(-1, -1));
     }
 
 

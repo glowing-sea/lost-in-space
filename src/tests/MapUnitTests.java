@@ -1,9 +1,8 @@
-package tests;
-
-import base.Map;
+package src.tests;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import src.base.Map;
 
 /**
  * @author Albert Yu
