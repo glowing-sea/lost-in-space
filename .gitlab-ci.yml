@@ -30,7 +30,7 @@ build-code-job-2:
   stage: build
   script:
     - echo "Auto-building all..."
-    - javac src/*.*
+    - javac src/tests/*.*
 
 ##test-code-job-1:
 ##  stage: test
