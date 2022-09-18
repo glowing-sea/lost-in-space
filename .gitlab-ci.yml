@@ -24,15 +24,15 @@ build base:
   stage: build
   script:
     - echo "Auto-building base..."
-    - javac src/base/*.*
+    - javac -cp ${JUNIT_DIR} src/*.*
 
-build tests:
-  stage: build
-  script:
-    - echo "Auto-building all..."
-    - javac -cp ${JUNIT_DIR} src/tests/*.*
-  dependencies:
-    - build base
+##build tests:
+##  stage: build
+##  script:
+##    - echo "Auto-building all..."
+##    - javac -cp ${JUNIT_DIR} src/tests/*.*
+##  dependencies:
+##    - build base
 
 
 ##test-code-job-1:
