@@ -1,4 +1,4 @@
-package src.utility;
+package src.base.utility;
 
 
 import src.base.Enemy;

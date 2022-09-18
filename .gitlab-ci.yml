@@ -19,11 +19,10 @@ build-code-job:
   stage: build
   script:
     - echo "Auto-building Project..."
-    - javac src/base/*.*
-    - javac -cp ${JUNIT_DIR} src/tests/*.*
+    - javac -cp ${JUNIT_DIR} src/base/*.*
 
 test-code-job1:
   stage: test
   script:
     - echo "Auto-running test-job1..."
-    - java -cp ${JUNIT_DIR} EnemyUnitTests
+    - java -cp ${JUNIT_DIR} out/production/comp2120-2022-group-assignment-2/tests/EnemyUnitTests
