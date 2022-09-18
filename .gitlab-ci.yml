@@ -1,6 +1,6 @@
 ## .gitlab-ci.yml
 ## Author: Albert Yu
-##
+## TODO: please modify the JUNIT_DIR value to point to your instance of the JUnit JAR file on your local computer.
 
 ##job:
 ##  script:
