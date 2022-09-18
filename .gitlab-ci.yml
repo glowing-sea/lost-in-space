@@ -33,7 +33,7 @@ build-tests:
     - javac -cp ${JUNIT_DIR} src/tests/*.*
   artifacts:
     paths:
-      - out/
+      - out/production/comp2120-2022-group-assignment-2/src/base/
 
 
 
