@@ -24,7 +24,7 @@ build-base:
   stage: build
   script:
     - echo "Auto-building base..."
-    - javac -cp src/base/*.*
+    - javac src/base/*.*
 
 build-tests:
   stage: build
