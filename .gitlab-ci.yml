@@ -29,11 +29,11 @@ build-code-job-1:
 build-code-job-2:
   stage: build
   script:
-    - echo "Auto-building tests..."
-    - javac -cp ${JUNIT_DIR} -cp ${SRC_DIR} src/tests/*.*
+    - echo "Auto-building all..."
+    - javac src/*.*
 
-test-code-job-1:
-  stage: test
-  script:
-    - echo "Auto-running test-job-1..."
-    - java -cp ${JUNIT_DIR} -cp ${SRC_DIR} src/tests/EnemyUnitTests
+##test-code-job-1:
+##  stage: test
+##  script:
+##    - echo "Auto-running test-job-1..."
+##    - java -cp ${JUNIT_DIR} -cp ${SRC_DIR} src/tests/EnemyUnitTests
