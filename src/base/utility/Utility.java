@@ -20,6 +20,7 @@ import java.util.List;
  * @author Albert Yu
  *
  * This class contains methods that serve as utility functions for this game.
+ *
  */
 public class Utility {
 

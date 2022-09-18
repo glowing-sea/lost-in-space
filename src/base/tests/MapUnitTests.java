@@ -7,6 +7,7 @@ import src.base.Map;
 /**
  * @author Albert Yu
  *
+ *
  */
 public class MapUnitTests {
 
