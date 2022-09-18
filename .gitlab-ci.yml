@@ -13,7 +13,7 @@ variables:
 
 stages:
   - build
-##  - test
+  - test
 
 build-code-job:
   stage: build
@@ -21,8 +21,8 @@ build-code-job:
     - echo "Auto-building Project..."
     - javac -cp ${JUNIT_DIR} src/base/*.*
 
-##test-code-job1:
-##  stage: test
-##  script:
-##    - echo "Auto-running test-job1..."
-##    - java -cp ${JUNIT_DIR} out/production/comp2120-2022-group-assignment-2/tests/EnemyUnitTests
+test-code-job1:
+  stage: test
+  script:
+    - echo "Auto-running test-job1..."
+    - java -cp ${JUNIT_DIR} out/production/comp2120-2022-group-assignment-2/tests/EnemyUnitTests
