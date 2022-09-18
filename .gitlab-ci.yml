@@ -20,17 +20,20 @@ stages:
   - build
   - test
 
-build-code-job-1:
+build base
   stage: build
   script:
     - echo "Auto-building base..."
     - javac src/base/*.*
 
-build-code-job-2:
+build tests
   stage: build
   script:
     - echo "Auto-building all..."
-    - javac -cp ${JUNIT_DIR} -cp src/base/*.* src/tests/*.*
+    - javac -cp ${JUNIT_DIR} src/tests/*.*
+  dependencies:
+    - build:base
+
 
 ##test-code-job-1:
 ##  stage: test
