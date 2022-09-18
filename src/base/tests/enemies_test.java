@@ -1,4 +1,4 @@
-package src.tests;
+package src.base.tests;
 
 import org.junit.Test;
 import src.base.*;
@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
+/**
+ *
+ */
 public class enemies_test {
     ArrayList<Enemy> enemies = new ArrayList<>();
     Enemy enemy1 = new Enemy(null,10,30,30,new Location(0,2),false);

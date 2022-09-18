@@ -1,9 +1,9 @@
-package src.tests;
+package src.base.tests;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import src.base.*;
-import src.utility.Utility;
+import src.base.utility.Utility;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,6 +13,7 @@ import java.util.List;
  * @author Albert Yu
  *
  * Unit test cases for Utility.java
+ *
  */
 public class UtilityUnitTests {
 

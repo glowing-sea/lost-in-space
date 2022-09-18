@@ -1,4 +1,4 @@
-package src.tests;
+package src.base.tests;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -6,6 +6,7 @@ import src.base.Map;
 
 /**
  * @author Albert Yu
+ *
  *
  */
 public class MapUnitTests {

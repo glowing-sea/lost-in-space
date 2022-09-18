@@ -1,4 +1,4 @@
-package src.tests;
+package src.base.tests;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
@@ -7,6 +7,7 @@ import src.base.Location;
 
 /**
  * @Author Albert Yu
+ *
  */
 public class EnemyUnitTests {
 
