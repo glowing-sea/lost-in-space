@@ -31,8 +31,10 @@ build-tests:
   script:
     - echo "Auto-building all..."
     - javac -cp ${JUNIT_DIR} src/tests/*.*
-  dependencies:
-    - build-base
+  artifacts:
+    paths:
+      - out/
+
 
 
 ##test-code-job-1:
