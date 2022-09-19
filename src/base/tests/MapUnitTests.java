@@ -1,7 +1,11 @@
 package src.base.tests;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import src.base.Map;
 
 /**
@@ -11,11 +15,11 @@ import src.base.Map;
  */
 public class MapUnitTests {
 
-    String[] testMap;
-    Map m;
+    static String[] testMap;
+    static Map m;
 
-    @Before
-    public void beforeEachTestMethod() {
+    @BeforeAll
+    static void beforeEachTestMethod() {
         testMap = new String[] {
                 "    -----",
                 "         ",
@@ -32,6 +36,6 @@ public class MapUnitTests {
 
     @Test
     public void testCaseGetMapID() {
-        Assert.assertEquals(1, m.getMapID());
+        assertEquals(1, m.getMapID());
     }
 }
