@@ -12,8 +12,8 @@ member_declaration:
     name: Albert Yu
     uid: u7047362
   -
-    name: 
-    uid:
+    name: Zhishang Bian
+    uid: u7305725
   -
     name: 
     uid:
