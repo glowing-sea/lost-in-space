@@ -2,7 +2,7 @@ Software Engineering Group 2
 Meeting minutes
 26/8/2022
 Written: Albert Yu
-Late/absent: William Bartor
+Late: William Barter
 
 - Mohan: suggested we discuss the concept of Features first
 - Albert, team: brought up the idea of choosing a main theme.
