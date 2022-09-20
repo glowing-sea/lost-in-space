@@ -1,1 +1,21 @@
+Software Engineering Group 2
+Meeting minutes
+14/9/2022
+Written: William Barter
+Late/absent:
 
+- William: Worked on implementing the inventory system with the rest of the game, impletement some items that work with the inventory.
+- WIlliam and Zhishang: Some issues with code inconsistencies were found which we fixed in order to make the code better.
+- Zhishang: Impletemented further maps and progression into the game. Completed the enemies implementation. Continuted to collaberate and help with code.
+- Haoting: Worked on player, game state, basic diplay, and overall game structure. 
+- Albert: worked on fixing the folder and structure of the game. Continued to bug fix and work on the CI.  Work on UML diagram.
+- Mohan: Worked on fixing game structure and cleaning code within multiple functions and issues.
+- Team: SCRUM daily meetings/coms have been mostly consistent.
+- Team: work no reviewing code and approving merges from multiple team members. Work to fix code conflicts.
+- Team: discussed the approach moving forward, and how to get the game to a mature state.
+
+TASKS
+- Albert: Complete CI test, work on save and load function.
+- Haoting: Work on story and maps
+- William: Complete inventory display
+- Zhishang and Mohan: Continue working on issues and further game development.
