@@ -15,8 +15,8 @@ member_declaration:
     name: Zhishang Bian
     uid: u7305725
   -
-    name: 
-    uid:
+    name: William Barter
+    uid: u6607927
   -
     name: 
     uid:
