@@ -1,11 +1,10 @@
-package src.base.tests;
+import base.*;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-import src.base.*;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *

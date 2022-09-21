@@ -1,8 +1,10 @@
-package src.base.tests;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import src.base.Map;
+import base.Map;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Albert Yu
@@ -14,7 +16,7 @@ public class MapUnitTests {
     String[] testMap;
     Map m;
 
-    @Before
+    @BeforeEach
     public void beforeEachTestMethod() {
         testMap = new String[] {
                 "    -----",
@@ -32,6 +34,6 @@ public class MapUnitTests {
 
     @Test
     public void testCaseGetMapID() {
-        Assert.assertEquals(1, m.getMapID());
+        assertEquals(1, m.getMapID());
     }
 }

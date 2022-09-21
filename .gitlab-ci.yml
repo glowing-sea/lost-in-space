@@ -1,28 +1,27 @@
 ## .gitlab-ci.yml
 ## Author: Albert Yu
-## TODO: please modify the JUNIT_DIR value to point to your instance of the JUnit JAR file on your local computer.
+##
 
-##job:
-##  script:
-##    - C:\GitLab-Runner\test.bat
-
-variables:
-  JUNIT_DIR:
-    value: "C:/Users/yenga/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar"
-    description: "This key-value pair indicates to GitLab the directory where you place your JUnit JAR file"
-
+image: gradle:alpine
 stages:
   - build
-##  - test
-
-build-code-job:
+  - test
+gradle-build:
+  tags:
+    - comp2100
   stage: build
-  script:
-    - echo "Auto-building Project..."
-    - javac -cp ${JUNIT_DIR} src/base/*.*
-
-##test-code-job1:
-##  stage: test
-##  script:
-##    - echo "Auto-running test-job1..."
-##    - java -cp ${JUNIT_DIR} out/production/comp2120-2022-group-assignment-2/tests/EnemyUnitTests
+  script: gradle assemble
+gradle-test:
+  tags:
+    - comp2100
+  stage: test
+  script: gradle test
+  only:
+    - main
+    - /^issue-.*$/
+    - external_pull_requests
+#artifacts:
+#  when: always
+#  reports:
+#    junit:
+#      - build/test-results/test/**/TEST-*.xml

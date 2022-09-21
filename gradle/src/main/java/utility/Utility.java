@@ -1,10 +1,10 @@
-package src.base.utility;
+package utility;
 
 
-import src.base.Enemy;
-import src.base.Map;
-import src.base.Player;
-import src.base.State;
+import base.Enemy;
+import base.Map;
+import base.Player;
+import base.State;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

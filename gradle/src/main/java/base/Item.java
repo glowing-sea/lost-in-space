@@ -1,4 +1,4 @@
-package src.base;
+package base;
 
 public class Item {
     private Location loc;

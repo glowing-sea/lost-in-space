@@ -1,4 +1,4 @@
-package src.base;
+package base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,7 +113,7 @@ public class State {
         output.append("====================\n");
         for (int i = 0; i < m.length; i++) {
             StringBuilder line = new StringBuilder();
-            line.append('‖');
+            line.append('|');       // JDK 18 only: ‖
             for (int j = 0; j < m[i].length(); j++) {
                 // If the player is at this location, display X instead of others
                 if (playerX == i && playerY == j){
@@ -126,7 +126,7 @@ public class State {
                     line.append(m[i].charAt(j)).append(" ");
                 }
             }
-            output.append(line).append('‖').append("\n");
+            output.append(line).append('|').append("\n");    // JDK 18 only: ‖
         }
         output.append("====================\n");
 
