@@ -1,0 +1,18 @@
+image: gradle:alpine
+stages:
+  - build
+  - test
+gradle-build:
+  tags:
+    - comp2100
+  stage: build
+  script: gradle assemble
+gradle-test:
+  tags:
+    - comp2100
+  stage: test
+  script: gradle test
+  only:
+    - main
+    - /^issue-.*$/
+    - external_pull_requests
