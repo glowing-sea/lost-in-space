@@ -34,7 +34,7 @@ public abstract class Character {
         int Y = my.getY();
         int EX = other.getX();
         int EY = other.getY();
-        return (X == (EX - 1) && Y == EY) || (X == (EX + 1) && Y == EY) || (X == EX && Y == (EY + 1)) || (X == EX && Y == (EY - 1));
+        return ((X == EX && Y == EY) || X == (EX - 1) && Y == EY) || (X == (EX + 1) && Y == EY) || (X == EX && Y == (EY + 1)) || (X == EX && Y == (EY - 1));
     }
 
 
