@@ -4,14 +4,14 @@ package base;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class playerMovement {
+public class key_event_handler {
     /**
      * Display the current game state according to the player's movement.
      * Any invalid input display's a Try again message
      *
      * @param state the current game state.
      */
-    public void playerMovement(State state) {
+    public void keyEventHandler(State state) {
         Scanner scanner = new Scanner(System.in);
         String input;
         // keep taking key input until a "q" is found.
