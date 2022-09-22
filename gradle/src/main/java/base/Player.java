@@ -40,10 +40,13 @@ public class Player extends Character implements PlayerInterface {
 
         if(st.enemies != null && !st.enemies.isEmpty()) { //there exist enemies
             for (Enemy enemy : st.enemies) {
+                Location location = enemy.getLoc();
                 Enemy deleteit = enemy.fight(st); //fight against them
                 deletethem.add(deleteit);
+                st.map.refreshLocation(location,' ');
             }
             if (deletethem.isEmpty()) canaction = false;
+
         }
         if(st.enemies != null) {
             st.enemies.removeAll(deletethem);

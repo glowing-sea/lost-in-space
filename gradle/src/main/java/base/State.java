@@ -120,6 +120,8 @@ public class State {
                     line.append('X').append(" ");
                 } else if ((new Location(i,j).isin(enemiesloc))) {
                     line.append('E').append(" ");
+                    Location enemyloc = new Location(i,j);
+                    map.refreshLocation(enemyloc,'E');
                 } else if ((new Location(i,j).isin(itemsloc))) {
                     line.append('i').append(" ");
                 } else {

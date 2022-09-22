@@ -17,14 +17,6 @@ public class GameConfiguration {
     // An array of sequential game from start to finish.
     public static State[] starr;
 
-    // player still get injury or powered when they enter new level;
-    //our player may become stronger during game. so these variables are public.
-    public static int gamerhp = 100; //your initial hp
-    public static int gameratk = 100; //your initial atk
-    public static int gamerdef = 100; //your initial def
-
-    public static int gamerexp = 0; //your initial exp
-    public static int gamerlevel = 0; //your initial level
 
     // Level 0 configuration
 
@@ -45,8 +37,8 @@ public class GameConfiguration {
                 "---------",
                 "         "};
 
-        Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|'});
-        Player player = new Player("Jack", gamerhp, gameratk, gamerdef, new Location(0,1), gamerexp, gamerlevel);
+        Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|','E'});
+        Player player = new Player("Jack", 100, 100, 100, new Location(0,1), 0, 0);
 
         List<Enemy> enemies = null;
         ArrayList<Item> items = new ArrayList<>();
@@ -80,7 +72,7 @@ public class GameConfiguration {
                 "         "};
 
         Map mapO1 = new Map(1, map, new char[] {'-', '+', '|','E'});
-        Player player = new Player("Jack", gamerhp, gameratk, gamerdef, new Location(0,1), gamerexp, gamerlevel);
+        Player player = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(0,1), Integer.MIN_VALUE, Integer.MIN_VALUE);
 
         ArrayList<Enemy> enemies = new ArrayList<>();
         enemies.add(new Enemy("Goblin1",30,120,30,new Location(3,3),false));
@@ -113,9 +105,9 @@ public class GameConfiguration {
         enemies.add(new Enemy("Goblin1",30,120,30,new Location(6,6),false));
         enemies.add(new Enemy("Goblin3",30,120,30,new Location(5,7),false));
         enemies.add(new Enemy("Goblin2",30,120,80,new Location(7,6),false));
-        Player player = new Player("Jack", gamerhp, gameratk, gamerdef, new Location(0,1), gamerexp, gamerlevel);
+        Player player = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(0,1), Integer.MIN_VALUE, Integer.MIN_VALUE);
 
-        String dialogue = "your left HP"+gamerhp;
+        String dialogue = "continue adventure";
         LEVEL3_INITIAL_STATE = new State(mapO3, player, enemies, dialogue, 2,null);
         LEVEL3_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
