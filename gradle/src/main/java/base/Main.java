@@ -1,4 +1,4 @@
-package src.base;
+package base;
 
 /**
  * This the main class where the game runs.

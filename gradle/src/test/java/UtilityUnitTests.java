@@ -1,13 +1,15 @@
-package src.base.tests;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import src.base.*;
-import src.base.utility.Utility;
+import base.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import utility.Utility;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Albert Yu
@@ -17,12 +19,12 @@ import java.util.List;
  */
 public class UtilityUnitTests {
 
-    static String fn = "SoftwareEngineering-TestingWriteToFile.json";
+    String fn = "SoftwareEngineering-TestingWriteToFile.json";
     private final String ROOT_DIR = "C:/temp";
-    private static State s;
+    private State s;
 
-    @BeforeClass
-    public static void beforeEachTestMethod() {
+    @BeforeEach
+    public void beforeEachTestMethod() {
 
         String[] map = new String[] {
                 "    -----",
@@ -54,19 +56,19 @@ public class UtilityUnitTests {
 
         Utility.writeToJSON (ROOT_DIR + "/" + fn, s);
         File f = new File(ROOT_DIR + "/" + fn);
-        Assert.assertTrue(f.exists());
+        assertTrue(f.exists());
     }
 
     @Test
     public void testReadFromJson() {
         // first test
         State p = Utility.readFromJSON(ROOT_DIR + "/" + fn);
-        Assert.assertNotNull(p);
+        assertNotNull(p);
 
         // second test
-        Assert.assertEquals("dual", p.getDialogue());
+        assertEquals("dual", p.getDialogue());
 
         // third test
-        Assert.assertEquals(10, p.getLevel());
+        assertEquals(10, p.getLevel());
     }
 }

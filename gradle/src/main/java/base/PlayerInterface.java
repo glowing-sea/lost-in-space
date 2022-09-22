@@ -1,4 +1,4 @@
-package src.base;
+package base;
 
 public interface PlayerInterface {
     boolean forward(Map map);
