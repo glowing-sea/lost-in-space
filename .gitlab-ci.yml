@@ -17,9 +17,9 @@ gradle-test:
   stage: test
   script: gradle test
   only:
-    - main
-    - /^issue-.*$/
-    - external_pull_requests
+    - master
+    #- /^issue-.*$/
+    #- external_pull_requests
 #artifacts:
 #  when: always
 #  reports:
