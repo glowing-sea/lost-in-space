@@ -1,0 +1,38 @@
+Software Engineering, ANU
+Minutes (22/9/22)
+Absent: Will Barter
+
+--------------------------
+
+1)
+
+Haoting argued that by using Gradle, his game experience is slowed:
+
+"Hi Albert. How about this? I think we probably don't need tests to run automatically. I reckon the reason why Main runs so slow is that Gradle automatically runs the test whenever Main runs. Automatic game Tester is about to emulate a series of user key inputs while testing the game. For example, we want to test if the game proceeds to the next level whenever the player reaches (8,9). In manual testing, we input a series of keys until the player moves to the correct position. In automatic testing, we create a tester to do all key inputs as well as checking if the game state has proceeded."
+
+"Here are my points: I really like CI and Gradle as well, but the trade-off is that the game will run slower (longer time to respond to your key inputs) and is probably not good for manual testing. (you may want to try playing it on your computer) If there is a way to fix it. I am happy to keep having CI and using Gradle. I notice that in other courses, there are CI but no Gradle. I wonder how they can achieve it."
+
+Action:
+> Albert Yu: to look into speeding up the game even when Gradle is used.
+
+2)
+
+Use JSON to save and load the State of the game.
+
+Action:
+> Albert Yu: to look into saving and loading the game.
+
+3)
+
+Action:
+Mohan: To look into updating the UML diagram.
+Albert: to pass onto Mohan the link to the UML draw tool.
+
+4)
+
+Action:
+Everyone: to look into writing the report
+
+
+
+
