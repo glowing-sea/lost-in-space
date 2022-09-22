@@ -19,6 +19,7 @@ gradle-test:
   only:
     - master
     - main
+    - test
     #- /^issue-.*$/
     #- external_pull_requests
 #artifacts:
