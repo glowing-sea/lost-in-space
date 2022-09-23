@@ -68,10 +68,12 @@ public class enemies_test {
     @Test
     public void fightToughEnemy(){
         enemies.add(enemyTough);
+
         Player.interact(teststate);
         assertEquals(100,player1.getHp());
         //move near it
-        player1.setLoc(new Location(2,3));
+        player1.setLoc(new Location(2,2));
+        assertTrue(player1.nearby(enemyTough.getLoc()));
         Player.interact(teststate);
         assertEquals(95,player1.getHp());
         assertEquals(0,enemyTough.getHp());
