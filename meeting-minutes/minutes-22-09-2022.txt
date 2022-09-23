@@ -33,6 +33,17 @@ Albert: to pass onto Mohan the link to the UML draw tool.
 Action:
 Everyone: to look into writing the report
 
+5) 
 
+Refactor some classes as mentioned in the issue #23. Fix the bug of overlapping with an enemy.
 
+Action:
+Zishang help do the refactor
 
+6)
+
+Game UI should be improved further. Especially, 1 on the right of the map, show the key stats of the player and nearby enemies. 2 able view all stats and inventory by a key input. 3. Let text/diagolue/tip print in some dedicated locations (a text box) in the game UI instead of printing them in a new line in the command.
+
+Action:
+Will: continue to implement issue #21 to create the UI for inventory.
+Haoting: format the text printed in the game UI.
