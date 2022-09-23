@@ -1,0 +1,12 @@
+In 3022, earth has become hard to live due to a nuclear explosion causing ripples in the earth core.
+Due to this explosion the natural stability was destroyed causing multiple global disasters.
+Nearly 75% of the earth population was wiped out.
+Thus, to survive, earth formed an elite team of explorers to search the vast galaxy for a suitable planet for humanity to survive.
+They also build a state-of-the-art spaceship with hyper speed that can travel at a speed faster than light.
+Whazam is the captain of the ship and when crossing the xyz planet due to some system malfunction they landed on an unknown planet.
+During the decent, the ship fell away from the crew and one person must reach the ship and fix it so that everyone can reach home.
+
+They might encounter some alien life form which may or may not be friendly.
+
+The goal is to reach the ship whilst detecting enemy/alien lifeforms.
+ When the crew member approach any alien lifeforms the user must either fight or have a friendly conversation.
