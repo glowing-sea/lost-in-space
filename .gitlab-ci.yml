@@ -11,12 +11,12 @@ stages:
   - test
 gradle-build:
   tags:
-    - comp2120
+    - comp2100
   stage: build
   script: gradle assemble
 gradle-test:
   tags:
-    - comp2120
+    - comp2100
   stage: test
   script: gradle test
   only:
