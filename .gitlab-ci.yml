@@ -1,6 +1,9 @@
 ## .gitlab-ci.yml
 ## Author: Albert Yu
 ##
+## This file configures the CI pipeline of GitLab.
+## gradle-build builds this Project
+## gradle-test runs the unit tests
 
 image: gradle:alpine
 stages:
@@ -8,12 +11,12 @@ stages:
   - test
 gradle-build:
   tags:
-    - comp2100
+    - comp2120
   stage: build
   script: gradle assemble
 gradle-test:
   tags:
-    - comp2100
+    - comp2120
   stage: test
   script: gradle test
   only:

@@ -29,7 +29,7 @@ public class Utility {
     private static String jsonStringSmall = "{\"level\":1, \"dialogue\":\"one\"}";
 
     /**
-     * Main used for testing purposes
+     * Main method used for testing purposes
      */
     public static void main(String[] args) {
         // used for testing purposes:
