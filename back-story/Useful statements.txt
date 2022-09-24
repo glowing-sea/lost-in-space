@@ -1,0 +1,21 @@
+﻿Useful statements:
+1) You have an item near you. Pick up get x.
+2) You have an enemy nearby. Would you like to fight or find a way to go around it?
+3)  You have reached H (portal or doorway). Go to the next level.
+4) You have reached a wall. Please find another way.
+5) Your Hp is x
+6) Your attack power is X
+7) Your defense power is X
+
+Possible alien conversation:
+1) Friendly
+Alien: Who are you?
+Human: My name is x/ X. Who are you?
+Alien: My name is X/X. What do you want here?
+Human: go to my ship/ ship/ pass to reach ship.
+Alien: Sure go ahead but be aware not everyone is friendly.
+2) Enemy:
+ 	Alien: WHO ARE YOU?
+	Human: My name is X/x
+	Alien: U cant go forward. Challenge to death and show your worth.
+	Human: fight
