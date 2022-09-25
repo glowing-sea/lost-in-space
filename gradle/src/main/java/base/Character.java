@@ -1,4 +1,4 @@
-package base;
+package gradle.src.main.java.base;
 
 /**
  * An object storing the attributes of a character, such as the player or an enemy.

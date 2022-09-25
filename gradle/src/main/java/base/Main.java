@@ -1,4 +1,4 @@
-package base;
+package gradle.src.main.java.base;
 
 /**
  * This the main class where the game runs.

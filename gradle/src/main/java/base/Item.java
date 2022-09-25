@@ -1,4 +1,4 @@
-package base;
+package gradle.src.main.java.base;
 
 public class Item {
     private Location loc;

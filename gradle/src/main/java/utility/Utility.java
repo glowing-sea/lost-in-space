@@ -1,14 +1,13 @@
-package utility;
-
-
-import base.Enemy;
-import base.Map;
-import base.Player;
-import base.State;
+package gradle.src.main.java.utility;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import gradle.src.main.java.base.Enemy;
+import gradle.src.main.java.base.Map;
+import gradle.src.main.java.base.Player;
+import gradle.src.main.java.base.State;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
