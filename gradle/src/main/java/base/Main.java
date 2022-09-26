@@ -1,5 +1,7 @@
 package base;
 
+import utility.Utility;
+
 /**
  * This the main class where the game runs.
  */
@@ -13,5 +15,25 @@ public class Main {
         // Pass the initial state
         key_event_handler key_event_handler = new key_event_handler();
         key_event_handler.keyEventHandler(state);
+    }
+
+    /**
+     * load a game from file
+     * @param fileName
+     * @return the loaded game state
+     */
+    private State loadGame(String fileName) {
+
+        return Utility.readFromJSON(fileName);
+    }
+
+    /**
+     * save a game to file
+     * @param s
+     * @param fileName
+     */
+    private void saveGame(State s, String fileName) {
+
+        Utility.writeToJSON(fileName, s);
     }
 }

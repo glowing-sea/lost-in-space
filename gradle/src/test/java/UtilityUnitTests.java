@@ -1,9 +1,9 @@
 package gradle.src.test.java;
 
-import gradle.src.main.java.base.*;
-import gradle.src.main.java.utility.Utility;
+import base.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utility.Utility;
 
 import java.io.File;
 import java.util.ArrayList;
