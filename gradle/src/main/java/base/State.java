@@ -99,23 +99,16 @@ public class State {
 
         // Display Map
         String[] m = map.getMap();
-        int playerX = player.getLoc().getX();
-        int playerY = player.getLoc().getY();
 
-        // display enemies locations
-        ArrayList<Location> enemiesloc = new ArrayList<>(); // where the enemies are
-        if(this.enemies!=null) {
-            for (Enemy enemy : this.enemies) {
-                enemiesloc.add(enemy.getLoc());
-            }
-        }
-        // display item locations
-        ArrayList<Location> itemsloc = new ArrayList<>(); // where the items are
-        if(this.items !=null) {
-            for (Item item : this.items) {
-                itemsloc.add(item.getLocation());
-            }
-        }
+
+        // Get Locations of units
+        Location playLoc = player.getLoc();
+        List<Location> enemiesLoc = Unit.unitsToLocations(enemies);
+        List<Location> itemsLoc = Unit.unitsToLocations(items);
+        List<Location> NPCsLoc = Unit.unitsToLocations(NPCs);
+        List<Location> merchantsLoc = Unit.unitsToLocations(merchants);
+
+
         output.append("====================\n");
         for (int i = 0; i < m.length; i++) {
             StringBuilder line = new StringBuilder();
@@ -125,17 +118,17 @@ public class State {
                 if (player.getLoc().equals(new Location(i, j))){
                     line.append('X').append(" ");}
                 // Print Enemies
-                else if ((new Location(i,j).isin(enemiesloc))) {
+                else if ((new Location(i,j).isin(enemiesLoc))) {
                     line.append('E').append(" ");}
                 // Print Items
-                else if ((new Location(i,j).isin(itemsloc))) {
+                else if ((new Location(i,j).isin(itemsLoc))) {
                     line.append('i').append(" ");}
                 // Print NPCs
-                else if ((new Location(i,j).isin(itemsloc))) {
-                    line.append('i').append(" ");}
+                else if ((new Location(i,j).isin(NPCsLoc))) {
+                    line.append('N').append(" ");}
                 // Print Merchants
-                else if ((new Location(i,j).isin(itemsloc))) {
-                    line.append('i').append(" ");}
+                else if ((new Location(i,j).isin(merchantsLoc))) {
+                    line.append('M').append(" ");}
                 // Print Walls
                 else {
                     line.append(m[i].charAt(j)).append(" ");

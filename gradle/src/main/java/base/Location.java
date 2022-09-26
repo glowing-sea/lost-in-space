@@ -1,6 +1,7 @@
 package base;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A object shoring a location (x and y coordinate).
@@ -46,7 +47,7 @@ public class Location {
      * @param locs a set of locations where u want to check if "this" is in it.
      * @return true if "this" is in the arraylist
      */
-    public boolean isin(ArrayList<Location> locs){
+    public boolean isin(List<Location> locs){
         if(locs == null || locs.size()==0){
             return false;
         }

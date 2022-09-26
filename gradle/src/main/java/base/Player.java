@@ -59,7 +59,7 @@ public class Player extends Character implements PlayerInterface {
 
             for (Item item : st.items) {
                 //check for items with Instant usage
-                if (item.isValid(st)) {
+                if (item.canBePicked(st)) {
                 switch (item.getType()) {
                     case Inventory_Boost:
                         //boost inventory by 1 when item used up to a max of 5 places

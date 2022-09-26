@@ -1,7 +1,10 @@
 package base;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // Any unit on the map, such as a character or a item.
-public abstract class Unit {
+public abstract class Unit{
     private String name;
     private Location loc;
 
@@ -43,5 +46,25 @@ public abstract class Unit {
         int EX = other.getX();
         int EY = other.getY();
         return ((X == EX && Y == EY) || X == (EX - 1) && Y == EY) || (X == (EX + 1) && Y == EY) || (X == EX && Y == (EY + 1)) || (X == EX && Y == (EY - 1));
+    }
+
+    /**
+     * Extra a list of locations from a list of unit
+     * @param units a list of unit
+     * @return a list of location
+     */
+    static public List<Location> unitsToLocations (List<? extends Unit> units){
+        ArrayList<Location> locations = new ArrayList<>();
+        if (units == null)
+            return locations;
+        for (Unit unit : units) {
+            locations.add(unit.getLoc());
+            }
+        return locations;
+    }
+
+    @Override
+    public String toString() {
+        return getSYMBOL() + "";
     }
 }
