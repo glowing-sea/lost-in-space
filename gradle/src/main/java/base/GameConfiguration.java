@@ -59,7 +59,8 @@ public class GameConfiguration {
         trades.add(new Trade(item1, item2));
         merchants.add(new Merchant("Amy", new Location(3,5), "Wants some trades", trades));
 
-        String dialogue = "You are lost on this planet. You (X) should find a way back to your spaceship (H)";
+        String dialogue = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +
+                "If a line exceed 103 character, the exceed part will not be displayed........................................";
         LEVEL0_INITIAL_STATE = new State(mapOBJ, dialogue, 0, player, enemies, items, NPCs, merchants);
         LEVEL0_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }

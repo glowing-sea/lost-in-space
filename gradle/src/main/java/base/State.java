@@ -1,5 +1,8 @@
 package base;
 
+import utility.DisplayUtility;
+import utility.Utility;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,54 +93,91 @@ public class State {
     public String toString() {
         StringBuilder output = new StringBuilder();
 
-        // Display Title
-       // output.append("+------------------+\n");
-
-        output.append("==================================================\n");
-        output.append("                  Lost in Space                   \n");
-        output.append("==================================================\n");
-
-        // Display Dialogue
-        // output.append(story).append("\n");
-
         /*
-
- 1 ===========================================================================================================
- 2 |                   Lost in Space                    |                       Messages                     |
- 3 |====================================================|                                                    |
- 4 |   Your Name    |------------------|   Enemy Name   | > Guilty: I'm not afraid of you                    |
- 5 |     Jack       |  X     E - - - - |     Guilty     |                                                    |
- 6 |                |                  |                |                                                    |
- 7 |   LV: 2        |        + - -     |    LV: 3       |                                                    |
- 8 |   HP: 100      |    i   | M       |    HP:         |                                                    |
- 9 |   ATK: 40      |        + - - - - |    ATK:        |                                                    |
-10 |   DEF: 30      |    i   i N   A   |    DEF:        |                                                    |
-11 |   EXP: 300     |            A H A |    LOC: (6,6)  |                                                    |
-12 |   LOC: (6,6)   |- - - - - - - - - |                |                                                    |
-13 |                |     Map Name     |                |                                                    |
-14 ===========================================================================================================
-15 | Story...............                                                                                    |
-16 |                                                                                                         |
-17 |                                                                                                         |
-18 ==========================================================================================================|
-
+         1 ===========================================================================================================
+         2 |                   Lost in Space                    |                       Messages                     |
+         3 |====================================================|                                                    |
+         4 |   Your Name    |------------------|   Enemy Name   | > Guilty: I'm not afraid of you                    |
+         5 |     Jack       |  X     E - - - - |     Guilty     |                                                    |
+         6 |                |                  |                |                                                    |
+         7 |   LV: 2        |        + - -     |    LV: 3       |                                                    |
+         8 |   HP: 100      |    i   | M       |    HP:         |                                                    |
+         9 |   ATK: 40      |        + - - - - |    ATK:        |                                                    |
+        10 |   DEF: 30      |    i   i N   A   |    DEF:        |                                                    |
+        11 |   EXP: 300     |            A H A |    LOC: (6,6)  |                                                    |
+        12 |   LOC: (6,6)   |- - - - - - - - - |                |                                                    |
+        13 |                |------------------|                |                                                    |
+        14 ===========================================================================================================
+        15 | Story...............                                                                                    |
+        16 |                                                                                                         |
+        17 |                                                                                                         |
+        18 ==========================================================================================================|
          */
 
 
-        // Display Map
-        String[] m = map.getMap();
+        // Title Part
+        String title = DisplayUtility.centerText(GameConfiguration.title, 52);
 
 
-        // Get Locations of units
-        Location playLoc = player.getLoc();
-        List<Location> enemiesLoc = Unit.unitsToLocations(enemies);
+        // My Stats Part
+        String[] myStats = new String[10];
+        myStats[0] = DisplayUtility.centerText("Your Name", 16);
+        myStats[1] = DisplayUtility.centerText(this.player.getName(), 16);
+        myStats[2] = " ".repeat(16);
+        myStats[3] = "   " + DisplayUtility.fixLength("LV: " + this.player.getPlayerLevel(), 13);
+        myStats[4] = "   " + DisplayUtility.fixLength("HP: " + this.player.getHp(), 13);
+        myStats[5] = "   " + DisplayUtility.fixLength("ATK: " + this.player.getAtk(), 13);
+        myStats[6] = "   " + DisplayUtility.fixLength("DEF: " + this.player.getDef(), 13);
+        myStats[7] = "   " + DisplayUtility.fixLength("EXP: " + this.player.getExp(), 13);
+        myStats[8] = "   " + DisplayUtility.fixLength("LOC: " + "(" + this.player.getLoc().getX() + "," + this.player.getLoc().getY() + ")", 13);
+        myStats[9] = " ".repeat(16);
+
+        String[] otherStats = {
+                "   Enemy Name   ",
+                "     Guilty     ",
+                "                ",
+                "    LV: 3       ",
+                "    HP:         ",
+                "    ATK:        ",
+                "    DEF:        ",
+                "    LOC: (6,6)  ",
+                "                ",
+                "                "};
+
+        String[] messages = {
+                " > Guilty: I'm not afraid of you                    ",
+                "                                                    ",
+                "                                                    ",
+                "                                                    ",
+                "                                                    ",
+                "                                                    ",
+                "                                                    ",
+                "                                                    ",
+                "                                                    ",
+                "                                                    "};
+
+
+
+        // Story Part
+        String[] story = this.getStory().split("\n");
+        story[0] = " " + DisplayUtility.fixLength(story[0],103) + " ";
+        story[1] = " " + DisplayUtility.fixLength(story[1],103) + " ";
+        story[2] = " " + DisplayUtility.fixLength(story[2],103) + " ";
+
+
+        // Map Part
+        String[] map = new String[10];
+        map[0] = "------------------";
+        map[9] = "------------------";
+
+        List<Location> enemiesLoc = Unit.unitsToLocations(enemies); // Get Locations of units
         List<Location> itemsLoc = Unit.unitsToLocations(items);
         List<Location> NPCsLoc = Unit.unitsToLocations(NPCs);
         List<Location> merchantsLoc = Unit.unitsToLocations(merchants);
+        String[] m = this.map.getMap();
 
         for (int i = 0; i < m.length; i++) {
-            StringBuilder line = new StringBuilder();
-            line.append('|');       // JDK 18 only: ‖
+            StringBuilder line = new StringBuilder();// JDK 18 only: ‖
             for (int j = 0; j < m[i].length(); j++) {
                 // Print Player
                 if (player.getLoc().equals(new Location(i, j))){
@@ -159,10 +199,23 @@ public class State {
                     line.append(m[i].charAt(j)).append(" ");
                 }
             }
-            output.append(line).append('|').append("\n");    // JDK 18 only: ‖
+            map[i] = line.toString();    // JDK 18 only: ‖
         }
-        output.append("==================================================\n");
 
+
+
+        // Combine each part
+        output.append("===========================================================================================================\n"); // Line 1
+        output.append("|").append(title).append("|                       Messages                     |\n"); // Line 2
+        output.append("|====================================================|                                                    |\n"); // Line 3
+        for (int i = 0; i < 10; i++){
+            output.append("|").append(myStats[i]).append("|").append(map[i]).append("|").append(otherStats[i]).append("|").append(messages[i]).append("|").append("\n"); // Line 4-13
+        }
+        output.append("===========================================================================================================\n"); // Line 14
+        output.append("|").append(story[0]).append("|").append("\n"); // Line 15
+        output.append("|").append(story[1]).append("|").append("\n"); // Line 16
+        output.append("|").append(story[2]).append("|").append("\n"); // Line 17
+        output.append("===========================================================================================================\n"); // Line 18
         return output.toString();
     }
 }
