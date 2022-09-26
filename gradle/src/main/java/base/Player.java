@@ -10,16 +10,25 @@ import java.util.List;
 public class Player extends Character implements PlayerInterface {
     private int exp;
     private int playerLevel;
-    private List<Item> ItemsHeld=new ArrayList<>();
-    private int maxitemsheld;
+    private List<Item> inventory;
+    private int capacity;
 
 
-
+    // For testing only
     public Player(String name, int hp, int atk, int def, Location loc, int exp, int playerLevel) {
-        super(name, hp, atk, def, loc, 'P');
+        super(name, hp, atk, def, loc, 'X');
         this.exp = exp;
         this.playerLevel = playerLevel;
-        this.maxitemsheld = 2;
+        this.inventory = new ArrayList<>();
+        this.capacity = 6;
+    }
+
+    public Player(Location loc) {
+        super(GameConfiguration.YOUR_NAME, GameConfiguration.INITIAL_HP, GameConfiguration.INITIAL_ATK, GameConfiguration.INITIAL_DEF, loc, 'X');
+        this.exp = GameConfiguration.INITIAL_EXP;
+        this.playerLevel = GameConfiguration.INITIAL_LEVEL;
+        this.inventory = GameConfiguration.INITIAL_INVENTORY;
+        this.capacity = GameConfiguration.INITIAL_CAPACITY;
     }
 
 
@@ -34,7 +43,7 @@ public class Player extends Character implements PlayerInterface {
      *      Use Items which don't need to be stored eg. exp boost
      * @param st the board state
      */
-    public static boolean interact(State st, String direction){
+    public static void interact(State st, String direction){
 
         // Get the location that the player want to interact with.
         Unit unit;
@@ -47,32 +56,15 @@ public class Player extends Character implements PlayerInterface {
         }
         // Search if there is a unit to interact in this location
         unit = unitLoc.findUnit(unitLoc, st);
-        if (unit == null)
-            return false;
-        else
-            return unit.interact(st);
+        if (unit == null) {
+            st.messageBox.putMessage("There is nothing to interact with.");
+        } else if (!unit.interact(st)){
+            st.messageBox.putMessage("Interact failed.");
+        }
+
 
 
 /*
-        //interact with enemies nearby you!
-        ArrayList<Enemy> deletethem = new ArrayList<>();
-        //boolean used to make sure only 1 action is done for each press of interact
-        boolean canaction = true;
-
-        if(st.enemies != null && !st.enemies.isEmpty()) { //there exist enemies
-            for (Enemy enemy : st.enemies) {
-                Location location = enemy.getLoc();
-                Enemy deleteit = enemy.fight(st); //fight against them
-                deletethem.add(deleteit);
-                st.map.refreshLocation(location,' ');
-            }
-            if (deletethem.isEmpty()) canaction = false;
-
-        }
-        if(st.enemies != null) {
-            st.enemies.removeAll(deletethem);
-        }
-
         //interact with items nearby to pick them up
         if((st.items != null && !st.items.isEmpty()) && canaction) {
 
@@ -123,29 +115,55 @@ public class Player extends Character implements PlayerInterface {
     /**
      * Use the items within the players inventory at the requested number.
      * @param st the state the game is currently in
-     * @param  inventorynumber the inventory position which item is being used
+     * @param  itemIndex the inventory position which item is being used
+     * @param action 0 for use. 1 for drop. 2 for view.
      */
-    public static void useItem(State st, int inventorynumber){
+    public static void takeOutItem(State st, String itemIndex, int action){
+        int itemIdx;
+        try {
+            itemIdx = Integer.parseInt(itemIndex);
+        } catch(NumberFormatException e){
+            st.messageBox.putMessage("Item index is not well-formed.");
+            return;
+        }
+        itemIdx -= 1; // Start from 0
+        if (itemIdx >= st.player.getInventory().size() || itemIdx < 0){
+            st.messageBox.putMessage("Item not found.");
+            return;
+        }
+        Item item = st.player.getInventory().get(itemIdx);
 
-        int tempinventorynum = inventorynumber;
-
-        if (tempinventorynum > st.player.getItemCount()) {
-        tempinventorynum = st.player.getItemCount();
+        if (action == 0){
+            st.player.getInventory().remove(itemIdx);
+            item.useItem(st);
+            st.messageBox.putMessage(st.player.getName() + " uses the item [ " + item + " ].");
+        } else if (action == 1) {
+            st.player.getInventory().remove(itemIdx);
+            st.messageBox.putMessage(st.player.getName() + " drops the item [ " + item + " ].");
+        } else {
+            st.messageBox.putMessage("The item at index " + (itemIdx + 1) + " is: [ " + item + " ].");
         }
 
-        if ((st.player.ItemsHeld != null) && !(st.player.ItemsHeld.isEmpty())) {
-            if (st.player.getItem(tempinventorynum - 1).getType() == ItemType.HP_Boost) {//boost hp by 1 when item used
-                st.player.setHp(st.player.getHp() + 1);
 
-                if (st.items.contains(st.player.getItem(tempinventorynum - 1))) {
-                    st.items.get(tempinventorynum - 1).useItem();
-                }
 
-                st.player.ItemsHeld.remove(st.player.getItem(tempinventorynum - 1));
-                System.out.print("Used HP Boost");
-            }
 
-        }
+//        if (tempinventorynum > st.player.getItemCount()) {
+//        tempinventorynum = st.player.getItemCount();
+//        }
+//
+//        if ((st.player.inventory != null) && !(st.player.inventory.isEmpty())) {
+//            if (st.player.getItem(tempinventorynum - 1).getType() == ItemType.HP_Boost) {//boost hp by 1 when item used
+//                st.player.setHp(st.player.getHp() + 1);
+//
+//                if (st.items.contains(st.player.getItem(tempinventorynum - 1))) {
+//                    st.items.get(tempinventorynum - 1).useItem();
+//                }
+//
+//                st.player.inventory.remove(st.player.getItem(tempinventorynum - 1));
+//                System.out.print("Used HP Boost");
+//            }
+//
+//        }
     }
 
 
@@ -227,44 +245,66 @@ public class Player extends Character implements PlayerInterface {
             return true;
         } else
             return false;
-
-
     }
 
-    public boolean canaddItem() {
-        return this.ItemsHeld.size() + 1 <= this.maxitemsheld;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
-    public int getMaxitemsheld() {
-        return this.maxitemsheld;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setMaxitemsheld(int newItemsheld){
-        this.maxitemsheld = newItemsheld;
+    public boolean addItem(Item item) {
+        if (this.capacity - 1 >= this.inventory.size()){
+            this.inventory.add(item);
+            return true;
+        } else {
+            return false;
+        }
     }
+
+    public List<Item> getInventory() {
+        return this.inventory;
+    }
+
+
+
+
 
     public int getExp() {
         return exp;
     }
 
-    public void addItem(Item item) {
-            this.ItemsHeld.add(item);
-    }
 
     public int getPlayerLevel() {
         return playerLevel;
     }
 
-    public Item getItem(int inventorynumber) {
-        return this.ItemsHeld.get(inventorynumber);
+    public Item getItem(int inventoryNumber) {
+        return this.inventory.get(inventoryNumber);
+    }
+    public int getItemCount() {
+        return this.inventory.size();
     }
 
+    // If you only want to increase exp, use collectExp
     public void setExp(int exp) {
         this.exp = exp;
     }
-    public int getItemCount() {
-        return this.ItemsHeld.size();
+
+    public void collectExp(int exp, State st){
+        this.exp += exp;
+        int levelIncreased = exp / 100;
+        if (levelIncreased > 0){ // can level up
+            this.playerLevel += levelIncreased;
+            this.exp =  exp % 100;
+            if (this.getHp() < 100)
+                this.setHp(100); // Restore HP when leveling up
+            st.messageBox.putMessage("System: you have leveled up!");
+        }
     }
+
 
     public void setPlayerLevel(int playerLevel) {
         this.playerLevel = playerLevel;

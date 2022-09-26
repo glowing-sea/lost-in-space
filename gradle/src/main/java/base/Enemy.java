@@ -5,14 +5,17 @@ package base;
  */
 
 public class Enemy extends Character {
-    boolean isDead;
 
-    public Enemy(String name, int hp, int atk, int def, Location loc, boolean isDead) {
+    int expReward; // The amount of exp that can obtain by the player after killing it.
+    Item itemReward;
+
+    public Enemy(String name, int hp, int atk, int def, Location loc, int expReward, Item itemReward) {
         super(name, hp, atk, def, loc, 'E');
-        this.isDead = isDead;
+        this.expReward = expReward;
+        this.itemReward = itemReward;
     }
-    public boolean getisDead(){
-        return isDead;
+    public boolean isDead(){
+        return this.getHp() <= 0;
     }
 
     /**
@@ -22,32 +25,31 @@ public class Enemy extends Character {
      * @return the enemy you killed
      */
     public Enemy fight(State st){
-        // if an enemy is nearby player, fight against it
-        if (st.player.nearby(this.getLoc())) {
-            while (!this.isDead) { //fight until death!
 
-                int enemyatk = this.getAtk()-st.player.getDef();// enemy attack you
-                if(enemyatk >0) {st.player.setHp(st.player.getHp() - enemyatk);}
+        int enemyAtk = this.getAtk()-st.player.getDef();// enemy attack you
+        if(enemyAtk >0) {st.player.setHp(st.player.getHp() - enemyAtk);}
 
-                int youratk = st.player.getAtk() -this.getDef(); // you attack enemy
-                if(youratk >0) {this.setHp(this.getHp() - youratk);}
+        int yourAtk = st.player.getAtk() - this.getDef(); // you attack enemy
+        if(yourAtk >0) {this.setHp(this.getHp() - yourAtk);}
 
-                System.out.println(" enemies hp left: "+this.getHp());
-                if (this.getHp() <= 0) {
-                    this.isDead = true;
-//                    refreshLocation(st,this.getLoc(),' ');
-
-                    System.out.println("remove "+this.getName());
-                    System.out.println("left hp: "+st.player.getHp());
-                }
-            }
-            Location tomb = new Location(-1, -1); //sent enemies to tomb, get out of my way
-            this.setLoc(tomb);
-            System.out.println("you defeat "+this.getName());
-            return this;
+        if (this.getHp() <= 0) {
+            this.setHp(0);
         }
-        return null;
+        return this;
     }
 
 
+    @Override
+    public boolean interact(State st) {
+        this.fight(st);
+        st.messageBox.putMessage("System: you are fighting with the enemy" + this.getName() + "!");
+        st.messageBox.putMessage("System: enemy's HP: " + this.getHp() + ".");
+
+        if (this.getHp() <= 0){
+            st.messageBox.putMessage("System: you killed the enemy" + this.getName() + "!");
+            st.enemies.remove(this);
+            st.player.collectExp(this.expReward, st);
+        }
+        return true;
+    }
 }

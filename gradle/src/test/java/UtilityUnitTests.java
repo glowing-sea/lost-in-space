@@ -38,13 +38,13 @@ public class UtilityUnitTests {
                 "---------",
                 "         "};
 
-        Enemy e1 = new Enemy("Evil",10, 10, 10, new Location(0,0), false);
-        Enemy e2 = new Enemy("Pevil",10, 10, 10, new Location(20,10), false);
+        Enemy e1 = new Enemy("Evil",10, 10, 10, new Location(0,0), 20,null);
+        Enemy e2 = new Enemy("Pevil",10, 10, 10, new Location(20,10), 20,null);
         List<Enemy> enemies = new ArrayList<>();
         enemies.add(e1);
         enemies.add(e2);
 
-        Item i1 = new Item(new Location(1,1), ItemType.EX_Boost);
+        Item i1 = new Item(new Location(1,1), ItemType.EXP_Boost);
         List<Item> i = new ArrayList<>();
         i.add(i1);
 

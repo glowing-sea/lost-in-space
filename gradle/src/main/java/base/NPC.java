@@ -18,7 +18,7 @@ public class NPC extends Character {
         for (String talk : dialogue){
             if (talk.charAt(0) == '`'){ // Talked my the player
                 talk = talk.substring(1);
-                st.messageBox.putMessage(st.player.getName() + " (" + this.getSYMBOL() + "): " + talk);
+                st.messageBox.putMessage(st.player.getName() + " (" + st.player.getSYMBOL() + "): " + talk);
             } else {
                 st.messageBox.putMessage(this.getName() + " (" + this.getSYMBOL() +"): " + talk);
             }

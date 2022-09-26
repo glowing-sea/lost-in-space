@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class enemies_test {
     ArrayList<Enemy> enemies = new ArrayList<>();
-    Enemy enemy1 = new Enemy(null,10,30,30,new Location(0,2),false);
-    Enemy enemyStrong = new Enemy("strong",10,150,50,new Location(1,0),false);
-    Enemy enemyTough = new Enemy("tough",100,101,80,new Location(1,2),false);
+    Enemy enemy1 = new Enemy(null,10,30,30,new Location(0,2),20,null);
+    Enemy enemyStrong = new Enemy("strong",10,150,50,new Location(1,0),20,null);
+    Enemy enemyTough = new Enemy("tough",100,101,80,new Location(1,2),20,null);
 //    enemies.add(enemy1);
     Player player1 = new Player(null,100,100,100,new Location(0,1),0,0);
 
@@ -41,7 +41,7 @@ public class enemies_test {
         Location previous = player1.getLoc();
         player1.setLoc(new Location(5,5));
         Player.interact(teststate, "f");
-        assertFalse(enemy1.getisDead() || enemyStrong.getisDead() || enemyTough.getisDead());
+        assertFalse(enemy1.isDead() || enemyStrong.isDead() || enemyTough.isDead());
         player1.setLoc(previous);
 
     }
@@ -51,7 +51,7 @@ public class enemies_test {
         Player.interact(teststate, "f");
         assertEquals(100,player1.getHp());
         assertEquals(-60,enemy1.getHp());
-        assertTrue(enemy1.getisDead());
+        assertTrue(enemy1.isDead());
 
     }
     @Test
@@ -64,7 +64,7 @@ public class enemies_test {
         Player.interact(teststate, "f");
         assertEquals(50,player1.getHp());
         assertEquals(-40,enemyStrong.getHp());
-        assertTrue(enemyStrong.getisDead());
+        assertTrue(enemyStrong.isDead());
     }
     @Test
     public void fightToughEnemy(){
@@ -78,7 +78,7 @@ public class enemies_test {
         Player.interact(teststate, "f");
         assertEquals(95,player1.getHp());
         assertEquals(0,enemyTough.getHp());
-        assertTrue(enemyTough.getisDead());
+        assertTrue(enemyTough.isDead());
     }
 
     @Test
@@ -91,7 +91,7 @@ public class enemies_test {
         player1.setLoc(new Location(1,1));
         Player.interact(teststate, "f");
         System.out.println("enemyStrong "+enemyStrong.getHp()+" enemyTough "+enemyTough.getHp());
-        assertTrue(enemyStrong.getisDead() && enemyTough.getisDead());
+        assertTrue(enemyStrong.isDead() && enemyTough.isDead());
         assertEquals(45,player1.getHp());
     }
 }
