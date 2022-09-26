@@ -61,55 +61,7 @@ public class Player extends Character implements PlayerInterface {
         } else if (!unit.interact(st)){
             st.messageBox.putMessage("Interact failed.");
         }
-
-
-
-/*
-        //interact with items nearby to pick them up
-        if((st.items != null && !st.items.isEmpty()) && canaction) {
-
-            for (Item item : st.items) {
-                //check for items with Instant usage
-                if (item.canBePicked(st)) {
-                switch (item.getType()) {
-                    case Inventory_Boost:
-                        //boost inventory by 1 when item used up to a max of 5 places
-                        if (!(st.player.getMaxitemsheld() +1 > 5)) st.player.setMaxitemsheld(st.player.getMaxitemsheld() + 1);
-                        //remove item from existance
-                            item.useItem();
-                            item.pickUpItem();
-                        System.out.print("Got Inventory Boost");
-                        canaction = false;
-                        break;
-                    case EX_Boost:
-                        //boost exp by 1 when item used
-                        st.player.setExp(st.player.getExp() + 1);
-                        //remove item from existance
-                        item.useItem();
-                        item.pickUpItem();
-                        System.out.print("Got EXP Boost");
-                        canaction = false;
-                        break;
-                    default:
-                        break;
-                }
-
-                // items to be stored in inventory if they are valid
-                 if (st.player.canaddItem() && canaction) {
-                    st.player.addItem(item);
-                    item.pickUpItem();
-                    canaction = false;
-                }
-            }
-            }
-
-        }
-
-        //If No items or enemys are nearby, drop items
-        return true;
-
- */
-        }
+    }
 
 
     /**
@@ -143,44 +95,19 @@ public class Player extends Character implements PlayerInterface {
         } else {
             st.messageBox.putMessage("The item at index " + (itemIdx + 1) + " is: [ " + item + " ].");
         }
-
-
-
-
-//        if (tempinventorynum > st.player.getItemCount()) {
-//        tempinventorynum = st.player.getItemCount();
-//        }
-//
-//        if ((st.player.inventory != null) && !(st.player.inventory.isEmpty())) {
-//            if (st.player.getItem(tempinventorynum - 1).getType() == ItemType.HP_Boost) {//boost hp by 1 when item used
-//                st.player.setHp(st.player.getHp() + 1);
-//
-//                if (st.items.contains(st.player.getItem(tempinventorynum - 1))) {
-//                    st.items.get(tempinventorynum - 1).useItem();
-//                }
-//
-//                st.player.inventory.remove(st.player.getItem(tempinventorynum - 1));
-//                System.out.print("Used HP Boost");
-//            }
-//
-//        }
     }
 
 
 
-    public static void getDestination(State st){
-        Map map = st.map;
-        Location current =  st.player.getLoc(); //player location
-        Location destination = new Location(-1, -1); //avoid exception
-        for (int i = 0; i < map.getMap().length; i++) {
-            for (int j = 0; j < map.getMap()[i].length(); j++) {
-                if (map.getMap()[i].charAt(j) == 'H') {
-                    destination = new Location(i, j);
-                }
-            }
+    public static void getQuest(State st){
+        int level = st.level;
+        GameLevelUpRequirement levelUpRequirement= GameConfiguration.LEVEL_UP_REQUIREMENTS[level];
+        if (levelUpRequirement != null){
+            Location destination = levelUpRequirement.getLocation();
+            st.messageBox.putMessage("Your goal is to reach " + destination + ".");
+        } else {
+            st.messageBox.putMessage("You have finished all quests");
         }
-        System.out.println("You are in (" + current.getX() + ", " + current.getY() + "), go to: (" + destination.getX() + ", " + destination.getY() + ")!");
-
     }
 
     /**
@@ -267,9 +194,6 @@ public class Player extends Character implements PlayerInterface {
     public List<Item> getInventory() {
         return this.inventory;
     }
-
-
-
 
 
     public int getExp() {

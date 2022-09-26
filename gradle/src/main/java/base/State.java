@@ -24,7 +24,6 @@ public class State {
 
     // Display Variable
     MessageBox messageBox; // Length must be <= 10
-    int flexibleDisplay; // 0 for inventory, 1 for enemy stats. See toString for detail
 
 
     // A new game
@@ -39,7 +38,6 @@ public class State {
         this.merchants = merchants;
         this.messageBox = new MessageBox();
         messageBox.putMessage("Need Help? Type 'tips'");
-        flexibleDisplay = 0;
     }
 
     public String getStory() {
@@ -49,24 +47,14 @@ public class State {
         return level;
     }
 
-    /**
-     * clear the stuff left in last level when we want to level up
-     */
-    public void clearall(){
-        if(this.enemies!=null) {
-            this.enemies.clear();
-        }
-        if(this.items !=null){
-            this.items.clear();
-        }
-    }
+
 
     /**
      * Check whether the game state is a finish state (last state of the whole game).
      * @return ture or false
      */
     public Boolean isFinish(){ // check the player win or not
-        return level == GameConfiguration.FINISH_REQUIREMENT;
+        return level == GameConfiguration.FINAL_LEVEL;
     }
 
     /**
@@ -75,22 +63,27 @@ public class State {
      * @param newGameState the next game state.
      */
     public void gameLevelUp(State newGameState){
-        if (newGameState.map != null)
-            map = newGameState.map;
-        if (newGameState.enemies != null)
-            enemies = newGameState.enemies;
-        level = newGameState.level;
-        story = newGameState.story;
 
-        // Update player state in the next level
-        Player newStats = newGameState.player;
-        if (newStats.getName() != null) this.player.setName(newStats.getName());
-        if (newStats.getHp() != Integer.MIN_VALUE) this.player.setHp(newStats.getHp());
-        if (newStats.getAtk() != Integer.MIN_VALUE) this.player.setAtk(newStats.getAtk());
-        if (newStats.getDef() != Integer.MIN_VALUE) this.player.setDef(newStats.getDef());
-        if (newStats.getLoc() != null) this.player.setLoc(newStats.getLoc());
-        if (newStats.getExp() != Integer.MIN_VALUE) this.player.setExp(newStats.getExp());
-        if (newStats.getPlayerLevel() != Integer.MIN_VALUE) this.player.setPlayerLevel(newStats.getPlayerLevel());
+
+
+        // Update the attributes of the current game state
+        // If an attribute of newGameState is null or MIN_VALUE, it means keep the current attribute.
+        if (newGameState.map != null)
+            map = newGameState.map; // Set Map
+        if (newGameState.player.getLoc() != null)
+            player.setLoc(newGameState.player.getLoc()); // Set Player initial location
+        if (newGameState.enemies != null)
+            enemies = newGameState.enemies; // Set enemies
+        if (newGameState.level != Integer.MIN_VALUE)
+            level = newGameState.level; // Set Level
+        if (newGameState.story != null)
+            story = newGameState.story; // Set Story
+        if (newGameState.items != null)
+            items = newGameState.items; // Set items
+        if (newGameState.NPCs != null)
+            NPCs = newGameState.NPCs; // Set NPCs
+        if (newGameState.merchants != null)
+            merchants = newGameState.merchants; // Set merchants
     }
 
     /**
@@ -172,10 +165,18 @@ public class State {
 
 
         // Story Part
-        String[] story = this.getStory().split("\n");
-        story[0] = " " + DisplayUtility.fixLength(story[0],103) + " ";
-        story[1] = " " + DisplayUtility.fixLength(story[1],103) + " ";
-        story[2] = " " + DisplayUtility.fixLength(story[2],103) + " ";
+        String[] story = new String[3];
+        String[] storySplit = this.getStory().split("\n");
+        int length = storySplit.length;
+        for (int i = 0; i < length; i++){
+            story[i] = " " + DisplayUtility.fixLength(storySplit[i],103) + " ";
+        }
+        if (length < 3)
+            story[2] = " ".repeat(105);
+        if (length < 2)
+            story[1] = " ".repeat(105);
+        if (length < 1)
+            story[0] = " ".repeat(105);
 
 
         // Map Part

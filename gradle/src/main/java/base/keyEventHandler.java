@@ -29,7 +29,7 @@ public class keyEventHandler {
                 case "s" -> state.player.backward(state.map);
                 case "d" -> state.player.right(state.map);
                 case "a" -> state.player.left(state.map);
-                case "i" -> Player.getDestination(state); //print current location and destination location
+                case "quest" -> Player.getQuest(state); //print current location and destination location
 
                 case "fw","fa","fs","fd", "f" -> Player.interact(state, input);
 
@@ -47,28 +47,24 @@ public class keyEventHandler {
                         state.messageBox.putMessage(st);
                     }
                 }
+
+                case "levelup" -> {
+                    if (!state.isFinish())
+                            state.gameLevelUp(GameConfiguration.GAME_STATES[state.level + 1]);} // For testing only, direct get to the next level.
+
                 default -> {
                     state.messageBox.putMessage("Sorry, '" + input + "' is not a value input.");
                 }
             }
-//            Location initial = new Location(0, 1);
-//            // If the requirement to moving to the next game level is satisfied, move to the next game level.
-//            if (GameConfiguration.LEVEL0_LEVEL_UP.requirementSatisfied(state)) {
-//                System.out.println("continue adventure");
-//                state.clearall();
-//                state.gameLevelUp(GameConfiguration.starr[state.level + 1]);
-//            }
-//            if (GameConfiguration.LEVEL1_LEVEL_UP.requirementSatisfied(state)) {
-//                System.out.println("next level: continue");
-//                state.clearall();
-//                state.gameLevelUp(GameConfiguration.starr[state.level + 1]);
-//            }
-//            if (GameConfiguration.LEVEL3_LEVEL_UP.requirementSatisfied(state)) {
-//                System.out.println("next level: finish");
-//                state.clearall();
-//                state.gameLevelUp(GameConfiguration.starr[state.level + 1]);
-//            }
-            // Print out the updated game state
+
+            // If the player has not reached the final game level, check if the player can proceed to the next level
+            if (!state.isFinish()){
+                int level = state.level;
+                GameLevelUpRequirement levelUpRequirement = GameConfiguration.LEVEL_UP_REQUIREMENTS[level];
+                if (levelUpRequirement.requirementSatisfied(state)){
+                    state.gameLevelUp(GameConfiguration.GAME_STATES[level + 1]);
+                }
+            }
 
             System.out.println(state);
         } while (!Objects.equals(input, "q"));
