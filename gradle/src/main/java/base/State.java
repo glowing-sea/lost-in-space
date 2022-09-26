@@ -181,8 +181,7 @@ public class State {
 
         // Map Part
         String[] map = new String[10];
-        map[0] = "------------------";
-        map[9] = "------------------";
+        map[0] = "__________________";
 
         List<Location> enemiesLoc = Unit.unitsToLocations(enemies); // Get Locations of units
         List<Location> itemsLoc = Unit.unitsToLocations(items);
@@ -213,9 +212,8 @@ public class State {
                     line.append(m[i].charAt(j)).append(" ");
                 }
             }
-            map[i] = line.toString();    // JDK 18 only: ‖
+            map[i + 1] = line.toString();    // JDK 18 only: ‖
         }
-
 
 
         // Combine each part
