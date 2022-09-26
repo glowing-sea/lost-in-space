@@ -1,4 +1,4 @@
-package gradle.src.main.java.base;
+package base;
 
 public interface PlayerInterface {
     boolean forward(Map map);

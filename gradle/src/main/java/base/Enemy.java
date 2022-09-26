@@ -1,4 +1,4 @@
-package gradle.src.main.java.base;
+package base;
 
 /**
  * An object storing the attributes and method of an enemy.
