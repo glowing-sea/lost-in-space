@@ -1,4 +1,4 @@
-package gradle.src.main.java.base;
+package base;
 
 /**
  * An object storing a map in a game

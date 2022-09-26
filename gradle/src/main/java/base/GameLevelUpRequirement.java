@@ -1,4 +1,4 @@
-package gradle.src.main.java.base;
+package base;
 
 /**
  * This class stores the requirement for a current game state to move to the next game state

@@ -1,4 +1,4 @@
-package gradle.src.main.java.base;
+package base;
 
 public enum Item_Type {
     HP_Boost,

@@ -1,4 +1,4 @@
-package gradle.src.main.java.base;
+package base;
 
 import java.util.ArrayList;
 import java.util.List;
