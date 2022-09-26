@@ -58,4 +58,30 @@ public class Location {
         }
         return false;
     }
+    public Unit findUnit (Location loc, State st){
+        // Enemy
+        for (Enemy enemy :st.enemies){
+            if (enemy.getLoc().equals(loc))
+                return enemy;
+        }
+        // NPC
+        for (NPC npc :st.NPCs){
+            if (npc.getLoc().equals(loc))
+                return npc;
+        }
+        // Item
+        for (Item item :st.items) {
+            if (item.getLoc().equals(loc))
+                return item;
+        }
+        // Merchant
+        for (Merchant merchant :st.merchants) {
+            if (merchant.getLoc().equals(loc))
+                return merchant;
+        }
+        return null;
+    }
+    public Location locCopy (){
+        return new Location(x, y);
+    }
 }

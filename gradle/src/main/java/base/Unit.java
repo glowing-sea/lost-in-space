@@ -3,8 +3,12 @@ package base;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An object storing the attributes any unit on the map, such as a character or an item.
+ */
+
 // Any unit on the map, such as a character or a item.
-public abstract class Unit{
+public abstract class Unit implements Interactive{
     private String name;
     private Location loc;
 
@@ -62,6 +66,13 @@ public abstract class Unit{
             }
         return locations;
     }
+
+    @Override
+    public boolean interact(State st) {
+        st.messageBox.putMessage("You interact with " + this.name + "!");
+        return true;
+    }
+
 
     @Override
     public String toString() {

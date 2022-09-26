@@ -34,7 +34,26 @@ public class Player extends Character implements PlayerInterface {
      *      Use Items which don't need to be stored eg. exp boost
      * @param st the board state
      */
-    public static void interact(State st){
+    public static boolean interact(State st, String direction){
+
+        // Get the location that the player want to interact with.
+        Unit unit;
+        Location unitLoc = st.player.getLoc().locCopy();
+        switch (direction){
+            case "fa" -> {unitLoc.setY(unitLoc.getY() - 1);}
+            case "fd" -> {unitLoc.setY(unitLoc.getY() + 1);}
+            case "fw" -> {unitLoc.setX(unitLoc.getX() - 1);}
+            case "fs" -> {unitLoc.setX(unitLoc.getX() + 1);}
+        }
+        // Search if there is a unit to interact in this location
+        unit = unitLoc.findUnit(unitLoc, st);
+        if (unit == null)
+            return false;
+        else
+            return unit.interact(st);
+
+
+/*
         //interact with enemies nearby you!
         ArrayList<Enemy> deletethem = new ArrayList<>();
         //boolean used to make sure only 1 action is done for each press of interact
@@ -90,12 +109,17 @@ public class Player extends Character implements PlayerInterface {
                     canaction = false;
                 }
             }
-        }
+            }
+
         }
 
         //If No items or enemys are nearby, drop items
+        return true;
 
+ */
         }
+
+
     /**
      * Use the items within the players inventory at the requested number.
      * @param st the state the game is currently in

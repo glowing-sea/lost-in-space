@@ -54,7 +54,7 @@ public class GameConfiguration {
         items.add(item2);
         items.add(item3);
         enemies.add(new Enemy("Goblin1",30,120,30,new Location(0,4),false));
-        NPCs.add(new NPC("Bob", new Location(5,5), "What's Up?"));
+        NPCs.add(new NPC("Bob", new Location(2,0), new String[]{"Welcome to my lane!", "`Where should I go?"}));
         List<Trade> trades = new ArrayList<>();
         trades.add(new Trade(item1, item2));
         merchants.add(new Merchant("Amy", new Location(3,5), "Wants some trades", trades));
@@ -96,9 +96,9 @@ public class GameConfiguration {
         LEVEL1_INITIAL_STATE = new State(mapO1, dialogue, 1, player, enemies, null, null, null);
         LEVEL1_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
-    public static State LEVEL3_INITIAL_STATE;
+    public static State LEVEL2_INITIAL_STATE;
     // The game should move to the next level if the current state == LEVEL0_LEVEL_UP_STATE
-    public static GameLevelUpRequirement LEVEL3_LEVEL_UP;
+    public static GameLevelUpRequirement LEVEL2_LEVEL_UP;
 
     static {
         String[] map = new String[] {
@@ -121,13 +121,13 @@ public class GameConfiguration {
         Player player = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(0,1), Integer.MIN_VALUE, Integer.MIN_VALUE);
 
         String dialogue = "continue adventure";
-        LEVEL3_INITIAL_STATE = new State(mapO3, dialogue, 2, player, enemies, null, null , null);
-        LEVEL3_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
+        LEVEL2_INITIAL_STATE = new State(mapO3, dialogue, 2, player, enemies, null, null , null);
+        LEVEL2_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
 
-    // Level 10 Configuration
-    public static State LEVEL10_INITIAL_STATE;
-    public static GameLevelUpRequirement LEVEL10_LEVEL_UP;
+    // Level 4 Configuration
+    public static State LEVEL3_INITIAL_STATE;
+    public static GameLevelUpRequirement LEVEL3_LEVEL_UP;
 
     static {
         String[] map = new String[] {
@@ -144,8 +144,8 @@ public class GameConfiguration {
         Player player = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(4,4), Integer.MIN_VALUE, Integer.MIN_VALUE);
         List<Enemy> enemies = null;
         String dialogue = "You Win!";
-        LEVEL10_INITIAL_STATE = new State(mapOBJ, dialogue, 3, player, null, null, null, null);
-        LEVEL10_LEVEL_UP = null;
+        LEVEL3_INITIAL_STATE = new State(mapOBJ, dialogue, 3, player, null, null, null, null);
+        LEVEL3_LEVEL_UP = null;
     }
 
     static {
@@ -153,6 +153,6 @@ public class GameConfiguration {
                 LEVEL0_INITIAL_STATE,
                 LEVEL1_INITIAL_STATE,
                 LEVEL3_INITIAL_STATE,
-                LEVEL10_INITIAL_STATE};
+                LEVEL3_INITIAL_STATE};
     }
 }

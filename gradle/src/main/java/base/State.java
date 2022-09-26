@@ -4,7 +4,9 @@ import utility.DisplayUtility;
 import utility.Utility;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * An object shoring the current game state
@@ -20,6 +22,9 @@ public class State {
     List<NPC> NPCs;
     List<Merchant> merchants;
 
+    // Display Variable
+    MessageBox messageBox; // Length must be <= 10
+    int flexibleDisplay; // 0 for inventory, 1 for enemy stats. See toString for detail
 
 
     // A new game
@@ -32,6 +37,10 @@ public class State {
         this.items = items;
         this.NPCs = NPCs;
         this.merchants = merchants;
+        this.messageBox = new MessageBox();
+        messageBox.putMessage("Welcome");
+        messageBox.putMessage("How are You?");
+        flexibleDisplay = 0;
     }
 
     public String getStory() {
@@ -132,30 +141,30 @@ public class State {
         myStats[8] = "   " + DisplayUtility.fixLength("LOC: " + "(" + this.player.getLoc().getX() + "," + this.player.getLoc().getY() + ")", 13);
         myStats[9] = " ".repeat(16);
 
-        String[] otherStats = {
-                "   Enemy Name   ",
-                "     Guilty     ",
-                "                ",
-                "    LV: 3       ",
-                "    HP:         ",
-                "    ATK:        ",
-                "    DEF:        ",
-                "    LOC: (6,6)  ",
-                "                ",
-                "                "};
+        // Enemies Stats Part
+        String[] enemyStats = new String[10];
+        enemyStats[0] = DisplayUtility.centerText("Enemy Name", 16);
+        enemyStats[1] = DisplayUtility.centerText("???", 16);
+        enemyStats[2] = " ".repeat(16);
+        enemyStats[3] = "   " + DisplayUtility.fixLength("LV: " + "???", 13);
+        enemyStats[4] = "   " + DisplayUtility.fixLength("HP: " + "???", 13);
+        enemyStats[5] = "   " + DisplayUtility.fixLength("ATK: " + "???", 13);
+        enemyStats[6] = "   " + DisplayUtility.fixLength("DEF: " + "???", 13);
+        enemyStats[7] = "   " + DisplayUtility.fixLength("EXP: " + "???", 13);
+        enemyStats[8] = "   " + DisplayUtility.fixLength("LOC: " + "???", 13);
+        enemyStats[9] = " ".repeat(16);
 
-        String[] messages = {
-                " > Guilty: I'm not afraid of you                    ",
-                "                                                    ",
-                "                                                    ",
-                "                                                    ",
-                "                                                    ",
-                "                                                    ",
-                "                                                    ",
-                "                                                    ",
-                "                                                    ",
-                "                                                    "};
 
+        // Message Box Part
+        String[] messageOutput = new String[10];
+        int count = 0; // The number of line that has text.
+        for (String message : messageBox){
+            messageOutput[count] = " > " + DisplayUtility.fixLength(message, 48) + " ";
+            count++;
+        }
+        for (; count < 10; count++){
+            messageOutput[count] = " ".repeat(52);
+        }
 
 
         // Story Part
@@ -206,10 +215,10 @@ public class State {
 
         // Combine each part
         output.append("===========================================================================================================\n"); // Line 1
-        output.append("|").append(title).append("|                       Messages                     |\n"); // Line 2
+        output.append("|").append(title).append("|").append(DisplayUtility.centerText("Message Box", 52)).append("|\n"); // Line 2
         output.append("|====================================================|                                                    |\n"); // Line 3
         for (int i = 0; i < 10; i++){
-            output.append("|").append(myStats[i]).append("|").append(map[i]).append("|").append(otherStats[i]).append("|").append(messages[i]).append("|").append("\n"); // Line 4-13
+            output.append("|").append(myStats[i]).append("|").append(map[i]).append("|").append(enemyStats[i]).append("|").append(messageOutput[i]).append("|").append("\n"); // Line 4-13
         }
         output.append("===========================================================================================================\n"); // Line 14
         output.append("|").append(story[0]).append("|").append("\n"); // Line 15
