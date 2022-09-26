@@ -13,8 +13,10 @@ public class Player extends Character implements PlayerInterface {
     private List<Item> ItemsHeld=new ArrayList<>();
     private int maxitemsheld;
 
+
+
     public Player(String name, int hp, int atk, int def, Location loc, int exp, int playerLevel) {
-        super(name, hp, atk, def, loc);
+        super(name, hp, atk, def, loc, 'P');
         this.exp = exp;
         this.playerLevel = playerLevel;
         this.maxitemsheld = 2;
@@ -53,18 +55,18 @@ public class Player extends Character implements PlayerInterface {
         }
 
         //interact with items nearby to pick them up
-        if((st.Items != null && !st.Items.isEmpty()) && canaction) {
+        if((st.items != null && !st.items.isEmpty()) && canaction) {
 
-            for (Item item : st.Items) {
+            for (Item item : st.items) {
                 //check for items with Instant usage
-                if (item.pickupitemvalid(st)) {
+                if (item.isValid(st)) {
                 switch (item.getType()) {
                     case Inventory_Boost:
                         //boost inventory by 1 when item used up to a max of 5 places
                         if (!(st.player.getMaxitemsheld() +1 > 5)) st.player.setMaxitemsheld(st.player.getMaxitemsheld() + 1);
                         //remove item from existance
-                            item.use_item();
-                            item.pickupitem();
+                            item.useItem();
+                            item.pickUpItem();
                         System.out.print("Got Inventory Boost");
                         canaction = false;
                         break;
@@ -72,8 +74,8 @@ public class Player extends Character implements PlayerInterface {
                         //boost exp by 1 when item used
                         st.player.setExp(st.player.getExp() + 1);
                         //remove item from existance
-                        item.use_item();
-                        item.pickupitem();
+                        item.useItem();
+                        item.pickUpItem();
                         System.out.print("Got EXP Boost");
                         canaction = false;
                         break;
@@ -84,7 +86,7 @@ public class Player extends Character implements PlayerInterface {
                 // items to be stored in inventory if they are valid
                  if (st.player.canaddItem() && canaction) {
                     st.player.addItem(item);
-                    item.pickupitem();
+                    item.pickUpItem();
                     canaction = false;
                 }
             }
@@ -108,11 +110,11 @@ public class Player extends Character implements PlayerInterface {
         }
 
         if ((st.player.ItemsHeld != null) && !(st.player.ItemsHeld.isEmpty())) {
-            if (st.player.getItem(tempinventorynum - 1).getType() == Item_Type.HP_Boost) {//boost hp by 1 when item used
+            if (st.player.getItem(tempinventorynum - 1).getType() == ItemType.HP_Boost) {//boost hp by 1 when item used
                 st.player.setHp(st.player.getHp() + 1);
 
-                if (st.Items.contains(st.player.getItem(tempinventorynum - 1))) {
-                    st.Items.get(tempinventorynum - 1).use_item();
+                if (st.items.contains(st.player.getItem(tempinventorynum - 1))) {
+                    st.items.get(tempinventorynum - 1).useItem();
                 }
 
                 st.player.ItemsHeld.remove(st.player.getItem(tempinventorynum - 1));

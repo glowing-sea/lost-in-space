@@ -11,7 +11,7 @@ public class Main {
         State state = GameConfiguration.starr[0];
         System.out.println(state);
         // Pass the initial state
-        key_event_handler key_event_handler = new key_event_handler();
-        key_event_handler.keyEventHandler(state);
+        keyEventHandler keyEventHandler = new keyEventHandler();
+        keyEventHandler.keyEventHandler(state);
     }
 }

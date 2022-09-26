@@ -4,7 +4,7 @@ package base;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class key_event_handler {
+public class keyEventHandler {
     /**
      * Display the current game state according to the player's movement.
      * Any invalid input display's a Try again message

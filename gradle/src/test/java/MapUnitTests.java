@@ -1,6 +1,7 @@
-package gradle.src.test.java;
+// package gradle.src.test.java;
 
-import gradle.src.main.java.base.Map;
+// import gradle.src.main.java.base.Map;
+import base.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

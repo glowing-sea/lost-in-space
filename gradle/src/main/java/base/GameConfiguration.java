@@ -40,15 +40,25 @@ public class GameConfiguration {
         Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|','E'});
         Player player = new Player("Jack", 100, 100, 100, new Location(0,1), 0, 0);
 
-        List<Enemy> enemies = null;
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(new Item(new Location(1,2), Item_Type.HP_Boost));
-        items.add(new Item(new Location(3,2), Item_Type.Inventory_Boost));
-        items.add(new Item(new Location(5,2), Item_Type.HP_Boost));
-        items.add(new Item(new Location(5,4), Item_Type.HP_Boost));
+        List<Enemy> enemies = new ArrayList<>();
+        List<Item> items = new ArrayList<>();
+        List<NPC> NPCs = new ArrayList<>();
+        List<Merchant> merchants = new ArrayList<>();
+
+        Item item1 = new Item(new Location(3,2), ItemType.Inventory_Boost);
+        Item item2 = new Item(new Location(5,2), ItemType.HP_Boost);
+        Item item3 = new Item(new Location(5,4), ItemType.HP_Boost);
+        items.add(item1);
+        items.add(item2);
+        items.add(item3);
+        enemies.add(new Enemy("Goblin1",30,120,30,new Location(0,4),false));
+        NPCs.add(new NPC("Bob", new Location(5,5), "What's Up?"));
+        List<Trade> trades = new ArrayList<>();
+        trades.add(new Trade(item1, item2));
+        merchants.add(new Merchant("Amy", new Location(3,5), "Wants some trades", trades));
 
         String dialogue = "You are lost on this planet. You (X) should find a way back to your spaceship (H)";
-        LEVEL0_INITIAL_STATE = new State(mapOBJ, player, enemies, dialogue, 0,items);
+        LEVEL0_INITIAL_STATE = new State(mapOBJ, dialogue, 0, player, enemies, items, NPCs, merchants);
         LEVEL0_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
     // Level 1 configuration
@@ -80,7 +90,7 @@ public class GameConfiguration {
         enemies.add(new Enemy("Goblin2",30,120,80,new Location(6,2),false));
 
         String dialogue = "fight against an enemy";
-        LEVEL1_INITIAL_STATE = new State(mapO1, player, enemies, dialogue, 1,null);
+        LEVEL1_INITIAL_STATE = new State(mapO1, dialogue, 1, player, enemies, null, null, null);
         LEVEL1_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
     public static State LEVEL3_INITIAL_STATE;
@@ -108,7 +118,7 @@ public class GameConfiguration {
         Player player = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(0,1), Integer.MIN_VALUE, Integer.MIN_VALUE);
 
         String dialogue = "continue adventure";
-        LEVEL3_INITIAL_STATE = new State(mapO3, player, enemies, dialogue, 2,null);
+        LEVEL3_INITIAL_STATE = new State(mapO3, dialogue, 2, player, enemies, null, null , null);
         LEVEL3_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
 
@@ -131,7 +141,7 @@ public class GameConfiguration {
         Player player = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(4,4), Integer.MIN_VALUE, Integer.MIN_VALUE);
         List<Enemy> enemies = null;
         String dialogue = "You Win!";
-        LEVEL10_INITIAL_STATE = new State(mapOBJ, player, null, dialogue, 3,null);
+        LEVEL10_INITIAL_STATE = new State(mapOBJ, dialogue, 3, player, null, null, null, null);
         LEVEL10_LEVEL_UP = null;
     }
 

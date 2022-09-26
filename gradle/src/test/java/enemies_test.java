@@ -1,6 +1,5 @@
-package gradle.src.test.java;
-
-import gradle.src.main.java.base.*;
+// package gradle.src.test.java;
+import base.*;
 import org.junit.jupiter.api.Test;
 
 
@@ -32,7 +31,7 @@ public class enemies_test {
             "         "};
     char[] testwalls = new char[] {'-','E'};
     Map testmap = new Map(-1,maptest,testwalls);
-    State teststate = new State(testmap,player1,enemies,"abc",0,null);
+    State teststate = new State(testmap,"abc",0, player1,enemies,null, null, null);
 
     @Test
     public void farAway(){

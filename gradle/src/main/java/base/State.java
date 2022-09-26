@@ -9,24 +9,30 @@ import java.util.List;
 
 public class State {
     Map map;
+    String story; // The Main story at this level
+    int level;
     Player player;
     List<Enemy> enemies;
-    int level;
-    List<Item> Items;
-    String dialogue;
+    List<Item> items;
+    List<NPC> NPCs;
+    List<Merchant> merchants;
+
+
 
     // A new game
-    public State(Map map, Player player, List<Enemy> enemies, String dialogue, int level, List<Item> items) {
+    public State(Map map, String story, int level, Player player, List<Enemy> enemies, List<Item> items, List<NPC> NPCs, List<Merchant> merchants) {
         this.map = map;
         this.player = player;
         this.enemies = enemies;
         this.level = level;
-        this.dialogue = dialogue;
-        this.Items = items;
+        this.story = story;
+        this.items = items;
+        this.NPCs = NPCs;
+        this.merchants = merchants;
     }
 
-    public String getDialogue() {
-        return dialogue;
+    public String getStory() {
+        return story;
     }
     public int getLevel() {
         return level;
@@ -39,8 +45,8 @@ public class State {
         if(this.enemies!=null) {
             this.enemies.clear();
         }
-        if(this.Items!=null){
-            this.Items.clear();
+        if(this.items !=null){
+            this.items.clear();
         }
     }
 
@@ -63,7 +69,7 @@ public class State {
         if (newGameState.enemies != null)
             enemies = newGameState.enemies;
         level = newGameState.level;
-        dialogue = newGameState.dialogue;
+        story = newGameState.story;
 
         // Update player state in the next level
         Player newStats = newGameState.player;
@@ -88,7 +94,7 @@ public class State {
         output.append("+------------------+\n");
 
         // Display Dialogue
-        output.append(dialogue).append("\n");
+        output.append(story).append("\n");
 
 
         // Display Map
@@ -105,8 +111,8 @@ public class State {
         }
         // display item locations
         ArrayList<Location> itemsloc = new ArrayList<>(); // where the items are
-        if(this.Items!=null) {
-            for (Item item : this.Items) {
+        if(this.items !=null) {
+            for (Item item : this.items) {
                 itemsloc.add(item.getLocation());
             }
         }
@@ -115,16 +121,23 @@ public class State {
             StringBuilder line = new StringBuilder();
             line.append('|');       // JDK 18 only: ‖
             for (int j = 0; j < m[i].length(); j++) {
-                // If the player is at this location, display X instead of others
-                if (playerX == i && playerY == j){
-                    line.append('X').append(" ");
-                } else if ((new Location(i,j).isin(enemiesloc))) {
-                    line.append('E').append(" ");
-                    Location enemyloc = new Location(i,j);
-                    map.refreshLocation(enemyloc,'E');
-                } else if ((new Location(i,j).isin(itemsloc))) {
-                    line.append('i').append(" ");
-                } else {
+                // Print Player
+                if (player.getLoc().equals(new Location(i, j))){
+                    line.append('X').append(" ");}
+                // Print Enemies
+                else if ((new Location(i,j).isin(enemiesloc))) {
+                    line.append('E').append(" ");}
+                // Print Items
+                else if ((new Location(i,j).isin(itemsloc))) {
+                    line.append('i').append(" ");}
+                // Print NPCs
+                else if ((new Location(i,j).isin(itemsloc))) {
+                    line.append('i').append(" ");}
+                // Print Merchants
+                else if ((new Location(i,j).isin(itemsloc))) {
+                    line.append('i').append(" ");}
+                // Print Walls
+                else {
                     line.append(m[i].charAt(j)).append(" ");
                 }
             }

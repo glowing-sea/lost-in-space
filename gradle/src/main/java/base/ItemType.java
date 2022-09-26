@@ -1,6 +1,6 @@
 package base;
 
-public enum Item_Type {
+public enum ItemType {
     HP_Boost,
     EX_Boost,
     Inventory_Boost,

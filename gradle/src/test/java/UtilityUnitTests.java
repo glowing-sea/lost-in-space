@@ -1,7 +1,8 @@
-package gradle.src.test.java;
-
-import gradle.src.main.java.base.*;
-import gradle.src.main.java.utility.Utility;
+// package gradle.src.test.java;
+import base.*;
+import utility.*;
+//import gradle.src.main.java.base.*;
+//import gradle.src.main.java.utility.Utility;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,13 +44,13 @@ public class UtilityUnitTests {
         enemies.add(e1);
         enemies.add(e2);
 
-        Item i1 = new Item(new Location(1,1), Item_Type.EX_Boost);
+        Item i1 = new Item(new Location(1,1), ItemType.EX_Boost);
         List<Item> i = new ArrayList<>();
         i.add(i1);
 
         Player p1 = new Player("talon", 100, 100, 100, new Location(10,20), 0, 1);
 
-        s = new State(new Map(0, map, new char[] {'-', '+', '|'}), p1, enemies,  "dual", 10, i);
+        s = new State(new Map(0, map, new char[] {'-', '+', '|'}), "dual", 10, p1, enemies,  i, null, null);
     }
     @Test
     public void testWriteToJson() {
@@ -66,7 +67,7 @@ public class UtilityUnitTests {
         assertNotNull(p);
 
         // second test
-        assertEquals("dual", p.getDialogue());
+        assertEquals("dual", p.getStory());
 
         // third test
         assertEquals(10, p.getLevel());
