@@ -12,6 +12,8 @@ import java.util.List;
 
 public class GameConfiguration {
 
+    public static String title = "Lost in Space";
+
     // The state level indicating a finished game.
     public static int FINISH_REQUIREMENT = 1;
     // An array of sequential game from start to finish.

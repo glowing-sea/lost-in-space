@@ -91,10 +91,37 @@ public class State {
         StringBuilder output = new StringBuilder();
 
         // Display Title
-        output.append("+------------------+\n");
+       // output.append("+------------------+\n");
+
+        output.append("==================================================\n");
+        output.append("                  Lost in Space                   \n");
+        output.append("==================================================\n");
 
         // Display Dialogue
-        output.append(story).append("\n");
+        // output.append(story).append("\n");
+
+        /*
+
+ 1 ===========================================================================================================
+ 2 |                   Lost in Space                    |                       Messages                     |
+ 3 |====================================================|                                                    |
+ 4 |   Your Name    |------------------|   Enemy Name   | > Guilty: I'm not afraid of you                    |
+ 5 |     Jack       |  X     E - - - - |     Guilty     |                                                    |
+ 6 |                |                  |                |                                                    |
+ 7 |   LV: 2        |        + - -     |    LV: 3       |                                                    |
+ 8 |   HP: 100      |    i   | M       |    HP:         |                                                    |
+ 9 |   ATK: 40      |        + - - - - |    ATK:        |                                                    |
+10 |   DEF: 30      |    i   i N   A   |    DEF:        |                                                    |
+11 |   EXP: 300     |            A H A |    LOC: (6,6)  |                                                    |
+12 |   LOC: (6,6)   |- - - - - - - - - |                |                                                    |
+13 |                |     Map Name     |                |                                                    |
+14 ===========================================================================================================
+15 | Story...............                                                                                    |
+16 |                                                                                                         |
+17 |                                                                                                         |
+18 ==========================================================================================================|
+
+         */
 
 
         // Display Map
@@ -108,8 +135,6 @@ public class State {
         List<Location> NPCsLoc = Unit.unitsToLocations(NPCs);
         List<Location> merchantsLoc = Unit.unitsToLocations(merchants);
 
-
-        output.append("====================\n");
         for (int i = 0; i < m.length; i++) {
             StringBuilder line = new StringBuilder();
             line.append('|');       // JDK 18 only: ‖
@@ -136,7 +161,7 @@ public class State {
             }
             output.append(line).append('|').append("\n");    // JDK 18 only: ‖
         }
-        output.append("====================\n");
+        output.append("==================================================\n");
 
         return output.toString();
     }
