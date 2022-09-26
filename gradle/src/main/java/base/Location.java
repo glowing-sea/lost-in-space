@@ -58,25 +58,25 @@ public class Location {
         }
         return false;
     }
-    public Unit findUnit (Location loc, State st){
+    public Unit findUnit (State st){
         // Enemy
         for (Enemy enemy :st.enemies){
-            if (enemy.getLoc().equals(loc))
+            if (enemy.getLoc().equals(this))
                 return enemy;
         }
         // NPC
         for (NPC npc :st.NPCs){
-            if (npc.getLoc().equals(loc))
+            if (npc.getLoc().equals(this))
                 return npc;
         }
         // Item
         for (Item item :st.items) {
-            if (item.getLoc().equals(loc))
+            if (item.getLoc().equals(this))
                 return item;
         }
         // Merchant
         for (Merchant merchant :st.merchants) {
-            if (merchant.getLoc().equals(loc))
+            if (merchant.getLoc().equals(this))
                 return merchant;
         }
         return null;

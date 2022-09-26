@@ -7,7 +7,7 @@ import java.util.List;
  * An object storing the attributes and method of the current player.
  */
 
-public class Player extends Character implements PlayerInterface {
+public class Player extends Character {
     private int exp;
     private int playerLevel;
     private List<Item> inventory;
@@ -55,7 +55,7 @@ public class Player extends Character implements PlayerInterface {
             case "fs" -> {unitLoc.setX(unitLoc.getX() + 1);}
         }
         // Search if there is a unit to interact in this location
-        unit = unitLoc.findUnit(unitLoc, st);
+        unit = unitLoc.findUnit(st);
         if (unit == null) {
             st.messageBox.putMessage("There is nothing to interact with.");
         } else if (!unit.interact(st)){
@@ -110,69 +110,48 @@ public class Player extends Character implements PlayerInterface {
         }
     }
 
-    /**
-     * Move the character one step forward provided that they can go there.
-     * @param map the map where the character is in
-     * @return true if the character has moved
-     */
-    @Override
-    public boolean forward(Map map) {
-        int newX = getLoc().getX() - 1;
-        Location newLoc = new Location(newX, getLoc().getY());
-        if (map.reachable(newLoc)) {
-            getLoc().setX(newX);
-            return true;
-        } else
-            return false;
-    }
+
+
 
     /**
-     * Move the character one step backward provided that they can go there.
-     * @param map the map where the character is in
+     * Move the character according to the input direction and speed
+     * @param st current game state
+     * @param direction forward (w), backward (s), right (a), or left (d)
+     * @param speed how many step to move
      * @return true if the character has moved
      */
-    @Override
-    public boolean backward(Map map) {
-        int newX = getLoc().getX() + 1;
-        Location newLoc = new Location(newX, getLoc().getY());
-        if (map.reachable(newLoc)) {
-            getLoc().setX(newX);
+    public boolean move (State st, String direction, int speed){
+        Location newLoc;
+        switch (direction) {
+            case "w", "ww" -> {
+                int newX = getLoc().getX() - speed;
+                newLoc = new Location(newX, getLoc().getY());
+            }
+            case "s", "ss" -> {
+                int newX = getLoc().getX() + speed;
+                newLoc = new Location(newX, getLoc().getY());
+            }
+            case "d", "dd" -> {
+                int newY = getLoc().getY() + speed;
+                newLoc = new Location(getLoc().getX(), newY);
+            }
+            case "a", "aa" -> {
+                int newY = getLoc().getY() - speed;
+                newLoc = new Location(getLoc().getX(), newY);
+            }
+            default -> {return false;}
+        }
+
+            if (!st.map.reachable(newLoc))
+                return false;
+            if (newLoc.findUnit(st) != null)
+                return false;
+
+            st.player.setLoc(newLoc);
             return true;
-        } else
-            return false;
+
     }
 
-    /**
-     * Move the character one step to the right provided that they can go there.
-     * @param map the map where the character is in
-     * @return true if the character has moved
-     */
-    @Override
-    public boolean right(Map map) {
-        int newY = getLoc().getY() + 1;
-        Location newLoc = new Location(getLoc().getX(), newY);
-        if (map.reachable(newLoc)) {
-            getLoc().setY(newY);
-            return true;
-        } else
-            return false;
-    }
-
-    /**
-     * Move the character one step to the left provided that they can go there.
-     * @param map the map where the character is in
-     * @return true if the character has moved
-     */
-    @Override
-    public boolean left(Map map) {
-        int newY = getLoc().getY() - 1;
-        Location newLoc = new Location(getLoc().getX(), newY);
-        if (map.reachable(newLoc)) {
-            getLoc().setY(newY);
-            return true;
-        } else
-            return false;
-    }
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
