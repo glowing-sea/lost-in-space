@@ -1,4 +1,4 @@
-package gradle.src.test.java;
+package tests;
 
 import base.Map;
 import org.junit.jupiter.api.BeforeEach;

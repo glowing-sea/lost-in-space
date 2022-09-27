@@ -1,4 +1,4 @@
-package gradle.src.test.java;
+package tests;
 
 import base.*;
 import org.junit.jupiter.api.Test;
