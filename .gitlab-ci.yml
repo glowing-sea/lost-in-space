@@ -4,6 +4,7 @@
 ## This file configures the CI pipeline of GitLab.
 ## gradle-build builds this Project
 ## gradle-test runs the unit tests
+##
 
 image: gradle:alpine
 stages:
