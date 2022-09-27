@@ -25,12 +25,23 @@ gradle-test:
     - test
     #- /^issue-.*$/
     #- external_pull_requests
-artifacts:
-  when: always
-  paths:
-    - rspec.xml
-  reports:
-    junit: rspec.xml
+
+rspec:
+  stage: test
+  script:
+    - bundle install
+    - rspec --format RspecJunitFormatter --out rspec.xml
+  artifacts:
+    reports:
+      junit: rspec.xml
+
+
+#artifacts:
+#  when: always
+#  paths:
+#    - rspec.xml
+#  reports:
+#    junit: rspec.xml
 
 #  reports:
 #    junit:
