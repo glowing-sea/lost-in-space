@@ -8,7 +8,6 @@ import base.Enemy;
 import base.Map;
 import base.Player;
 import base.State;
-
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.List;
