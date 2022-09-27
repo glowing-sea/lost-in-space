@@ -72,7 +72,7 @@ public class Player extends Character implements Movable{
      * @param st the state the game is currently in
      * @param  itemIndex the inventory position which item is being used
      * @param action 0 for use. 1 for drop. 2 for view.
-     * @param whether an item is taken out successfully
+     * @return  whether an item is taken out successfully
      */
     public static boolean takeOutItem(State st, String itemIndex, int action){
         int itemIdx;
@@ -162,9 +162,9 @@ public class Player extends Character implements Movable{
             default -> {return false;}
         }
 
-            if (!st.map.reachable(adjLoc))
+            if (!st.map.reachable(adjLoc) || !st.map.reachable(newLoc))
                 return false;
-            if (newLoc.findUnit(st) != null)
+            if (adjLoc.findUnit(st) != null || newLoc.findUnit(st) != null)
                 return false;
 
             st.player.setLoc(newLoc);
@@ -194,7 +194,7 @@ public class Player extends Character implements Movable{
      */
     public void collectExp(int exp, State st){
         this.exp += exp;
-        int levelIncreased = exp / 100;
+        int levelIncreased = this.exp / 100;
         if (levelIncreased > 0){ // can level up
             this.playerLevel += levelIncreased;
             this.exp %= 100;

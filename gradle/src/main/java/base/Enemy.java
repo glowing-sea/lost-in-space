@@ -63,7 +63,8 @@ public class Enemy extends Character {
             st.messageBox.putMessage("System: you killed the enemy " + this.getName() + "!");
             st.enemies.remove(this);
             st.player.collectExp(this.expReward, st);
-            st.player.addItem(this.itemReward);
+            if (this.itemReward != null)
+                st.player.addItem(this.itemReward);
         }
         return true;
     }
