@@ -1,13 +1,15 @@
 package base;
-
-
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * A class managing the key inputs from the user
+ */
+
 public class keyEventHandler {
     /**
-     * Display the current game state according to the player's movement.
-     * Any invalid input display's a Try again message
+     * Update and display the game state after the use input a valid command.
+     * Any invalid input display's a Try again message.
      *
      * @param state the current game state.
      */

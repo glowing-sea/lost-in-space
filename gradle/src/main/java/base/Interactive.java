@@ -1,5 +1,8 @@
 package base;
 
+/**
+ * Objects implement this interface are interactive in the game. Example of them are enemies or items.
+ */
 public interface Interactive {
     /**
      * Change the game state when the player interact with a unit such as an item or character.

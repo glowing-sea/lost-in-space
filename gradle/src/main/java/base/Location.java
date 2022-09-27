@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A object shoring a location (x and y coordinate).
+ * An object shoring a location (x and y coordinate).
  */
 
 public class Location {

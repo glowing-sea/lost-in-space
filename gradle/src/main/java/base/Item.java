@@ -1,5 +1,9 @@
 package base;
 
+/**
+ * An object storing the attributes of an item.
+ * An item is a unit and interactive. It can be picked up, dropped, or used.
+ */
 public class Item extends Unit{
 
     private boolean valid;
@@ -18,7 +22,12 @@ public class Item extends Unit{
     }
 
 
-
+    /**
+     * Helper function of the interact function
+     * 1. Increase player's stats according to the type of the input item
+     * 2. Make the item invalid
+     * @param st current game state
+     */
     public void useItem(State st) {
         Player p = st.player;
         switch(type){
@@ -32,23 +41,12 @@ public class Item extends Unit{
         valid = false;
     }
 
-// Deprecated
-//    /**
-//     * Returns if the item is in a valid location to be picked up by the player
-//     * @param st the map where the character is in
-//     * @return true if the item can be picked up
-//     */
-//    public boolean canBePicked(State st){
-//        return (st.player.nearby(getLoc())) && valid;
-//    }
-//
-//    /**
-//     * Moves item off of the map once picked up
-//     */
-//    public void pickUpItem() {
-//        this.setLoc(new Location(-1, -1));
-//    }
-
+    /**
+     * The function tells what happens when the player interact with an item.
+     * Increase player's stats according to the type of the input item.
+     * @param st current game state
+     * @return false if the item is invalid or the player's bag is full
+     */
     @Override
     public boolean interact(State st) {
         if (!this.valid)
