@@ -71,7 +71,7 @@ public class GameConfiguration {
                 "         "};
         String[] Bobsays = new String[]{
                 "Hello Captain",
-                "Welcome to my land!O",
+                "Welcome to my land!O", // O indicate that you want player to do selection
                 "(A) Where should I go?",
                 "(B) Where am i?",
                 "(L) Good bye",

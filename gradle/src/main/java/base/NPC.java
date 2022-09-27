@@ -25,20 +25,21 @@ public class NPC extends Character {
         this.operations = operations;
     }
     public void setDialogue(String[] dialogue){this.dialogue = dialogue;}
-
+    public void setContacting(Boolean b){this.contacting = b;}
     /**
      * The function tell what happens when the player interact with an NPC
      * When the player interact with a NPC, their conversation will be shown in the message box.
      * @param st the current game state
      * @return ture always
      */
-    public void setContacting(Boolean b){this.contacting = b;}
+
     @Override
     public boolean interact(State st) {
         int index = 0;
         String Story = "";
-        String[] newDia;
+
         if (this.nearby(st.player.getLoc())) {
+            this.setContacting(true);
             if (operations == 0) {
 
                 for (int i = index; i < this.dialogue.length; i++) {
@@ -61,17 +62,17 @@ public class NPC extends Character {
                             Story += this.dialogue[i + 3] + "\n";
                         }
                         st.setStory(Story);
-                        index = i + 2;
+                        index = i + 3;
                         break;
                     } else {
                         st.messageBox.putMessage(this.getName() + " (" + this.getSYMBOL() + "): " + talk);
-                        index = i;
+                        index = i+1;
                     }
                 }
-                newDia = Arrays.copyOfRange(this.dialogue, index + 1, this.dialogue.length);
-                st.NPCs.get(0).setDialogue(newDia);
-                this.setContacting(true);
+
+
             }
+
             if (operations == 1) {
                 for (int i = index; i < this.dialogue.length; i++) {
                     String talk = this.dialogue[i];

@@ -34,7 +34,7 @@ public class Location {
 
     /**
      * Check if two locations are equal
-     * @param otherLoc the other location
+     * @param obj  other's location
      * @return true if the two location are equal
      */
     @Override

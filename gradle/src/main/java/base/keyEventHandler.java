@@ -33,7 +33,6 @@ public class keyEventHandler {
                 case "fw","fa","fs","fd", "f" -> Player.interact(state, input);
 
                 //talking with NPCs
-
                 case "A","(A)" -> op = 1;
                 case "B","(B)" -> op = 2;
                 case "L","(L)" -> op = 3;
