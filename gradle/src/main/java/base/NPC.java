@@ -13,11 +13,11 @@ public class NPC extends Character {
 
     // The text that will show when the player interact with them
     String[] dialogue;
-    int operations; // this is what user option is
+    int operations = 0; // this is what user option is
     Boolean contacting = false;
 
 
-    public NPC(String name, Location loc,  int operations,String[] dialogue) {
+    public NPC(String name, Location loc, String[] dialogue) {
         super(name, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, loc, 'N');
         this.dialogue = dialogue;
     }

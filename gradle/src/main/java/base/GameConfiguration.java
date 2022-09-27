@@ -90,6 +90,7 @@ public class GameConfiguration {
                 "~Lr see you, have a nice trip!"
         };
 
+
         Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|'});
         Player player = new Player(new Location(0,1));
 
@@ -105,8 +106,8 @@ public class GameConfiguration {
         items.add(item2);
         items.add(item3);
         enemies.add(new Enemy("Goblin1",10,150,50,new Location(0,4),20, item2));
-        NPC Bob = new NPC("Bob", new Location(2,0),0, Bobsays);
-        NPC Alice = new NPC("Alice", new Location(3,0),0, Alicesays);
+        NPC Bob = new NPC("Bob", new Location(2,0), Bobsays);
+        NPC Alice = new NPC("Alice", new Location(3,0), Alicesays);
         NPCs.add(Bob);
         NPCs.add(Alice);
         List<Trade> trades = new ArrayList<>();
@@ -137,7 +138,18 @@ public class GameConfiguration {
                 "       H ",
                 "---------",
                 "         "};
-
+        String[] Csays = new String[]{
+                "Duluuuuuuu",
+                "Lalalala",
+                "How are you?O", // O indicate that you want player to do selection
+                "(A) I am Captain Jack",
+                "(B) Who are E on map?",
+                "(L) HUUUUuuuu",
+                "~Ar who is Jack ",
+                "~Br Those are evil NPC",
+                "~Br Fight against them",
+                "~Lr DerrrrRrr!"
+        };
         Map mapO1 = new Map(1, map, new char[] {'-', '+', '|'});
         Player player = new Player(new Location(0,1));
         ArrayList<Enemy> enemies = new ArrayList<>();
@@ -145,7 +157,9 @@ public class GameConfiguration {
         enemies.add(new Enemy("Goblin3",30,120,30,new Location(4,4),20, null));
         enemies.add(new Enemy("Goblin2",30,120,80,new Location(6,2),20, null));
         ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
+        NPC C = new NPC("C",new Location(0,3),Csays);
         ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
+        NPCs.add(C);
         ArrayList<Merchant> merchants = new ArrayList<>();
 
 
@@ -169,7 +183,19 @@ public class GameConfiguration {
                 "       H ",
                 "---------",
                 "         "};
-
+        String[] Davidsays = new String[]{
+                "Ahhh",
+                "This is David",
+                "Terrrrrrr",
+                "Where are you going?O", // O indicate that you want player to do selection
+                "(A) I am going to Spaceship",
+                "(B) What happened here",
+                "(L) Bye",
+                "~Ar Good Luck then",
+                "~Br Enemy take your spaceship",
+                "~Br Fight against them or dive in your space ship",
+                "~Lr I will miss you"
+        };
         Map mapO3 = new Map(3, map, new char[] {'-', '+', '|'});
         ArrayList<Enemy> enemies = new ArrayList<>();
         enemies.add(new Enemy("Goblin1",30,120,30,new Location(6,6),20, null));
@@ -177,7 +203,9 @@ public class GameConfiguration {
         enemies.add(new Enemy("Goblin2",30,120,80,new Location(7,6),20, null));
         Player player = new Player(new Location(0,1));
         ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
+        NPC David = new NPC("David",new Location(3,3),Davidsays);
         ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
+        NPCs.add(David);
         ArrayList<Merchant> merchants = new ArrayList<>();
 
         String dialogue = "continue adventure";
