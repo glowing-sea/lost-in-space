@@ -1,11 +1,13 @@
-package gradle.src.test.java;
+package tests;
 
 import base.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utility.Utility;
-
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,5 +72,15 @@ public class UtilityUnitTests {
 
         // third test
         assertEquals(10, p.getLevel());
+    }
+
+    @Test
+    void exceptionTesting() {
+        // because C:/tempp does not exist on local
+        Exception exception = assertThrows(UncheckedIOException.class, () -> Utility.writeToFile("C:/tempp/testing$stuff.txt", "test"));
+
+        // FIXME
+        //System.out.println(exception.getMessage());
+        //assertEquals("java.io.FileNotFoundException: C://tempp//testing$stuff.txt (The system cannot find the path specified)", exception.getMessage());
     }
 }
