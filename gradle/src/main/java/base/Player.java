@@ -7,7 +7,7 @@ import java.util.List;
  * An object storing the attributes and method of the current player.
  */
 
-public class Player extends Character {
+public class Player extends Character implements Movable{
     private int exp;
     private int playerLevel;
     private List<Item> inventory;

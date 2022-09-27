@@ -5,14 +5,26 @@ import java.util.List;
 
 /**
  * An object storing the attributes any unit on the map, such as a character or an item.
+ * <p>
+ *
+ *            Unit
+ *       _______|_____
+ *      |            |
+ * Character        Item
+ *   |    |_____________________________
+ *   |           |           |         |
+ * Player      Enemies      NPC       Merchant
+ *
  */
+
 
 // Any unit on the map, such as a character or a item.
 public abstract class Unit implements Interactive{
-    private String name;
-    private Location loc;
+    private String name; // every unit on the map has a name
+    private Location loc; // every unit on the map has a location
 
-    private final char SYMBOL;
+    private final char SYMBOL; // every unit on the map has a symbol
+
 
     public Unit(String name, Location loc, char symbol) {
         this.name = name;
@@ -20,6 +32,7 @@ public abstract class Unit implements Interactive{
         this.SYMBOL = symbol;
     }
 
+    // Basic setter and getter method
     public Location getLoc() {
         return loc;
     }
@@ -39,7 +52,7 @@ public abstract class Unit implements Interactive{
 
 
     /**
-     * check if a particulr is nearby this character
+     * check if a unit is adjacent to the input location
      * @param other a location you want to test
      * @return nearby you or not
      */
@@ -53,7 +66,7 @@ public abstract class Unit implements Interactive{
     }
 
     /**
-     * Extra a list of locations from a list of unit
+     * Extra a list of locations from a list of units
      * @param units a list of unit
      * @return a list of location
      */
@@ -67,6 +80,11 @@ public abstract class Unit implements Interactive{
         return locations;
     }
 
+    /**
+     * The default interact function to all unit
+     * @param units a list of unit
+     * @return a list of location
+     */
     @Override
     public boolean interact(State st) {
         st.messageBox.putMessage("You interact with " + this.name + "!");
