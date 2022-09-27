@@ -13,17 +13,17 @@ import java.util.Queue;
  */
 
 public class State {
-    Map map;
-    String story; // The Main story at this level
-    int level;
-    Player player;
-    List<Enemy> enemies;
-    List<Item> items;
-    List<NPC> NPCs;
-    List<Merchant> merchants;
+    public Map map;
+    public String story; // The Main story at this level
+    public int level;
+    public Player player;
+    public List<Enemy> enemies;
+    public List<Item> items;
+    public List<NPC> NPCs;
+    public List<Merchant> merchants;
 
     // Display Variable
-    MessageBox messageBox; // Length must be <= 10
+    public MessageBox messageBox; // Length must be <= 10
 
 
     // A new game
@@ -37,16 +37,8 @@ public class State {
         this.NPCs = NPCs;
         this.merchants = merchants;
         this.messageBox = new MessageBox();
-        messageBox.putMessage("Need Help? Type 'tips'");
+        this.messageBox.putMessage("Need Help? Type 'tips'");
     }
-
-    public String getStory() {
-        return story;
-    }
-    public int getLevel() {
-        return level;
-    }
-
 
 
     /**
@@ -71,8 +63,6 @@ public class State {
      * @param newGameState the next game state.
      */
     public void gameLevelUp(State newGameState){
-
-
 
         // Update the attributes of the current game state
         // If an attribute of newGameState is null or MIN_VALUE, it means keep the current attribute.
@@ -104,23 +94,23 @@ public class State {
 
         /*
          1 ===========================================================================================================
-         2 |                   Lost in Space                    |                       Messages                     |
+         2 |                   Lost in Space                    |                    Message Box                     |
          3 |====================================================|                                                    |
-         4 |   Your Name    |------------------|   Enemy Name   | > Guilty: I'm not afraid of you                    |
-         5 |     Jack       |  X     E - - - - |     Guilty     |                                                    |
+         4 |   Your Name    |__________________|   Inventory    | > Need Help? Type 'tips'                           |
+         5 |      Jack      |  X     E - - - - |      6/6       |                                                    |
          6 |                |                  |                |                                                    |
-         7 |   LV: 2        |        + - -     |    LV: 3       |                                                    |
-         8 |   HP: 100      |    i   | M       |    HP:         |                                                    |
-         9 |   ATK: 40      |        + - - - - |    ATK:        |                                                    |
-        10 |   DEF: 30      |    i   i N   A   |    DEF:        |                                                    |
-        11 |   EXP: 300     |            A H A |    LOC: (6,6)  |                                                    |
-        12 |   LOC: (6,6)   |- - - - - - - - - |                |                                                    |
-        13 |                |------------------|                |                                                    |
+         7 |   LV: 0        |N       + - -     |  1: HP+        |                                                    |
+         8 |   HP: 100      |    i   | M       |  2: HP+        |                                                    |
+         9 |   ATK: 100     |        + - - - - |  3: HP+        |                                                    |
+        10 |   DEF: 100     |    i   i     A   |  4: HP+        |                                                    |
+        11 |   EXP: 0       |            A H A |  5: HP+        |                                                    |
+        12 |   LOC: (0,1)   |- - - - - - - - - |  6: HP+        |                                                    |
+        13 |                |                  |                |                                                    |
         14 ===========================================================================================================
-        15 | Story...............                                                                                    |
-        16 |                                                                                                         |
-        17 |                                                                                                         |
-        18 ==========================================================================================================|
+        15 | This is where your story written in GameConfiguration is displayed.                                     |
+        16 | You can have up to three lines. In each line, you can write up to 103 character.                        |
+        17 | If a line exceed 103 character, the exceed part will not be displayed.................................. |
+        18 ===========================================================================================================
          */
 
 
@@ -174,7 +164,7 @@ public class State {
 
         // Story Part
         String[] story = new String[3];
-        String[] storySplit = this.getStory().split("\n");
+        String[] storySplit = this.story.split("\n");
         int length = storySplit.length;
         for (int i = 0; i < length; i++){
             story[i] = " " + DisplayUtility.fixLength(storySplit[i],103) + " ";

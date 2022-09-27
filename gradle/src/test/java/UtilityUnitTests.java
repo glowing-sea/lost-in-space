@@ -68,10 +68,10 @@ public class UtilityUnitTests {
         assertNotNull(p);
 
         // second test
-        assertEquals("dual", p.getStory());
+        assertEquals("dual", p.story);
 
         // third test
-        assertEquals(10, p.getLevel());
+        assertEquals(10, p.level);
     }
 
     @Test

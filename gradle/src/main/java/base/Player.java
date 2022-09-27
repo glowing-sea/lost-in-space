@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * An object storing the attributes and method of the current player.
+ * A character that is controlled by the user.
  */
 
 public class Player extends Character implements Movable{
     private int exp;
     private int playerLevel;
-    private List<Item> inventory;
+    private final List<Item> inventory;
     private int capacity;
 
 
-    // For testing only
+    // For testing only. Manually set attributes
     public Player(String name, int hp, int atk, int def, Location loc, int exp, int playerLevel) {
         super(name, hp, atk, def, loc, 'X');
         this.exp = exp;
@@ -23,6 +23,10 @@ public class Player extends Character implements Movable{
         this.capacity = 6;
     }
 
+    /**
+     * A quick constructor that make a player according the attributes written in GameConfiguration
+     * @param loc
+     */
     public Player(Location loc) {
         super(GameConfiguration.YOUR_NAME, GameConfiguration.INITIAL_HP, GameConfiguration.INITIAL_ATK, GameConfiguration.INITIAL_DEF, loc, 'X');
         this.exp = GameConfiguration.INITIAL_EXP;
@@ -33,15 +37,10 @@ public class Player extends Character implements Movable{
 
 
     /**
-     * interact with objects on map nearby player
-     * In the future, this function contains the interaction with different object;
-     *
-     * currently realize:
-     *  interact with enemies without UI
-     *  interact with items nearby
-     *      Store Items in Inventory
-     *      Use Items which don't need to be stored eg. exp boost
-     * @param st the board state
+     * This function handle user's input of interaction
+     * 1. Find the Unit that the player want to interact with
+     * 2. Call the interact function of that Unit
+     * @param st current game state
      */
     public static void interact(State st, String direction){
 
@@ -98,7 +97,10 @@ public class Player extends Character implements Movable{
     }
 
 
-
+    /**
+     * Output the requirement to advance to the next game level
+     * @param st current game state
+     */
     public static void getQuest(State st){
         int level = st.level;
         GameLevelUpRequirement levelUpRequirement= GameConfiguration.LEVEL_UP_REQUIREMENTS[level];
@@ -153,14 +155,11 @@ public class Player extends Character implements Movable{
     }
 
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
+    /**
+     * Add an item to the player's inventory if it is not full
+     * @param item item that is going to be added
+     * @return whether the item has been added
+     */
     public boolean addItem(Item item) {
         if (this.capacity - 1 >= this.inventory.size()){
             this.inventory.add(item);
@@ -170,32 +169,12 @@ public class Player extends Character implements Movable{
         }
     }
 
-    public List<Item> getInventory() {
-        return this.inventory;
-    }
-
-
-    public int getExp() {
-        return exp;
-    }
-
-
-    public int getPlayerLevel() {
-        return playerLevel;
-    }
-
-    public Item getItem(int inventoryNumber) {
-        return this.inventory.get(inventoryNumber);
-    }
-    public int getItemCount() {
-        return this.inventory.size();
-    }
-
-    // If you only want to increase exp, use collectExp
-    public void setExp(int exp) {
-        this.exp = exp;
-    }
-
+    /**
+     * Increase Player EXP by a certain amount.
+     * Whenever the EXP exceed 100, increase the level by 1.
+     * @param exp amount of EXP to increase
+     * @param st current state
+     */
     public void collectExp(int exp, State st){
         this.exp += exp;
         int levelIncreased = exp / 100;
@@ -209,6 +188,25 @@ public class Player extends Character implements Movable{
     }
 
 
+    // Simple setting and getter methods
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+    public int getCapacity() {
+        return capacity;
+    }
+    public List<Item> getInventory() {
+        return this.inventory;
+    }
+    public int getExp() {
+        return exp;
+    }
+    public int getPlayerLevel() {
+        return playerLevel;
+    }
+
+
+    // For testing only, please use collectExp if you want to increase player's level.
     public void setPlayerLevel(int playerLevel) {
         this.playerLevel = playerLevel;
     }

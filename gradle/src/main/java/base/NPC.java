@@ -2,6 +2,7 @@ package base;
 
 /**
  * An object storing the attributes and method of an NPC
+ * When the player interact with a NPC, their conversation will be shown in the message box.
  */
 public class NPC extends Character {
 
@@ -13,6 +14,12 @@ public class NPC extends Character {
         this.dialogue = dialogue;
     }
 
+    /**
+     * The function tell what happens when the player interact with an NPC
+     * When the player interact with a NPC, their conversation will be shown in the message box.
+     * @param st the current game state
+     * @return ture always
+     */
     @Override
     public boolean interact(State st) {
         for (String talk : dialogue){

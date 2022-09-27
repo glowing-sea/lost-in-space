@@ -58,6 +58,12 @@ public class Location {
         }
         return false;
     }
+
+    /**
+     * Check if there is any unit, such as an enemy at this location
+     * @param st current game state
+     * @return return the unit if found.
+     */
     public Unit findUnit (State st){
         // Enemy
         for (Enemy enemy :st.enemies){
@@ -81,6 +87,11 @@ public class Location {
         }
         return null;
     }
+
+    /**
+     * Make an exact copy of the location object
+     * @return a copy of this location
+     */
     public Location locCopy (){
         return new Location(x, y);
     }

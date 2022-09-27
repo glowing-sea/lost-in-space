@@ -126,7 +126,7 @@ public class GameConfiguration {
         ArrayList<Merchant> merchants = new ArrayList<>();
 
 
-        String dialogue = "fight against an enemy";
+        String dialogue = "fight against an enemy\n>>>>>";
         LEVEL1_INITIAL_STATE = new State(mapO1, dialogue, 1, player, enemies, items, NPCs, merchants);
         LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }

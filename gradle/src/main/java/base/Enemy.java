@@ -52,11 +52,11 @@ public class Enemy extends Character {
     @Override
     public boolean interact(State st) {
         this.fight(st);
-        st.messageBox.putMessage("System: you are fighting with the enemy" + this.getName() + "!");
+        st.messageBox.putMessage("System: you are fighting with the enemy " + this.getName() + "!");
         st.messageBox.putMessage("System: enemy's HP: " + this.getHp() + ".");
 
         if (this.getHp() <= 0){
-            st.messageBox.putMessage("System: you killed the enemy" + this.getName() + "!");
+            st.messageBox.putMessage("System: you killed the enemy " + this.getName() + "!");
             st.enemies.remove(this);
             st.player.collectExp(this.expReward, st);
         }

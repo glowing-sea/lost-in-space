@@ -35,7 +35,7 @@ public class Item extends Unit{
             case HP_Boost -> p.setHp(p.getHp() + 20);
             case ATK_Boost -> p.setAtk(p.getAtk() + 20);
             case DEF_Boost -> p.setDef(p.getDef() + 20);
-            case EXP_Boost -> p.setExp(p.getExp() + 20);
+            case EXP_Boost -> p.collectExp(20,st);
             case Inventory_Boost -> p.setCapacity(p.getCapacity() + 2);
         }
         valid = false;
