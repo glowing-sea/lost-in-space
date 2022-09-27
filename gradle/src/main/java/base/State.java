@@ -58,6 +58,14 @@ public class State {
     }
 
     /**
+     * Check whether the game state is over
+     * @return ture or false
+     */
+    public Boolean isGameOver(){ // check the player win or not
+        return player.getHp() <= 0;
+    }
+
+    /**
      * Update the current game state according to the input game state
      * Any fields in the new game state that has null or Integer.MIN_VALUE means that this field do not need to update.
      * @param newGameState the next game state.

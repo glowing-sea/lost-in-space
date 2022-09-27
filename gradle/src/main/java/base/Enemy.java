@@ -14,13 +14,18 @@ public class Enemy extends Character {
         this.expReward = expReward;
         this.itemReward = itemReward;
     }
+
+    /**
+     * Check if an enemy hp is less than zero
+     * @return if the enemy is dead
+     */
     public boolean isDead(){
         return this.getHp() <= 0;
     }
 
     /**
      * fight against nearby enemy
-     * notice: our player still survive even if his health <=0
+     * notice: the game will exit if the player loses all their hp
      * @param st the game state
      * @return the enemy you killed
      */
@@ -38,7 +43,12 @@ public class Enemy extends Character {
         return this;
     }
 
-
+    /**
+     * The function tells what happen if the player interact with an enemy.
+     * 1. Fight: update their hp.
+     * 2. IF the enemy is dead, remove them from the map.
+     * @param st the game state
+     */
     @Override
     public boolean interact(State st) {
         this.fight(st);

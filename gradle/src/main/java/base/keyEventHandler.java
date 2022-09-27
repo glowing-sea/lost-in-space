@@ -60,6 +60,11 @@ public class keyEventHandler {
                     state.gameLevelUp(GameConfiguration.GAME_STATES[level + 1]);
                 }
             }
+            // If the player's hp become zero, the game is over.
+            if (state.isGameOver()){
+                System.out.println("=== Oh no, you lost all your HP. ===");
+                break;
+            }
 
             System.out.println(state);
         } while (!Objects.equals(input, "q"));

@@ -3,14 +3,6 @@ package base;
 /**
  * An object storing the attributes of a character, such as the player or an enemy.
  *
- *            Unit
- *       _______|_____
- *      |            |
- * Character        Item
- *   |    |_____________________________
- *   |           |           |         |
- * Player      Enemies      NPC       Merchant
- *
  */
 
 public abstract class Character extends Unit{
@@ -25,7 +17,6 @@ public abstract class Character extends Unit{
         this.atk = atk;
         this.def = def;
     }
-
 
 
     public int getHp() {
