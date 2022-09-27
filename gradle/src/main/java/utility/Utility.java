@@ -1,4 +1,5 @@
 package utility;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -7,11 +8,7 @@ import base.Enemy;
 import base.Map;
 import base.Player;
 import base.State;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -50,8 +47,11 @@ public class Utility {
 
             fw.close();
         }
+        catch(FileNotFoundException fnf) {
+            throw new UncheckedIOException("File not found", fnf);
+        }
         catch(IOException ioe) {
-            System.err.println(ioe);
+            throw new UncheckedIOException("Input/Output exception", ioe);
         }
     }
 
