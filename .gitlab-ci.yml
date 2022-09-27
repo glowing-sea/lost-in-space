@@ -32,9 +32,11 @@ rspec:
     - bundle install
     - rspec --format RspecJunitFormatter --out rspec.xml
   artifacts:
+    when: always
     reports:
       junit: rspec.xml
-
+    #reports:
+    #  junit: build/test-results/test/**/TEST-*.xml
 
 #artifacts:
 #  when: always
