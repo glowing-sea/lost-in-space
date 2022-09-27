@@ -54,6 +54,7 @@ public class Player extends Character implements Movable{
             case "fw" -> {unitLoc.setX(unitLoc.getX() - 1);}
             case "fs" -> {unitLoc.setX(unitLoc.getX() + 1);}
         }
+
         // Search if there is a unit to interact in this location
         unit = unitLoc.findUnit(st);
         if (unit == null) {

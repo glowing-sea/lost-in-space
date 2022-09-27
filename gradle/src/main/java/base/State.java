@@ -35,7 +35,7 @@ public class State {
         this.messageBox = new MessageBox();
         this.messageBox.putMessage("Need Help? Type 'tips'");
     }
-
+    public void setStory(String story){this.story = story;}
 
     /**
      * Check whether the game state is a finish state (last state of the whole game).

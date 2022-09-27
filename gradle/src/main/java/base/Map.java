@@ -70,7 +70,7 @@ public class Map {
     public void refreshLocation(Location location, char newchar){ // entre the new string and location where you want the string to be
         int X = location.getX();
         int Y = location.getY();
-        if(X<0||X>8||Y<0||Y>8){
+        if(X<0||X>8||Y<0||Y>8){ // this statement has some problem
             throw new NullPointerException("this is <0 or >8");
         }else{
             String[] thenew = this.getMap();

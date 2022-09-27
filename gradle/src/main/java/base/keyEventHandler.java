@@ -25,13 +25,18 @@ public class keyEventHandler {
                 value = tokens[1];
 
             // Update the game state according to the inputs
-
+            int op = -1;
             switch (tokens[0]) {
                 // Movement & Interaction
                 case "w","s","a","d" -> state.player.move(state, tokens[0], 1);
                 case "ww","ss","aa","dd" -> state.player.move(state, tokens[0], 2);
                 case "fw","fa","fs","fd", "f" -> Player.interact(state, input);
 
+                //talking with NPCs
+
+                case "A","(A)" -> op = 1;
+                case "B","(B)" -> op = 2;
+                case "L","(L)" -> op = 3;
                 // Inventory Management
                 case "use" -> Player.takeOutItem(state, value, 0);
                 case "drop" -> Player.takeOutItem(state, value, 1);
@@ -44,7 +49,7 @@ public class keyEventHandler {
                     if (!state.isFinish())
                             state.gameLevelUp(GameConfiguration.GAME_STATES[state.level + 1]);} // For testing only, direct get to the next level.
 
-                case "q" -> {
+                case "q" -> { // Should we save our game here? --Zhishang
                     System.out.println("=== Thank you for playing our game. See you soon. ===");
                     continue;
                 }
@@ -52,6 +57,18 @@ public class keyEventHandler {
                 default -> {
                     state.messageBox.putMessage("Sorry, '" + input + "' is not a value input.");
                 }
+            }
+
+            NPC npc1= null;
+            for (NPC npc: state.NPCs){
+                if(npc.contacting){
+                    npc1 = npc;
+                    break;
+                }
+            }
+            if(npc1!=null) {
+                npc1.setOperations(op);
+                npc1.interact(state);
             }
 
             // If the player has not reached the final game level, check if the player can proceed to the next level

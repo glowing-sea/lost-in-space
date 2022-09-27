@@ -69,6 +69,26 @@ public class GameConfiguration {
                 "      AHA",
                 "---------",
                 "         "};
+        String[] Bobsays = new String[]{
+                "Hello Captain",
+                "Welcome to my land!O",
+                "(A) Where should I go?",
+                "(B) Where am i?",
+                "(L) Good bye",
+                "~Ar Go to H!",
+                "~Br you are in xyz planet, captain!",
+                "~Lr see you, have a nice trip!"
+        };
+        String[] Alicesays = new String[]{
+                "Hello",
+                "Who are you? O",
+                "(A) I am captain Jack",
+                "(B) Say your name first!",
+                "(L) Good bye",
+                "~Ar Glad to see you Jack",
+                "~Br I am Alice ",
+                "~Lr see you, have a nice trip!"
+        };
 
         Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|'});
         Player player = new Player(new Location(0,1));
@@ -85,7 +105,10 @@ public class GameConfiguration {
         items.add(item2);
         items.add(item3);
         enemies.add(new Enemy("Goblin1",10,150,50,new Location(0,4),20, item2));
-        NPCs.add(new NPC("Bob", new Location(2,0), new String[]{"Welcome to my land!", "`Where should I go?"}));
+        NPC Bob = new NPC("Bob", new Location(2,0),0, Bobsays);
+        NPC Alice = new NPC("Alice", new Location(3,0),0, Alicesays);
+        NPCs.add(Bob);
+        NPCs.add(Alice);
         List<Trade> trades = new ArrayList<>();
         trades.add(new Trade(item1, item2));
         merchants.add(new Merchant("Amy", new Location(3,5), "Wants some trades", trades));
