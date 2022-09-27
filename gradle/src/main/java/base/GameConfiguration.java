@@ -70,7 +70,7 @@ public class GameConfiguration {
                 "---------",
                 "         "};
 
-        Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|','E'});
+        Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|'});
         Player player = new Player(new Location(0,1));
 
         List<Enemy> enemies = new ArrayList<>();
@@ -84,7 +84,7 @@ public class GameConfiguration {
         items.add(item1);
         items.add(item2);
         items.add(item3);
-        enemies.add(new Enemy("Goblin1",30,120,30,new Location(0,4),20, item2));
+        enemies.add(new Enemy("Goblin1",10,150,50,new Location(0,4),20, item2));
         NPCs.add(new NPC("Bob", new Location(2,0), new String[]{"Welcome to my land!", "`Where should I go?"}));
         List<Trade> trades = new ArrayList<>();
         trades.add(new Trade(item1, item2));
@@ -115,7 +115,7 @@ public class GameConfiguration {
                 "---------",
                 "         "};
 
-        Map mapO1 = new Map(1, map, new char[] {'-', '+', '|','E'});
+        Map mapO1 = new Map(1, map, new char[] {'-', '+', '|'});
         Player player = new Player(new Location(0,1));
         ArrayList<Enemy> enemies = new ArrayList<>();
         enemies.add(new Enemy("Goblin1",30,120,30,new Location(3,3),20, null));
@@ -147,7 +147,7 @@ public class GameConfiguration {
                 "---------",
                 "         "};
 
-        Map mapO3 = new Map(3, map, new char[] {'-', '+', '|','E'});
+        Map mapO3 = new Map(3, map, new char[] {'-', '+', '|'});
         ArrayList<Enemy> enemies = new ArrayList<>();
         enemies.add(new Enemy("Goblin1",30,120,30,new Location(6,6),20, null));
         enemies.add(new Enemy("Goblin3",30,120,30,new Location(5,7),20, null));

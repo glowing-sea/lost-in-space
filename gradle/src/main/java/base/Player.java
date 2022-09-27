@@ -41,8 +41,9 @@ public class Player extends Character implements Movable{
      * 1. Find the Unit that the player want to interact with
      * 2. Call the interact function of that Unit
      * @param st current game state
+     * @return if the interaction succeeded
      */
-    public static void interact(State st, String direction){
+    public static boolean interact(State st, String direction){
 
         // Get the location that the player want to interact with.
         Unit unit;
@@ -57,9 +58,12 @@ public class Player extends Character implements Movable{
         unit = unitLoc.findUnit(st);
         if (unit == null) {
             st.messageBox.putMessage("There is nothing to interact with.");
+            return false;
         } else if (!unit.interact(st)){
             st.messageBox.putMessage("Interact failed.");
+            return false;
         }
+        return true;
     }
 
 
@@ -68,19 +72,20 @@ public class Player extends Character implements Movable{
      * @param st the state the game is currently in
      * @param  itemIndex the inventory position which item is being used
      * @param action 0 for use. 1 for drop. 2 for view.
+     * @param whether an item is taken out successfully
      */
-    public static void takeOutItem(State st, String itemIndex, int action){
+    public static boolean takeOutItem(State st, String itemIndex, int action){
         int itemIdx;
         try {
             itemIdx = Integer.parseInt(itemIndex);
         } catch(NumberFormatException e){
             st.messageBox.putMessage("Item index is not well-formed.");
-            return;
+            return false;
         }
         itemIdx -= 1; // Start from 0
         if (itemIdx >= st.player.getInventory().size() || itemIdx < 0){
             st.messageBox.putMessage("Item not found.");
-            return;
+            return false;
         }
         Item item = st.player.getInventory().get(itemIdx);
 
@@ -94,21 +99,25 @@ public class Player extends Character implements Movable{
         } else {
             st.messageBox.putMessage("The item at index " + (itemIdx + 1) + " is: [ " + item + " ].");
         }
+        return true;
     }
 
 
     /**
      * Output the requirement to advance to the next game level
      * @param st current game state
+     * @return true there is a next level and vice versa.
      */
-    public static void getQuest(State st){
+    public static boolean getQuest(State st){
         int level = st.level;
         GameLevelUpRequirement levelUpRequirement= GameConfiguration.LEVEL_UP_REQUIREMENTS[level];
         if (levelUpRequirement != null){
             Location destination = levelUpRequirement.getLocation();
             st.messageBox.putMessage("Your goal is to reach " + destination + ".");
+            return true;
         } else {
             st.messageBox.putMessage("You have finished all quests");
+            return false;
         }
     }
 
@@ -124,34 +133,42 @@ public class Player extends Character implements Movable{
      */
     public boolean move (State st, String direction, int speed){
         Location newLoc;
+        Location adjLoc;
         switch (direction) {
             case "w", "ww" -> {
                 int newX = getLoc().getX() - speed;
+                int adjX = getLoc().getX() - 1;
                 newLoc = new Location(newX, getLoc().getY());
+                adjLoc = new Location(adjX, getLoc().getY());
             }
             case "s", "ss" -> {
                 int newX = getLoc().getX() + speed;
+                int adjX = getLoc().getX() + 1;
                 newLoc = new Location(newX, getLoc().getY());
+                adjLoc = new Location(adjX, getLoc().getY());
             }
             case "d", "dd" -> {
                 int newY = getLoc().getY() + speed;
+                int adjY = getLoc().getY() + 1;
                 newLoc = new Location(getLoc().getX(), newY);
+                adjLoc = new Location(getLoc().getX(), adjY);
             }
             case "a", "aa" -> {
                 int newY = getLoc().getY() - speed;
+                int adjY = getLoc().getY() - 1;
                 newLoc = new Location(getLoc().getX(), newY);
+                adjLoc = new Location(getLoc().getX(), adjY);
             }
             default -> {return false;}
         }
 
-            if (!st.map.reachable(newLoc))
+            if (!st.map.reachable(adjLoc))
                 return false;
             if (newLoc.findUnit(st) != null)
                 return false;
 
             st.player.setLoc(newLoc);
             return true;
-
     }
 
 
@@ -180,9 +197,7 @@ public class Player extends Character implements Movable{
         int levelIncreased = exp / 100;
         if (levelIncreased > 0){ // can level up
             this.playerLevel += levelIncreased;
-            this.exp =  exp % 100;
-            if (this.getHp() < 100)
-                this.setHp(100); // Restore HP when leveling up
+            this.exp %= 100;
             st.messageBox.putMessage("System: you have leveled up!");
         }
     }

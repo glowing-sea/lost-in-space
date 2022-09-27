@@ -1,6 +1,5 @@
 package base;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,9 +37,15 @@ public class Location {
      * @param otherLoc the other location
      * @return true if the two location are equal
      */
-    public boolean equals(Location otherLoc) {
-        return this.x == otherLoc.x && this.y == otherLoc.y;
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Location loc))
+            return false;
+        else{
+            return this.x == loc.x && this.y == loc.y;
+        }
     }
+
 
     /**
      * Check if one location is in an arraylist of locations

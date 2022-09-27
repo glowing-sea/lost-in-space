@@ -37,9 +37,13 @@ public class Enemy extends Character {
         int yourAtk = st.player.getAtk() - this.getDef(); // you attack enemy
         if(yourAtk >0) {this.setHp(this.getHp() - yourAtk);}
 
-        if (this.getHp() <= 0) {
+        if (this.getHp() <= 0) { // Reset HP to 0 if dead
             this.setHp(0);
         }
+        if (st.player.getHp() <= 0) { // Reset HP to 0 if dead
+            st.player.setHp(0);
+        }
+
         return this;
     }
 
@@ -59,6 +63,7 @@ public class Enemy extends Character {
             st.messageBox.putMessage("System: you killed the enemy " + this.getName() + "!");
             st.enemies.remove(this);
             st.player.collectExp(this.expReward, st);
+            st.player.addItem(this.itemReward);
         }
         return true;
     }

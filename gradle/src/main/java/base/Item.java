@@ -76,4 +76,9 @@ public class Item extends Unit{
         }
         return name;
     }
+
+    // For testing only, do not use this method alone.
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
 }

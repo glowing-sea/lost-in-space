@@ -1,12 +1,8 @@
 package base;
 
 import utility.DisplayUtility;
-import utility.Utility;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * An object shoring the current game state
@@ -68,7 +64,7 @@ public class State {
         // If an attribute of newGameState is null or MIN_VALUE, it means keep the current attribute.
         if (newGameState.map != null)
             map = newGameState.map; // Set Map
-        if (newGameState.player.getLoc() != null)
+        if (newGameState.player != null && newGameState.player.getLoc() != null)
             player.setLoc(newGameState.player.getLoc()); // Set Player initial location
         if (newGameState.enemies != null)
             enemies = newGameState.enemies; // Set enemies
