@@ -1,48 +1,84 @@
 package base;
 
-public class Item {
-    private Location loc;
+/**
+ * An object storing the attributes of an item.
+ * An item is a unit and interactive. It can be picked up, dropped, or used.
+ */
+public class Item extends Unit{
+
     private boolean valid;
-    private Item_Type type;
+    private final ItemType type;
+
 
     //construction
-    public Item(Location NewLoc, Item_Type type) {
-        this.loc = NewLoc;
+    public Item(Location loc, ItemType type) {
+        super(type.name(), loc, 'I');
         this.type = type;
         valid = true;
     }
 
-    public Item_Type getType() {
+    public ItemType getType() {
         return this.type;
     }
 
-    public Location getLocation() {
-        return this.loc;
-    }
 
-    public void use_item() {
+    /**
+     * Helper function of the interact function
+     * 1. Increase player's stats according to the type of the input item
+     * 2. Make the item invalid
+     * @param st current game state
+     */
+    public void useItem(State st) {
+        Player p = st.player;
+        switch(type){
+            case Key -> st.messageBox.putMessage("Key function is not supported yet.");
+            case HP_Boost -> p.setHp(p.getHp() + 20);
+            case ATK_Boost -> p.setAtk(p.getAtk() + 20);
+            case DEF_Boost -> p.setDef(p.getDef() + 20);
+            case EXP_Boost -> p.collectExp(20,st);
+            case Inventory_Boost -> p.setCapacity(p.getCapacity() + 2);
+        }
         valid = false;
     }
 
-    public void dropitem(Location NewLoc) {
-        loc = NewLoc;
-    }
     /**
-     * Returns if the item is in a valid location to be picked up by the player
-     * @param st the map where the character is in
-     * @return true if the item can be picked up
+     * The function tells what happens when the player interact with an item.
+     * Increase player's stats according to the type of the input item.
+     * @param st current game state
+     * @return false if the item is invalid or the player's bag is full
      */
-    public boolean pickupitemvalid(State st){
-        return (st.player.nearby(this.loc)) && valid;
+    @Override
+    public boolean interact(State st) {
+        if (!this.valid)
+            return false;  // Invalid Item
+        if (!st.player.addItem(this)){
+            st.messageBox.putMessage("You bag is full!");
+            return false; // Pick up unsuccessfully
+        } else {
+            st.items.remove(this); // Remove from the map
+            st.messageBox.putMessage(st.player.getName() + " has picked up an item " + "[ " + this + " ]" + ".");
+        }
+
+        return true;
     }
 
-    /**
-     * Moves item off of the map once picked up
-     */
-    public void pickupitem() {
-        this.loc = (new Location(-1, -1));
+    @Override
+    public String toString() {
+        String name;
+        switch(type){
+            case Key -> name = "Key Item";
+            case HP_Boost -> name = "HP+";
+            case ATK_Boost -> name = "ATK+";
+            case DEF_Boost -> name = "DEF+";
+            case EXP_Boost -> name = "EXP+";
+            case Inventory_Boost -> name = "Inventory+";
+            default -> name = type.name();
+        }
+        return name;
     }
 
-
-
+    // For testing only, do not use this method alone.
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
 }

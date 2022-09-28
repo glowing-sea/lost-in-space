@@ -2,39 +2,20 @@ package base;
 
 /**
  * An object storing the attributes of a character, such as the player or an enemy.
+ *
  */
 
-public abstract class Character {
-    private String name;
+public abstract class Character extends Unit{
     private int hp;
     private int atk;
     private int def;
-    private Location loc;
 
-    public Character(String name, int hp, int atk, int def, Location loc) {
-        this.name = name;
+
+    public Character(String name, int hp, int atk, int def, Location loc, char symbol) {
+        super(name,loc,symbol);
         this.hp = hp;
         this.atk = atk;
         this.def = def;
-        this.loc = loc;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * check if a particulr is nearby this character
-     * @param other a location you want to test
-     * @return nearby you or not
-     */
-    public boolean nearby(Location other) {
-        Location my = this.loc;
-        int X = my.getX();
-        int Y = my.getY();
-        int EX = other.getX();
-        int EY = other.getY();
-        return ((X == EX && Y == EY) || X == (EX - 1) && Y == EY) || (X == (EX + 1) && Y == EY) || (X == EX && Y == (EY + 1)) || (X == EX && Y == (EY - 1));
     }
 
 
@@ -50,13 +31,6 @@ public abstract class Character {
         return def;
     }
 
-    public Location getLoc() {
-        return loc;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setHp(int hp) {
         this.hp = hp;
     }
@@ -67,9 +41,5 @@ public abstract class Character {
 
     public void setDef(int def) {
         this.def = def;
-    }
-
-    public void setLoc(Location loc) {
-        this.loc = loc;
     }
 }

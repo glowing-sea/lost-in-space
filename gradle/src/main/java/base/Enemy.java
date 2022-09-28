@@ -5,49 +5,67 @@ package base;
  */
 
 public class Enemy extends Character {
-    boolean isDead;
 
-    public Enemy(String name, int hp, int atk, int def, Location loc, boolean isDead) {
-        super(name, hp, atk, def, loc);
-        this.isDead = isDead;
+    int expReward; // The amount of exp that can obtain by the player after killing it.
+    Item itemReward;
+
+    public Enemy(String name, int hp, int atk, int def, Location loc, int expReward, Item itemReward) {
+        super(name, hp, atk, def, loc, 'E');
+        this.expReward = expReward;
+        this.itemReward = itemReward;
     }
-    public boolean getisDead(){
-        return isDead;
+
+    /**
+     * Check if an enemy hp is less than zero
+     * @return if the enemy is dead
+     */
+    public boolean isDead(){
+        return this.getHp() <= 0;
     }
 
     /**
      * fight against nearby enemy
-     * notice: our player still survive even if his health <=0
+     * notice: the game will exit if the player loses all their hp
      * @param st the game state
      * @return the enemy you killed
      */
     public Enemy fight(State st){
-        // if an enemy is nearby player, fight against it
-        if (st.player.nearby(this.getLoc())) {
-            while (!this.isDead) { //fight until death!
 
-                int enemyatk = this.getAtk()-st.player.getDef();// enemy attack you
-                if(enemyatk >0) {st.player.setHp(st.player.getHp() - enemyatk);}
+        int enemyAtk = this.getAtk()-st.player.getDef();// enemy attack you
+        if(enemyAtk >0) {st.player.setHp(st.player.getHp() - enemyAtk);}
 
-                int youratk = st.player.getAtk() -this.getDef(); // you attack enemy
-                if(youratk >0) {this.setHp(this.getHp() - youratk);}
+        int yourAtk = st.player.getAtk() - this.getDef(); // you attack enemy
+        if(yourAtk >0) {this.setHp(this.getHp() - yourAtk);}
 
-                System.out.println(" enemies hp left: "+this.getHp());
-                if (this.getHp() <= 0) {
-                    this.isDead = true;
-//                    refreshLocation(st,this.getLoc(),' ');
-
-                    System.out.println("remove "+this.getName());
-                    System.out.println("left hp: "+st.player.getHp());
-                }
-            }
-            Location tomb = new Location(-1, -1); //sent enemies to tomb, get out of my way
-            this.setLoc(tomb);
-            System.out.println("you defeat "+this.getName());
-            return this;
+        if (this.getHp() <= 0) { // Reset HP to 0 if dead
+            this.setHp(0);
         }
-        return null;
+        if (st.player.getHp() <= 0) { // Reset HP to 0 if dead
+            st.player.setHp(0);
+        }
+
+        return this;
     }
 
+    /**
+     * The function tells what happen if the player interact with an enemy.
+     * 1. Fight: update their hp.
+     * 2. IF the enemy is dead, remove them from the map.
+     * @param st the game state
+     */
+    @Override
+    public boolean interact(State st) {
+        this.fight(st);
+        st.messageBox.putMessage("System: you are fighting with the enemy " + this.getName() + "!");
+        st.messageBox.putMessage("System: enemy's HP: " + this.getHp() + ".");
 
+        if (this.getHp() <= 0){
+            st.messageBox.putMessage("System: you killed the enemy " + this.getName() + "!");
+            st.enemies.remove(this);
+            st.player.collectExp(this.expReward, st);
+            if (this.itemReward != null)
+                st.player.addItem(this.itemReward);
+        }
+        return true;
+    }
 }

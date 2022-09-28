@@ -39,19 +39,19 @@ public class UtilityUnitTests {
                 "---------",
                 "         "};
 
-        Enemy e1 = new Enemy("Evil",10, 10, 10, new Location(0,0), false);
-        Enemy e2 = new Enemy("Pevil",10, 10, 10, new Location(20,10), false);
+        Enemy e1 = new Enemy("Evil",10, 10, 10, new Location(0,0), 20,null);
+        Enemy e2 = new Enemy("Pevil",10, 10, 10, new Location(20,10), 20,null);
         List<Enemy> enemies = new ArrayList<>();
         enemies.add(e1);
         enemies.add(e2);
 
-        Item i1 = new Item(new Location(1,1), Item_Type.EX_Boost);
+        Item i1 = new Item(new Location(1,1), ItemType.EXP_Boost);
         List<Item> i = new ArrayList<>();
         i.add(i1);
 
         Player p1 = new Player("talon", 100, 100, 100, new Location(10,20), 0, 1);
 
-        s = new State(new Map(0, map, new char[] {'-', '+', '|'}), p1, enemies,  "dual", 10, i);
+        s = new State(new Map(0, map, new char[] {'-', '+', '|'}), "dual", 10, p1, enemies,  i, null, null);
     }
     @Test
     public void testWriteToJson() {
@@ -68,10 +68,10 @@ public class UtilityUnitTests {
         assertNotNull(p);
 
         // second test
-        assertEquals("dual", p.getDialogue());
+        assertEquals("dual", p.story);
 
         // third test
-        assertEquals(10, p.getLevel());
+        assertEquals(10, p.level);
     }
 
     @Test

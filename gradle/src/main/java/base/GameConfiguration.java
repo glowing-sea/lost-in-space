@@ -12,10 +12,43 @@ import java.util.List;
 
 public class GameConfiguration {
 
+    public static final String[] tips = {
+            "[ Game Manual ]",
+            "Character Movement: 'w', 's', 'a', 'd'",
+            "Interaction: 'fw', 'fs', 'fa', 'fd'",
+            "Inventory Management:",
+            "'use-index', 'drop-index', 'view-index'",
+            "Follow the goals implied in the story ",
+            "to advance to the next game level."
+    };
+
+    public static final String GAME_TITLE = "Lost in Space";
+
+    // Initial Stats of the player
+    public static String YOUR_NAME = "Jack";
+    public static final int INITIAL_HP = 100;
+    public static final int INITIAL_ATK = 100;
+    public static final int INITIAL_DEF = 100;
+    public static final int INITIAL_EXP = 0;
+    public static final int INITIAL_LEVEL = 0;
+    public static List<Item> INITIAL_INVENTORY = new ArrayList<>();
+    static {
+        Item item = new Item(new Location(-1,-1), ItemType.HP_Boost);
+        INITIAL_INVENTORY.add(item);
+        INITIAL_INVENTORY.add(item);
+        INITIAL_INVENTORY.add(item);
+        INITIAL_INVENTORY.add(item);
+        INITIAL_INVENTORY.add(item);
+        INITIAL_INVENTORY.add(item);
+    }
+    public static final int INITIAL_CAPACITY = 6;
+
+
     // The state level indicating a finished game.
-    public static int FINISH_REQUIREMENT = 1;
+    public static final int FINAL_LEVEL;
     // An array of sequential game from start to finish.
-    public static State[] starr;
+    public static final State[] GAME_STATES;
+    public static final GameLevelUpRequirement [] LEVEL_UP_REQUIREMENTS;
 
 
     // Level 0 configuration
@@ -23,7 +56,7 @@ public class GameConfiguration {
     // The initial state when the game reach level0
     public static State LEVEL0_INITIAL_STATE;
     // The game should move to the next level if the current state == LEVEL0_LEVEL_UP_STATE
-    public static GameLevelUpRequirement LEVEL0_LEVEL_UP;
+    public static GameLevelUpRequirement LEVEL0_LEVEL_UP_REQUIREMENT;
 
     static {
         String[] map = new String[] {
@@ -36,27 +69,62 @@ public class GameConfiguration {
                 "      AHA",
                 "---------",
                 "         "};
+        String[] Bobsays = new String[]{
+                "Hello Captain",
+                "Welcome to my land!O", // O indicate that you want player to do selection
+                "(A) Where should I go?",
+                "(B) Where am i?",
+                "(L) Good bye",
+                "~Ar Go to H!",
+                "~Br you are in xyz planet, captain!",
+                "~Lr see you, have a nice trip!"
+        };
+        String[] Alicesays = new String[]{
+                "Hello",
+                "Who are you? O",
+                "(A) I am captain Jack",
+                "(B) Say your name first!",
+                "(L) Good bye",
+                "~Ar Glad to see you Jack",
+                "~Br I am Alice ",
+                "~Lr see you, have a nice trip!"
+        };
 
-        Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|','E'});
-        Player player = new Player("Jack", 100, 100, 100, new Location(0,1), 0, 0);
 
-        List<Enemy> enemies = null;
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(new Item(new Location(1,2), Item_Type.HP_Boost));
-        items.add(new Item(new Location(3,2), Item_Type.Inventory_Boost));
-        items.add(new Item(new Location(5,2), Item_Type.HP_Boost));
-        items.add(new Item(new Location(5,4), Item_Type.HP_Boost));
+        Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|'});
+        Player player = new Player(new Location(0,1));
 
-        String dialogue = "You are lost on this planet. You (X) should find a way back to your spaceship (H)";
-        LEVEL0_INITIAL_STATE = new State(mapOBJ, player, enemies, dialogue, 0,items);
-        LEVEL0_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
+        List<Enemy> enemies = new ArrayList<>();
+        List<Item> items = new ArrayList<>();
+        List<NPC> NPCs = new ArrayList<>();
+        List<Merchant> merchants = new ArrayList<>();
+
+        Item item1 = new Item(new Location(3,2), ItemType.Inventory_Boost);
+        Item item2 = new Item(new Location(5,2), ItemType.HP_Boost);
+        Item item3 = new Item(new Location(5,4), ItemType.ATK_Boost);
+        items.add(item1);
+        items.add(item2);
+        items.add(item3);
+        enemies.add(new Enemy("Goblin1",10,150,50,new Location(0,4),20, item2));
+        NPC Bob = new NPC("Bob", new Location(2,0), Bobsays);
+        NPC Alice = new NPC("Alice", new Location(3,0), Alicesays);
+        NPCs.add(Bob);
+        NPCs.add(Alice);
+        List<Trade> trades = new ArrayList<>();
+        trades.add(new Trade(item1, item2));
+        merchants.add(new Merchant("Amy", new Location(3,5), "Wants some trades", trades));
+
+        String dialogue = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +
+                "If a line exceed 103 character, the exceed part will not be displayed........................................";
+        LEVEL0_INITIAL_STATE = new State(mapOBJ, dialogue, 0, player, enemies, items, NPCs, merchants);
+        LEVEL0_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
     // Level 1 configuration
 
     // enemies
     public static State LEVEL1_INITIAL_STATE;
     // The game should move to the next level if the current state == LEVEL0_LEVEL_UP_STATE
-    public static GameLevelUpRequirement LEVEL1_LEVEL_UP;
+    public static GameLevelUpRequirement LEVEL1_LEVEL_UP_REQUIREMENT;
 
     static {
         String[] map = new String[] {
@@ -70,22 +138,38 @@ public class GameConfiguration {
                 "       H ",
                 "---------",
                 "         "};
-
-        Map mapO1 = new Map(1, map, new char[] {'-', '+', '|','E'});
-        Player player = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(0,1), Integer.MIN_VALUE, Integer.MIN_VALUE);
-
+        String[] Csays = new String[]{
+                "Duluuuuuuu",
+                "Lalalala",
+                "How are you?O", // O indicate that you want player to do selection
+                "(A) I am Captain Jack",
+                "(B) Who are E on map?",
+                "(L) HUUUUuuuu",
+                "~Ar who is Jack ",
+                "~Br Those are evil NPC",
+                "~Br Fight against them",
+                "~Lr DerrrrRrr!"
+        };
+        Map mapO1 = new Map(1, map, new char[] {'-', '+', '|'});
+        Player player = new Player(new Location(0,1));
         ArrayList<Enemy> enemies = new ArrayList<>();
-        enemies.add(new Enemy("Goblin1",30,120,30,new Location(3,3),false));
-        enemies.add(new Enemy("Goblin3",30,120,30,new Location(4,4),false));
-        enemies.add(new Enemy("Goblin2",30,120,80,new Location(6,2),false));
+        enemies.add(new Enemy("Goblin1",30,120,30,new Location(3,3),20, null));
+        enemies.add(new Enemy("Goblin3",30,120,30,new Location(4,4),20, null));
+        enemies.add(new Enemy("Goblin2",30,120,80,new Location(6,2),20, null));
+        ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
+        NPC C = new NPC("C",new Location(0,3),Csays);
+        ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
+        NPCs.add(C);
+        ArrayList<Merchant> merchants = new ArrayList<>();
 
-        String dialogue = "fight against an enemy";
-        LEVEL1_INITIAL_STATE = new State(mapO1, player, enemies, dialogue, 1,null);
-        LEVEL1_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
+
+        String dialogue = "fight against an enemy\n>>>>>";
+        LEVEL1_INITIAL_STATE = new State(mapO1, dialogue, 1, player, enemies, items, NPCs, merchants);
+        LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
-    public static State LEVEL3_INITIAL_STATE;
+    public static State LEVEL2_INITIAL_STATE;
     // The game should move to the next level if the current state == LEVEL0_LEVEL_UP_STATE
-    public static GameLevelUpRequirement LEVEL3_LEVEL_UP;
+    public static GameLevelUpRequirement LEVEL2_LEVEL_UP_REQUIREMENT;
 
     static {
         String[] map = new String[] {
@@ -99,22 +183,39 @@ public class GameConfiguration {
                 "       H ",
                 "---------",
                 "         "};
-
-        Map mapO3 = new Map(3, map, new char[] {'-', '+', '|','E'});
+        String[] Davidsays = new String[]{
+                "Ahhh",
+                "This is David",
+                "Terrrrrrr",
+                "Where are you going?O", // O indicate that you want player to do selection
+                "(A) I am going to Spaceship",
+                "(B) What happened here",
+                "(L) Bye",
+                "~Ar Good Luck then",
+                "~Br Enemy take your spaceship",
+                "~Br Fight against them or dive in your space ship",
+                "~Lr I will miss you"
+        };
+        Map mapO3 = new Map(3, map, new char[] {'-', '+', '|'});
         ArrayList<Enemy> enemies = new ArrayList<>();
-        enemies.add(new Enemy("Goblin1",30,120,30,new Location(6,6),false));
-        enemies.add(new Enemy("Goblin3",30,120,30,new Location(5,7),false));
-        enemies.add(new Enemy("Goblin2",30,120,80,new Location(7,6),false));
-        Player player = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(0,1), Integer.MIN_VALUE, Integer.MIN_VALUE);
+        enemies.add(new Enemy("Goblin1",30,120,30,new Location(6,6),20, null));
+        enemies.add(new Enemy("Goblin3",30,120,30,new Location(5,7),20, null));
+        enemies.add(new Enemy("Goblin2",30,120,80,new Location(7,6),20, null));
+        Player player = new Player(new Location(0,1));
+        ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
+        NPC David = new NPC("David",new Location(3,3),Davidsays);
+        ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
+        NPCs.add(David);
+        ArrayList<Merchant> merchants = new ArrayList<>();
 
         String dialogue = "continue adventure";
-        LEVEL3_INITIAL_STATE = new State(mapO3, player, enemies, dialogue, 2,null);
-        LEVEL3_LEVEL_UP = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
+        LEVEL2_INITIAL_STATE = new State(mapO3, dialogue, 2, player, enemies, items, NPCs , merchants);
+        LEVEL2_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
     }
 
-    // Level 10 Configuration
-    public static State LEVEL10_INITIAL_STATE;
-    public static GameLevelUpRequirement LEVEL10_LEVEL_UP;
+    // Level 3 Configuration
+    public static State LEVEL3_INITIAL_STATE;
+    public static GameLevelUpRequirement LEVEL3_LEVEL_UP_REQUIREMENT;
 
     static {
         String[] map = new String[] {
@@ -128,18 +229,29 @@ public class GameConfiguration {
                 "  H| |H  ",
                 "  H|_|H  "};
         Map mapOBJ = new Map(0, map, new char[] {'A', '|', 'H','_'});
-        Player player = new Player(null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, new Location(4,4), Integer.MIN_VALUE, Integer.MIN_VALUE);
-        List<Enemy> enemies = null;
+        Player player = new Player(new Location(4,4));
+        ArrayList<Enemy> enemies = new ArrayList<>();
+        ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
+        ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
+        ArrayList<Merchant> merchants = new ArrayList<>();
         String dialogue = "You Win!";
-        LEVEL10_INITIAL_STATE = new State(mapOBJ, player, null, dialogue, 3,null);
-        LEVEL10_LEVEL_UP = null;
+        LEVEL3_INITIAL_STATE = new State(mapOBJ, dialogue, 3, player, enemies, items, NPCs, merchants);
+        LEVEL3_LEVEL_UP_REQUIREMENT = null;
     }
 
     static {
-        starr = new State[] {
+                GAME_STATES = new State[] {
                 LEVEL0_INITIAL_STATE,
                 LEVEL1_INITIAL_STATE,
-                LEVEL3_INITIAL_STATE,
-                LEVEL10_INITIAL_STATE};
+                LEVEL2_INITIAL_STATE,
+                LEVEL3_INITIAL_STATE};
+
+                LEVEL_UP_REQUIREMENTS = new GameLevelUpRequirement[] {
+                        LEVEL0_LEVEL_UP_REQUIREMENT,
+                        LEVEL1_LEVEL_UP_REQUIREMENT,
+                        LEVEL2_LEVEL_UP_REQUIREMENT,
+                        null,
+                };
+                FINAL_LEVEL = GAME_STATES.length - 1;
     }
 }

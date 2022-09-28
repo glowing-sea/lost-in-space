@@ -1,9 +1,9 @@
 package base;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
- * A object shoring a location (x and y coordinate).
+ * An object shoring a location (x and y coordinate).
  */
 
 public class Location {
@@ -34,19 +34,25 @@ public class Location {
 
     /**
      * Check if two locations are equal
-     * @param otherLoc the other location
+     * @param obj  other's location
      * @return true if the two location are equal
      */
-    public boolean equals(Location otherLoc) {
-        return this.x == otherLoc.x && this.y == otherLoc.y;
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Location loc))
+            return false;
+        else{
+            return this.x == loc.x && this.y == loc.y;
+        }
     }
+
 
     /**
      * Check if one location is in an arraylist of locations
      * @param locs a set of locations where u want to check if "this" is in it.
      * @return true if "this" is in the arraylist
      */
-    public boolean isin(ArrayList<Location> locs){
+    public boolean isin(List<Location> locs){
         if(locs == null || locs.size()==0){
             return false;
         }
@@ -56,5 +62,47 @@ public class Location {
             }
         }
         return false;
+    }
+
+    /**
+     * Check if there is any unit, such as an enemy at this location
+     * @param st current game state
+     * @return return the unit if found.
+     */
+    public Unit findUnit (State st){
+        // Enemy
+        for (Enemy enemy :st.enemies){
+            if (enemy.getLoc().equals(this))
+                return enemy;
+        }
+        // NPC
+        for (NPC npc :st.NPCs){
+            if (npc.getLoc().equals(this))
+                return npc;
+        }
+        // Item
+        for (Item item :st.items) {
+            if (item.getLoc().equals(this))
+                return item;
+        }
+        // Merchant
+        for (Merchant merchant :st.merchants) {
+            if (merchant.getLoc().equals(this))
+                return merchant;
+        }
+        return null;
+    }
+
+    /**
+     * Make an exact copy of the location object
+     * @return a copy of this location
+     */
+    public Location locCopy (){
+        return new Location(x, y);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + this.x + ", " + this.y + ")";
     }
 }
