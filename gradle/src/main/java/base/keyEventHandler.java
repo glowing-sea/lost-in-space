@@ -54,11 +54,6 @@ public class keyEventHandler {
                 if (!state.isFinish())
                     state.gameLevelUp(GameConfiguration.GAME_STATES[state.level + 1]);} // For testing only, direct get to the next level.
 
-            case "q" -> { // Should we save our game here? --Zhishang
-                System.out.println("=== Thank you for playing our game. See you soon. ===");
-                return 100;
-            }
-
             default -> {
                 state.messageBox.putMessage("Sorry, '" + input + "' is not a value input.");
             }

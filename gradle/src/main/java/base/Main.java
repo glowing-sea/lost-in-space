@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class Main {
 
-    public static String SAVE_LOAD_DIRECTORY = "C:/game_engine";
+    public static String SAVE_LOAD_DIRECTORY = "./game_engine";
     public static String SAVE_FILENAME =  "currentSave.json";
 
     public static void main(String[] args) {
@@ -33,10 +33,6 @@ public class Main {
         // Ensure save load directory is present in local machine
         makeDirectory();
 
-        // Get and print the initial game state from starr
-        State state = GameConfiguration.GAME_STATES[0];
-        System.out.println(state);
-
         // Keep listening to the user's input
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -55,7 +51,7 @@ public class Main {
     public static void mainPhaseTwo(State s) {
         // Pass the new state
         keyEventHandler keyEventHandler = new keyEventHandler();
-        keyEventHandler.keyEventHandler(s);
+        keyEventHandler.keyEventHandler(s,null);
     }
 
     /**

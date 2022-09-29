@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UtilityUnitTests {
 
     String fn = "SoftwareEngineering-TestingWriteToFile.json";
-    private final String ROOT_DIR = "C:/temp";
+    private final String ROOT_DIR = "./temp";
     private State s;
 
     @BeforeEach
