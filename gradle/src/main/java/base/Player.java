@@ -49,18 +49,24 @@ public class Player extends Character implements Movable{
         if (st.interacting != null) {
             Unit unit = st.interacting;
             switch (option){
-                case "A","(A)" -> unit.interact(st,1);
-                case "B","(B)" -> unit.interact(st,2);
-                case "G","(G)" -> unit.interact(st,3);
+                case "A","(A)" -> {if (unit instanceof NPC) unit.interact(st,1);} // Only NPC can be interacted with A
+                case "B","(B)" -> {if (unit instanceof NPC) unit.interact(st,2);} // Only NPC can be interacted with B
+                case "G","(G)" -> {if (unit instanceof NPC || unit instanceof Merchant) unit.interact(st,3);} // Only NPC and merchant can be interacted with G
                 case "buy" ->{
-                    int goodIdx;
-                    try {
-                        goodIdx = Integer.parseInt(value);
-                    } catch(NumberFormatException e) {
-                        st.messageBox.putMessage("The good index is not well-formed.");
-                        return false;
+                    if (unit instanceof Merchant){
+                        int goodIdx;
+                        try {
+                            goodIdx = Integer.parseInt(value);
+                        } catch(NumberFormatException e) {
+                            st.messageBox.putMessage("The good index is not well-formed.");
+                            return false;
+                        }
+                        if (goodIdx < 1 || goodIdx > ((Merchant) unit).trades.size()) {
+                            st.messageBox.putMessage("The good index is out of bound!");
+                        } else {
+                            unit.interact(st, goodIdx + 3);
+                        }
                     }
-                    unit.interact(st,goodIdx + 3);
                 }
             }
         }

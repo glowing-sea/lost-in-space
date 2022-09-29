@@ -52,8 +52,23 @@ public class Merchant extends Character{
         for (int i = 0; i < trades.size() && i < 6; i++){
             st.messageBox.putMessage((i + 1) + ": " + "[ " + trades.get(i).TRADE_IN() + " ] -> [ " + trades.get(i).TRADE_OUT() + " ]");
         }
+        // The user press A or B or interact with the merchant for the first time.
+        if (option >= 0 && option <=2){
+            return true;
+        }
+        int tradeSelected = option - 4;
+
+        Item playerWantToSell = this.trades.get(tradeSelected).TRADE_IN();
+        Item playerWillGet = this.trades.get(tradeSelected).TRADE_OUT();
+        if (st.player.getInventory().contains(playerWantToSell)){
+            st.player.getInventory().remove(playerWantToSell);
+            st.player.getInventory().add(playerWillGet);
+            st.messageBox.putMessage("You sold [ " + playerWantToSell + " ] and got [ " + playerWillGet + " ].");
+        } else {
+            st.messageBox.putMessage("You don't have the item to sell.");
+
+        }
 
         return true;
     }
-
 }

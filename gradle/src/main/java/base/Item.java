@@ -81,4 +81,13 @@ public class Item extends Unit{
     public void setValid(boolean valid) {
         this.valid = valid;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Item loc))
+            return false;
+        else{
+            return this.getType() == ((Item) obj).getType();
+        }
+    }
 }
