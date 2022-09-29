@@ -110,8 +110,9 @@ public class GameConfiguration {
         NPC Alice = new NPC("Alice", new Location(3,0), Alicesays);
         NPCs.add(Bob);
         NPCs.add(Alice);
-        List<Trade> trades = new ArrayList<>();
-        trades.add(new Trade(item1, item2));
+        List<Item> trades = new ArrayList<>();
+        trades.add(item1);
+        trades.add(item2);
         merchants.add(new Merchant("Amy", new Location(3,5), "Wants some trades", trades));
 
         String dialogue = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +

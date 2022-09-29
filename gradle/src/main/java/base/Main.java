@@ -14,10 +14,21 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Get and print the initial game state from starr
-        State state = GameConfiguration.GAME_STATES[0];
-        System.out.println(state);
+        State state = null;
 
+        if(args.length == 0) {
+            // Get and print the initial game state from starr
+            state = GameConfiguration.GAME_STATES[0];
+            System.out.println(state);
+        }
+        else if(args.length == 1) {
+            state = loadGame(SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME);
+            System.out.println(state);
+        }
+        else {
+            System.err.println("Incorrect number of arguments.");
+            System.exit(1);
+        }
         // Ensure save load directory is present in local machine
         makeDirectory();
 
@@ -28,6 +39,7 @@ public class Main {
 
     /**
      * This function is used for loading a game state.
+     * // FIXME to be deleted
      * @param s State
      */
     public static void mainPhaseTwo(State s) {
@@ -73,7 +85,8 @@ public class Main {
             System.out.println(SAVE_LOAD_DIRECTORY + " created.");
         }
         else if(f.exists()) {
-            System.out.println(SAVE_LOAD_DIRECTORY + " already exists.");
+            // do nothing
+            //System.out.println(SAVE_LOAD_DIRECTORY + " already exists.");
         }
         else {
             System.err.println(SAVE_LOAD_DIRECTORY + " could not be created.");

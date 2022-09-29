@@ -48,20 +48,10 @@ public class keyEventHandler {
                     if (!state.isFinish())
                             state.gameLevelUp(GameConfiguration.GAME_STATES[state.level + 1]);} // For testing only, direct get to the next level.
 
-                // save
-                // saving the game WORKS
-                case "save" -> Main.saveGame(state);
-                // load (1)
-                // 1. need to exit this state
-                // 2. need to return to main?
-                // 3. need to execute keyEventHandler keyEventHandler = new keyEventHandler();
-                //                    keyEventHandler.keyEventHandler(state);
-                // again
-                //
-                // load (2)
-                // FIXME loading the game does NOT work presently
-                case "load" -> {State s = Main.loadGame(Main.SAVE_LOAD_DIRECTORY + "/" + Main.SAVE_FILENAME);
-                    Main.mainPhaseTwo(s);}
+                // save game
+                case "save" -> {Main.saveGame(state);
+                    System.out.println("Game saved.");}
+                case "load" -> System.out.println("Please run the game with 1 argument to load the currently saved game.");
 
                 case "q" -> { // Should we save our game here? --Zhishang
                     System.out.println("=== Thank you for playing our game. See you soon. ===");

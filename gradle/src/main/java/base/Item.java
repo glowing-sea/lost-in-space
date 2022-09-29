@@ -7,8 +7,7 @@ package base;
 public class Item extends Unit{
 
     private boolean valid;
-    private final ItemType type;
-
+    private ItemType type;  // NOTE final keyword used here before. It is not right.
 
     //construction
     public Item(Location loc, ItemType type) {

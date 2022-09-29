@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -23,7 +24,7 @@ public class SaveLoadTests {
     private String SAVE_FILENAME = "save-load-testing.json";
 
     /**
-     *
+     * Making the game engine working directory test.
      */
     @Test
     public void testMakeDirectory() {
@@ -33,6 +34,9 @@ public class SaveLoadTests {
         assertTrue(f.exists());
     }
 
+    /**
+     * Testing the save game function.
+     */
     @Test
     public void testSaveGame() {
 
@@ -81,12 +85,17 @@ public class SaveLoadTests {
         assertTrue(f.exists());
     }
 
-    // FIXME loading the game does NOT work presently.
+    /**
+     * Testing the load game function.
+     */
     @Test
     public void testLoadGame() {
         State state = Main.loadGame(SAVE_LOAD_DIRECTORY + "/" + "load-testing.json");
 
         System.out.println(state);
+
+        assertEquals(0, state.player.getLoc().getX());
+        assertEquals(0, state.player.getLoc().getY());
 
         // TRY (1)
         // Pass the initial state. FIXME TRY (1): does NOT WORK: (same error)
@@ -94,7 +103,7 @@ public class SaveLoadTests {
         //keyEventHandler.keyEventHandler(s);
 
         //Main.mainPhaseTwo(s);
-
+/**
         // TRY (2)
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -183,6 +192,7 @@ public class SaveLoadTests {
 
             System.out.println(state);
         } while (!Objects.equals(input, "q"));
+ **/
     }
 
 }

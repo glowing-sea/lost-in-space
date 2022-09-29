@@ -11,9 +11,9 @@ import java.util.List;
 public class Merchant extends Character{
 
     String dialogue;
-    List<Trade> trades;
+    List<Item> trades;  // NOTE was Trade type before. Changed to "Item". Reason is stated in "Trade" class
 
-    public Merchant(String name, Location loc, String dialogue, List<Trade> trades) {
+    public Merchant(String name, Location loc, String dialogue, List<Item> trades) {
         super(name, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, loc, 'M');
         this.dialogue = dialogue;
         this.trades = trades;

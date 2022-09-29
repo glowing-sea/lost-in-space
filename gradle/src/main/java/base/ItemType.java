@@ -9,6 +9,5 @@ public enum ItemType {
     ATK_Boost,
     DEF_Boost,
     Inventory_Boost,
-    Key,
-
+    Key;
 }
