@@ -14,7 +14,10 @@ public class NPC extends Character {
     // The text that will show when the player interact with them
     String[] dialogue;
     int operations = 0; // this is what user option is
-    Boolean contacting = false;
+    // FIXME: changed to public for the time being (Albert Yu)
+    // FIXME: for the purposes of StateLoadTests.java
+    // FIXME: previously, had no modifier.
+    public Boolean contacting = false;
 
 
     public NPC(String name, Location loc, String[] dialogue) {
