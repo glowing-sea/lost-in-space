@@ -74,7 +74,7 @@ public class GameConfiguration {
                 "Bye Caption", // how bob say goodbye to the player
                 "Hello Captain", // autoplay, talked by Bob
                 "` Hi Bob", // autoplay, talked by the player
-                "Are you worrying something?", // autoplay, talked by Bob
+                "Are you worrying about something?", // autoplay, talked by Bob
                 "> Where should I go?", // player option 1 (>)
                 "> Get out!", // player option 2 (>)
                 "< Go to (H).", // Bob answer 1 (<)
@@ -84,7 +84,7 @@ public class GameConfiguration {
                 "` I see!",
                 "> Did you get hurt?",
                 "> Is our spaceship find?",
-                "< I am fine. Thank you.",
+                "< No. I am fine. Thank you.",
                 "< Our spaceship is damaged and we have to repair it!",
         };
         String[] aliceSays = new String[]{
