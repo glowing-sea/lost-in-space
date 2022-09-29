@@ -54,6 +54,7 @@ public class Main {
         Utility.writeToJSON(SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME, s);
     }
 
+
     /**
      * save a game to file
      * this method is only used for unit case testing.
@@ -61,12 +62,38 @@ public class Main {
      * @param filename file name
      */
     public static void saveGame(State s, String filename) {
-        if (!validFileName(filename)){
+        if (inValidFileName(filename)){
             s.messageBox.putMessage("The filename can only contains letters, numbers");
             s.messageBox.putMessage("'-' and '_'");
         } else {
-            Utility.writeToJSON(SAVE_LOAD_DIRECTORY + filename + ".json", s);
-            s.messageBox.putMessage("Saved successfully! " + "[" + filename + ".json" + "]");
+            File tempFile = new File(SAVE_LOAD_DIRECTORY + filename + ".json");
+            if (tempFile.exists()){
+                System.out.println("The save with the same filename has already existed. Do you want to overwrite it?");
+                System.out.println("(Y) Yes");
+                System.out.println("(N) No");
+                // Keep listening to the user's input
+                Scanner scanner = new Scanner(System.in);
+                String input;
+                while (true){
+                    input = scanner.next();
+                    if (input.equals("y") || input.equals("Y") || input.equals("N") || input.equals("n"))
+                        break;
+                    else
+                        System.out.println("Please choose an answer.");
+                }
+                switch (input){
+                    case "Y", "y" -> {
+                        Utility.writeToJSON(SAVE_LOAD_DIRECTORY + filename + ".json", s);
+                        s.messageBox.putMessage("Saved successfully! " + "[" + filename + ".json" + "]");
+                    }
+                    case "N", "n" ->
+                        s.messageBox.putMessage("Game has not been saved.");
+                }
+            }
+            else {
+                Utility.writeToJSON(SAVE_LOAD_DIRECTORY + filename + ".json", s);
+                s.messageBox.putMessage("Saved successfully! " + "[" + filename + ".json" + "]");
+            }
         }
     }
 
@@ -76,7 +103,7 @@ public class Main {
      * @param fileName file name
      */
     public static void loadGame(State s, String fileName) {
-        if (!validFileName(fileName)){
+        if (inValidFileName(fileName)){
             s.messageBox.putMessage("The filename can only contains letters, numbers");
             s.messageBox.putMessage("'-' and '_'");
         } else {
@@ -84,22 +111,41 @@ public class Main {
             if (sLoad == null){
                 s.messageBox.putMessage("Save not found");
             } else {
-                loadingState = sLoad;
-                loadingState.messageBox.putMessage("Loaded successfully! " + "[" + fileName + ".json" + "]");
+                System.out.println("You will lose the current progress if you have not saved it. Do you want to continue?");
+                System.out.println("(Y) Yes");
+                System.out.println("(N) No");
+                // Keep listening to the user's input
+                Scanner scanner = new Scanner(System.in);
+                String input;
+                while (true){
+                    input = scanner.next();
+                    if (input.equals("y") || input.equals("Y") || input.equals("N") || input.equals("n"))
+                        break;
+                    else
+                        System.out.println("Please choose an answer.");
+                }
+                switch (input){
+                    case "Y", "y" -> {
+                        Utility.writeToJSON(SAVE_LOAD_DIRECTORY + fileName + ".json", s);
+                        loadingState = sLoad;
+                        loadingState.messageBox.putMessage("Loaded successfully! " + "[" + fileName + ".json" + "]");
+                    }
+                    case "N", "n" -> s.messageBox.putMessage("No saves are loaded.");
+                }
             }
         }
     }
 
 
-    public static boolean validFileName (String filename){
+    public static boolean inValidFileName(String filename){
         if (filename == null || filename.isEmpty())
-            return false;
+            return true;
         for (int i = 0; i < filename.length(); i++){
             char c = filename.charAt(i);
             if (!(c == '_' || c == '-' || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')))
-                return false;
+                return true;
         }
-        return true;
+        return false;
     }
 
     /**
