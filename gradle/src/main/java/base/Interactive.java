@@ -9,5 +9,5 @@ public interface Interactive {
      * @param st the current game state
      * @return whether the interaction is successful.
      */
-    boolean interact (State st);
+    boolean interact (State st, int option);
 }

@@ -62,7 +62,7 @@ public class ItemTest {
     public void interact(){
         st.player.getInventory().get(0).setValid(false);
         st.player.getInventory().get(1).setValid(false);
-        assertFalse(st.player.getInventory().get(0).interact(st));
-        assertFalse(st.player.getInventory().get(0).interact(st));
+        assertFalse(st.player.getInventory().get(0).interact(st, 0));
+        assertFalse(st.player.getInventory().get(0).interact(st, 0));
     }
 }

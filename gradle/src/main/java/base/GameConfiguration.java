@@ -51,6 +51,21 @@ public class GameConfiguration {
     public static final GameLevelUpRequirement [] LEVEL_UP_REQUIREMENTS;
 
 
+
+    // These are the default attributes when an argument passing to the constructor is null
+    public static final String DEFAULT_UNIT_NAME = "Unknown";
+    public static final char DEFAULT_UNIT_SYMBOL = 'U';
+    public static final String[] DEFAULT_NPC_DIALOGUE = new String[]{"Bye", "Bye", "How are you?"};
+
+    public static final Location DEFAULT_UNIT_LOC = new Location(-1,-1);
+
+    public static final String[] DEFAULT_MAP = new String[]{"         ", "         ","         ", "         ",
+            "         ", "         ","         ", "         ","         "};
+    public static final char[] DEFAULT_WALLS = new char[]{};
+
+    public static final List<Trade> DEFAULT_TRADES = new ArrayList<>();
+
+
     // Level 0 configuration
 
     // The initial state when the game reach level0
@@ -69,27 +84,34 @@ public class GameConfiguration {
                 "      AHA",
                 "---------",
                 "         "};
-        String[] Bobsays = new String[]{
-                "Hello Captain",
-                "Welcome to my land!O", // O indicate that you want player to do selection
-                "(A) Where should I go?",
-                "(B) Where am i?",
-                "(L) Good bye",
-                "~Ar Go to H!",
-                "~Br you are in xyz planet, captain!",
-                "~Lr see you, have a nice trip!"
+        String[] bobSays = new String[]{
+                "Goodbye Bob", // how the player say goodbye to bob
+                "Bye Caption", // how bob say goodbye to the player
+                "Hello Captain", // autoplay, talked by Bob
+                "` Hi Bob", // autoplay, talked by the player
+                "Are you worrying about something?", // autoplay, talked by Bob
+                "> Where should I go?", // player option 1 (>)
+                "> Get out!", // player option 2 (>)
+                "< Go to (H).", // Bob answer 1 (<)
+                "< Claim down please!", // Bob answer 2 (<)
+                "We are lost on a unknown planet",
+                "We need to find a way back",
+                "` I see!",
+                "> Did you get hurt?",
+                "> Is our spaceship find?",
+                "< No. I am fine. Thank you.",
+                "< Our spaceship is damaged and we have to repair it!",
         };
-        String[] Alicesays = new String[]{
+        String[] aliceSays = new String[]{
+                "Goodbye", // how the player say goodbye to bob
+                "See you, have a nice trip!", // how bob say goodbye to the player
                 "Hello",
-                "Who are you? O",
-                "(A) I am captain Jack",
-                "(B) Say your name first!",
-                "(L) Good bye",
-                "~Ar Glad to see you Jack",
-                "~Br I am Alice ",
-                "~Lr see you, have a nice trip!"
+                "Who are you?",
+                "> I am captain Jack",
+                "> Say your name first!",
+                "< Glad to see you Jack",
+                "< I am Alice ",
         };
-
 
         Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|'});
         Player player = new Player(new Location(0,1));
@@ -106,14 +128,23 @@ public class GameConfiguration {
         items.add(item2);
         items.add(item3);
         enemies.add(new Enemy("Goblin1",10,150,50,new Location(0,4),20, item2));
-        NPC Bob = new NPC("Bob", new Location(2,0), Bobsays);
-        NPC Alice = new NPC("Alice", new Location(3,0), Alicesays);
+        NPC Bob = new NPC("Bob", new Location(2,0), bobSays);
+        NPC Alice = new NPC("Alice", new Location(3,0), aliceSays);
+        NPC NoName = new NPC(null, new Location(4,0), null);
         NPCs.add(Bob);
         NPCs.add(Alice);
-        List<Item> trades = new ArrayList<>();
-        trades.add(item1);
-        trades.add(item2);
-        merchants.add(new Merchant("Amy", new Location(3,5), "Wants some trades", trades));
+        NPCs.add(NoName);
+
+        List<Trade> trades = new ArrayList<>();
+        trades.add(new Trade(item2, item1));
+        trades.add(new Trade(item2, item3));
+        trades.add(new Trade(item2, item1));
+        trades.add(new Trade(item2, item3));
+        trades.add(new Trade(item2, item1));
+        trades.add(new Trade(item2, item3));
+
+        merchants.add(new Merchant("Amy", new Location(1,0), new String[]{"Goodbye", "Hope to deal with you again!","Welcome to my store!"}, trades));
+        merchants.add(new Merchant(null,new Location(5,0),null,null));
 
         String dialogue = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +
                 "If a line exceed 103 character, the exceed part will not be displayed........................................";
@@ -140,16 +171,16 @@ public class GameConfiguration {
                 "---------",
                 "         "};
         String[] Csays = new String[]{
+                "HUUUUuuuu (Goodbye)",
+                "DerrrrRrr!",
                 "Duluuuuuuu",
                 "Lalalala",
-                "How are you?O", // O indicate that you want player to do selection
-                "(A) I am Captain Jack",
-                "(B) Who are E on map?",
-                "(L) HUUUUuuuu",
-                "~Ar who is Jack ",
-                "~Br Those are evil NPC",
-                "~Br Fight against them",
-                "~Lr DerrrrRrr!"
+                "How are you?",
+                "> I am Captain Jack",
+                "> Who are E on map?",
+                "< who is Jack ",
+                "< Those are evil NPC. Fight against them!",
+
         };
         Map mapO1 = new Map(1, map, new char[] {'-', '+', '|'});
         Player player = new Player(new Location(0,1));
@@ -185,17 +216,17 @@ public class GameConfiguration {
                 "---------",
                 "         "};
         String[] Davidsays = new String[]{
+                "Bye",
+                "I will miss you",
                 "Ahhh",
                 "This is David",
                 "Terrrrrrr",
-                "Where are you going?O", // O indicate that you want player to do selection
-                "(A) I am going to Spaceship",
-                "(B) What happened here",
-                "(L) Bye",
-                "~Ar Good Luck then",
-                "~Br Enemy take your spaceship",
-                "~Br Fight against them or dive in your space ship",
-                "~Lr I will miss you"
+                "Where are you going?",
+                "> I am going to Spaceship",
+                "> What happened here",
+                "< Good Luck then",
+                "< Enemy take your spaceship",
+                "Fight against the enemies or dive in your space ship",
         };
         Map mapO3 = new Map(3, map, new char[] {'-', '+', '|'});
         ArrayList<Enemy> enemies = new ArrayList<>();

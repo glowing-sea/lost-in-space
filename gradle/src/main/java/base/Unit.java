@@ -27,6 +27,9 @@ public abstract class Unit implements Interactive{
 
 
     public Unit(String name, Location loc, char symbol) {
+        if (name == null) name = GameConfiguration.DEFAULT_UNIT_NAME;
+        if (symbol < 'A' || symbol > 'Z') symbol = GameConfiguration.DEFAULT_UNIT_SYMBOL;
+        if (loc == null) loc = GameConfiguration.DEFAULT_UNIT_LOC;
         this.name = name;
         this.loc = loc;
         this.SYMBOL = symbol;
@@ -86,7 +89,7 @@ public abstract class Unit implements Interactive{
      * @return a list of location
      */
     @Override
-    public boolean interact(State st) {
+    public boolean interact(State st, int option) {
         st.messageBox.putMessage("You interact with " + this.name + "!");
         return true;
     }
