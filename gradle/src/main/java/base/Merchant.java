@@ -76,7 +76,7 @@ public class Merchant extends Character{
         // Print out the deals
         st.messageBox.putMessage("=== Here are the deals ===");
         for (int i = 0; i < trades.size() && i < 6; i++){
-            st.messageBox.putMessage((i + 1) + ": " + "[ " + trades.get(i).TRADE_IN() + " ] -> [ " + trades.get(i).TRADE_OUT() + " ]");
+            st.messageBox.putMessage((i + 1) + ": " + "[ " + trades.get(i).getTRADE_IN() + " ] -> [ " + trades.get(i).getTRADE_OUT() + " ]");
         }
         // The user press A or B or interact with the merchant for the first time.
         if (option >= 0 && option <=2){
@@ -84,8 +84,8 @@ public class Merchant extends Character{
         }
         int tradeSelected = option - 4;
 
-        Item playerWantToSell = this.trades.get(tradeSelected).TRADE_IN();
-        Item playerWillGet = this.trades.get(tradeSelected).TRADE_OUT();
+        Item playerWantToSell = this.trades.get(tradeSelected).getTRADE_IN();
+        Item playerWillGet = this.trades.get(tradeSelected).getTRADE_OUT();
         if (st.player.getInventory().contains(playerWantToSell)){
             st.player.getInventory().remove(playerWantToSell);
             st.player.getInventory().add(playerWillGet);
