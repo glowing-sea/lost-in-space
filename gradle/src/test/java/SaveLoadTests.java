@@ -17,6 +17,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class SaveLoadTests {
 
+    private String SAVE_LOAD_DIRECTORY = "C:/game_engine";
+    private String SAVE_FILENAME = "save-load-testing.json";
+
+    /**
+     *
+     */
     @Test
     public void testMakeDirectory() {
         Main.makeDirectory();
@@ -66,11 +72,21 @@ public class SaveLoadTests {
         String dialogue = "fight against an enemy\n>>>>>";
         State s = new State(mapO1, dialogue, 1, player, enemies, items, NPCs, merchants);
 
-        Main.saveGame(s);
+        Main.saveGame(s, SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME);
 
-        File f = new File(Main.SAVE_LOAD_DIRECTORY + "/" + Main.SAVE_FILENAME);
+        File f = new File(SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME);
 
         assertTrue(f.exists());
+    }
+
+    // FIXME loading the game does NOT work presently.
+    @Test
+    public void testLoadGame() {
+        State s = Main.loadGame(SAVE_LOAD_DIRECTORY + "/" + "load-testing.json");
+
+        System.out.println(s);
+
+        Main.mainPhaseTwo(s);
     }
 
 }

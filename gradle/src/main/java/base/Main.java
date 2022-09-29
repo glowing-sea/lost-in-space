@@ -27,6 +27,16 @@ public class Main {
     }
 
     /**
+     * This function is used for loading a game state.
+     * @param s State
+     */
+    public static void mainPhaseTwo(State s) {
+        // Pass the new state
+        keyEventHandler keyEventHandler = new keyEventHandler();
+        keyEventHandler.keyEventHandler(s);
+    }
+
+    /**
      * load a game from file
      * @param fileName
      * @return the loaded game state
@@ -41,8 +51,17 @@ public class Main {
      * @param s
      */
     public static void saveGame(State s) {
-
         Utility.writeToJSON(SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME, s);
+    }
+
+    /**
+     * save a game to file
+     * this method is only used for unit case testing.
+     * @param s
+     * @param filename
+     */
+    public static void saveGame(State s, String filename) {
+        Utility.writeToJSON(filename, s);
     }
 
     /**
