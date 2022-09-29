@@ -16,9 +16,12 @@ public class StateTest {
     State st;
     Player p;
 
+    GameStateExamples ex;
+
     @BeforeEach
     public void setup() {
-        st = GameStateExamples.TEST_STATE_ONE;
+        ex = new GameStateExamples();
+        st = new GameStateExamples().TEST_STATE_ONE;
         p = st.player;
     }
     @Test
@@ -31,7 +34,7 @@ public class StateTest {
     @Test
     public void gameLevelUpMaintainAll(){
         State stNew = new State(null,null,3,null,null,null,null,null);
-        State st = GameStateExamples.TEST_STATE_TWO;
+        st = new GameStateExamples().TEST_STATE_TWO;
         st.gameLevelUp(stNew);
         assertNotNull(st.map);
         assertNotNull(st.story);
@@ -45,16 +48,16 @@ public class StateTest {
 
     @Test
     public void gameLevelUpResetAll(){
-        State stNew = GameStateExamples.TEST_STATE_TWO;
-        State st = GameStateExamples.TEST_STATE_TWO;
+        State stNew = ex.TEST_STATE_ONE;
+        State st = ex.TEST_STATE_TWO;
         st.gameLevelUp(stNew);
-        assertEquals(GameStateExamples.TEST_STATE_TWO.map, st.map);
-        assertEquals(GameStateExamples.TEST_STATE_TWO.story, st.story);
-        assertEquals(GameStateExamples.TEST_STATE_TWO.player.getLoc(), st.player.getLoc());
-        assertEquals(GameStateExamples.TEST_STATE_TWO.enemies, st.enemies);
-        assertEquals(GameStateExamples.TEST_STATE_TWO.items, st.items);
-        assertEquals(GameStateExamples.TEST_STATE_TWO.NPCs, st.NPCs);
-        assertEquals(GameStateExamples.TEST_STATE_TWO.merchants, st.merchants);
-        assertEquals(GameStateExamples.TEST_STATE_TWO.level, st.level);
+        assertEquals(stNew.map, st.map);
+        assertEquals(stNew.story, st.story);
+        assertEquals(stNew.player.getLoc(), st.player.getLoc());
+        assertEquals(stNew.enemies, st.enemies);
+        assertEquals(stNew.items, st.items);
+        assertEquals(stNew.NPCs, st.NPCs);
+        assertEquals(stNew.merchants, st.merchants);
+        assertEquals(stNew.level, st.level);
     }
 }

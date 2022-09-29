@@ -43,30 +43,54 @@ public class Player extends Character implements Movable{
      * @param st current game state
      * @return if the interaction succeeded
      */
-    public static boolean interact(State st, String direction){
+    public static boolean interact(State st, String option, String value){
 
-        // Get the location that the player want to interact with.
-        Unit unit;
-        Location unitLoc = st.player.getLoc().locCopy();
-        switch (direction){
-            case "fa" -> {unitLoc.setY(unitLoc.getY() - 1);}
-            case "fd" -> {unitLoc.setY(unitLoc.getY() + 1);}
-            case "fw" -> {unitLoc.setX(unitLoc.getX() - 1);}
-            case "fs" -> {unitLoc.setX(unitLoc.getX() + 1);}
-        }
-        for(NPC npc: st.NPCs){
-            if(npc.contacting && npc.getLoc()!=unitLoc){
-                npc.setContacting(false);
+        // The player is currently interacting with an NPC or merchant
+        if (st.interacting != null) {
+            Unit unit = st.interacting;
+            switch (option){
+                case "A","(A)" -> {if (unit instanceof NPC) unit.interact(st,1);} // Only NPC can be interacted with A
+                case "B","(B)" -> {if (unit instanceof NPC) unit.interact(st,2);} // Only NPC can be interacted with B
+                case "G","(G)" -> {if (unit instanceof NPC || unit instanceof Merchant) unit.interact(st,3);} // Only NPC and merchant can be interacted with G
+                case "buy" ->{
+                    if (unit instanceof Merchant){
+                        int goodIdx;
+                        try {
+                            goodIdx = Integer.parseInt(value);
+                        } catch(NumberFormatException e) {
+                            st.messageBox.putMessage("The good index is not well-formed.");
+                            return false;
+                        }
+                        if (goodIdx < 1 || goodIdx > ((Merchant) unit).trades.size()) {
+                            st.messageBox.putMessage("The good index is out of bound!");
+                        } else {
+                            unit.interact(st, goodIdx + 3);
+                        }
+                    }
+                }
             }
         }
-        // Search if there is a unit to interact in this location
-        unit = unitLoc.findUnit(st);
-        if (unit == null) {
-            st.messageBox.putMessage("There is nothing to interact with.");
-            return false;
-        } else if (!unit.interact(st)){
-            st.messageBox.putMessage("Interact failed.");
-            return false;
+        else // The player is currently not interacting
+        {
+            // Get the location that the player want to interact with.
+            Unit unit;
+            Location unitLoc = st.player.getLoc().locCopy();
+            switch (option){
+                case "fa" -> {unitLoc.setY(unitLoc.getY() - 1);}
+                case "fd" -> {unitLoc.setY(unitLoc.getY() + 1);}
+                case "fw" -> {unitLoc.setX(unitLoc.getX() - 1);}
+                case "fs" -> {unitLoc.setX(unitLoc.getX() + 1);}
+            }
+
+            // Search if there is a unit to interact in this location
+            unit = unitLoc.findUnit(st);
+            if (unit == null) {
+                st.messageBox.putMessage("There is nothing to interact with.");
+                return false;
+            } else if (!unit.interact(st, 0)){
+                st.messageBox.putMessage("Interact failed.");
+                return false;
+            }
         }
         return true;
     }
@@ -137,6 +161,10 @@ public class Player extends Character implements Movable{
      * @return true if the character has moved
      */
     public boolean move (State st, String direction, int speed){
+        if (st.interacting != null) {
+            st.messageBox.putMessage("System: you need to say goodbye before leaving.");
+            return false;
+        }
         Location newLoc;
         Location adjLoc;
         switch (direction) {

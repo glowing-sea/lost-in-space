@@ -2,6 +2,8 @@ package base;
 
 import utility.Utility;
 
+import java.util.Scanner;
+
 /**
  * This the main class where the game runs.
  */
@@ -12,9 +14,15 @@ public class Main {
         // Get and print the initial game state from starr
         State state = GameConfiguration.GAME_STATES[0];
         System.out.println(state);
-        // Pass the initial state
-        keyEventHandler keyEventHandler = new keyEventHandler();
-        keyEventHandler.keyEventHandler(state);
+
+        // Keep listening to the user's input
+        Scanner scanner = new Scanner(System.in);
+        String input;
+        int result;
+        do{
+            input = scanner.next();
+            result = keyEventHandler.keyEventHandler(state, input);
+        } while (result != 100);
     }
 
     /**
