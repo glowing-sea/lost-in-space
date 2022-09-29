@@ -1,5 +1,6 @@
 package base;
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  * A character that has a list of trades.
@@ -17,8 +18,26 @@ public class Merchant extends Character{
 
     public Merchant(String name, Location loc, String[] dialogue, List<Trade> trades) {
         super(name, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, loc, 'M');
+        // Default dialogue and trade
+        if (dialogue == null)
+            dialogue = GameConfiguration.DEFAULT_NPC_DIALOGUE;
+        if (trades == null)
+            trades = new ArrayList<>();
+        // Check format
+        if (!isDialogueWellForm(dialogue))
+            throw new IllegalArgumentException("The dialogue of this merchant is not well-formed.");
+        if (!isTradesWellForm(trades))
+            throw new IllegalArgumentException("The trades of this merchant is not well-formed.");
         this.dialogue = dialogue;
         this.trades = trades;
+    }
+
+    public boolean isDialogueWellForm (String[] dialogue){
+        return dialogue.length == 3;
+    }
+
+    public boolean isTradesWellForm (List<Trade> trades){
+        return trades.size() <= 6;
     }
 
     /**

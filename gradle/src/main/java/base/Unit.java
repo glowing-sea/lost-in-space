@@ -27,6 +27,10 @@ public abstract class Unit implements Interactive{
 
 
     public Unit(String name, Location loc, char symbol) {
+        if (name == null) this.name = GameConfiguration.DEFAULT_UNIT_NAME;
+        if (symbol < 'A' || symbol > 'Z') symbol = 'U';
+        if (loc == null)
+            throw new IllegalArgumentException("The location of a unit cannot be null.");
         this.name = name;
         this.loc = loc;
         this.SYMBOL = symbol;

@@ -14,11 +14,28 @@ public class Map {
     private String[] map;
 
     public Map(int mapID, String[] map, char[] walls) {
+        if (map == null)
+            map = GameConfiguration.DEFAULT_MAP;
+        if (walls == null)
+            walls = GameConfiguration.DEFAULT_WALLS;
+
+        if (!isMapWellFormed(map))
+            throw new IllegalArgumentException("The map is not well-formed.");
+
         this.mapID = mapID;
         this.map = map;
         this.walls = walls;
     }
 
+    public static boolean isMapWellFormed (String[] map){
+        if (map.length != 9)
+            return false;
+        for (String line : map){
+            if (line.length() != 9)
+                return false;
+        }
+        return true;
+    }
 
 
     // Getter and setter methods

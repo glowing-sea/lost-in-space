@@ -51,6 +51,16 @@ public class GameConfiguration {
     public static final GameLevelUpRequirement [] LEVEL_UP_REQUIREMENTS;
 
 
+
+    // These are the default attributes when an argument passing to the constructor is null
+    public static final String DEFAULT_UNIT_NAME = "Unknown";
+    public static final String[] DEFAULT_NPC_DIALOGUE = new String[]{"Bye", "Bye", "How are you?"};
+
+    public static final String[] DEFAULT_MAP = new String[]{"         ", "         ","         ", "         ",
+            "         ", "         ","         ", "         ","         "};
+    public static final char[] DEFAULT_WALLS = new char[]{};
+
+
     // Level 0 configuration
 
     // The initial state when the game reach level0
@@ -98,8 +108,6 @@ public class GameConfiguration {
                 "< I am Alice ",
         };
 
-
-
         Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|'});
         Player player = new Player(new Location(0,1));
 
@@ -117,8 +125,10 @@ public class GameConfiguration {
         enemies.add(new Enemy("Goblin1",10,150,50,new Location(0,4),20, item2));
         NPC Bob = new NPC("Bob", new Location(2,0), bobSays);
         NPC Alice = new NPC("Alice", new Location(3,0), aliceSays);
+        NPC NoName = new NPC(null, new Location(4,0), null);
         NPCs.add(Bob);
         NPCs.add(Alice);
+        NPCs.add(NoName);
 
         List<Trade> trades = new ArrayList<>();
         trades.add(new Trade(item2, item1));
@@ -129,6 +139,7 @@ public class GameConfiguration {
         trades.add(new Trade(item2, item3));
 
         merchants.add(new Merchant("Amy", new Location(1,0), new String[]{"Goodbye", "Hope to deal with you again!","Welcome to my store!"}, trades));
+        merchants.add(new Merchant(null,new Location(5,0),null,null));
 
         String dialogue = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +
                 "If a line exceed 103 character, the exceed part will not be displayed........................................";

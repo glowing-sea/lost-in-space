@@ -40,10 +40,10 @@ public class GameStateExamples {
         items.add(item2);
         items.add(item3);
         enemies.add(new Enemy("Goblin1",10,150,50,new Location(0,4),20, item2));
-        NPCs.add(new NPC("Bob", new Location(2,0), new String[]{"Welcome to my land!", "`Where should I go?"}));
+        NPCs.add(new NPC("Bob", new Location(2,0), null));
         List<Trade> trades = new ArrayList<>();
         trades.add(new Trade(item1, item2));
-        merchants.add(new Merchant("Amy", new Location(3,5), new String[]{"bye","bye","Wants some trades"}, trades));
+        merchants.add(new Merchant("Amy", new Location(3,5), null, trades));
 
         String dialogue = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +
                 "If a line exceed 103 character, the exceed part will not be displayed........................................";

@@ -28,19 +28,22 @@ public class PlayerTest {
     public void interactTest(){
         // Kill Enemy
         p.setLoc(new Location(0,3));
-        assertTrue(Player.interact(st, "fd"));
+        assertTrue(Player.interact(st, "fd",""));
         // Talk to an NPC
         p.setLoc(new Location(2,0));
-        assertTrue(Player.interact(st, "f"));
+        assertTrue(Player.interact(st, "f",""));
+        st.interacting = null; // Force leave
         // Talk to a Merchant
         p.setLoc(new Location(3,5));
-        assertTrue(Player.interact(st, "f"));
+        assertTrue(Player.interact(st, "f",""));
+        st.interacting = null; // Force leave
         // Pick an item
         p.setLoc(new Location(3,3));
-        assertTrue(Player.interact(st, "fa"));
+        assertTrue(Player.interact(st, "fa",""));
         // Nothing to interact with
         p.setLoc(new Location(0,0));
-        assertFalse(Player.interact(st, "fa"));
+        assertFalse(Player.interact(st, "fa",""));
+        System.out.println(st);
     }
 
     @Test

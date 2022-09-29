@@ -41,4 +41,17 @@ public class MapTests {
         Location loc5 = new Location(1,1);
         assertTrue(m.reachable(loc5));
     }
+
+//    @Test
+//    public void mapOneLessLine() {
+//        String[] map = new String[]{"         ", "         ","         ", "         ",
+//                "         ", "         ","         ", "         "};
+//        Exception exception = assertThrows(RuntimeException.class, () -> {
+//            Map m = new Map(0,map,null);
+//        });
+//
+//        String expectedMessage = "The map is not well-formed.";
+//        String actualMessage = exception.getMessage();
+//        assertTrue(actualMessage.contains(expectedMessage));
+//    }
 }

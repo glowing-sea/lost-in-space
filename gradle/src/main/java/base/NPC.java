@@ -14,14 +14,40 @@ public class NPC extends Character {
     // The text that will show when the player interact with them
     private final String[] dialogue;
 
-    int progress = 2; // where the dialogue is up to
+    private int progress = 2; // where the dialogue is up to
     // the first two talks in the dialogue is saying goodbye
 
-    String storyBackup = ""; // Backup the story box when first interact with the NPC
+    private String storyBackup = ""; // Backup the story box when first interact with the NPC
 
     public NPC(String name, Location loc, String[] dialogue) {
         super(name, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, loc, 'N');
+
+        // Set default
+        if (dialogue == null) dialogue = GameConfiguration.DEFAULT_NPC_DIALOGUE;
         this.dialogue = dialogue;
+
+        if (!isDialogueWellForm(this.dialogue)){
+            throw new IllegalArgumentException("The dialogue of this NPC written in GameConfiguration is not well-form.");
+        }
+    }
+
+    public static boolean isDialogueWellForm (String[] dialogue){
+        if (dialogue.length < 3)
+            return false;
+        int i = 2;
+        while (i <dialogue.length){
+            if (dialogue[i].charAt(0) == '>'){
+                if (dialogue[i + 1].charAt(0) != '>'
+                        || dialogue[i + 2].charAt(0) != '<'
+                        || dialogue[i + 3].charAt(0) != '<'){
+                    return false;
+                }
+                i += 4;
+            } else {
+                i++;
+            }
+        }
+        return true;
     }
 
     /**
