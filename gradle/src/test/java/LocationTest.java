@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class LocationTest {
 
+    GameStateExamples ex = new GameStateExamples();
+    State st = ex.TEST_STATE_TWO;
 
 
     @Test
@@ -41,7 +43,6 @@ public class LocationTest {
 
     @Test
     public void findUnitTest(){
-        State st = GameStateExamples.TEST_STATE_TWO;
         Location easyLoc = new Location(1,0);
         Location strongLoc = new Location(1,2);
         Location toughLoc = new Location(2,1);

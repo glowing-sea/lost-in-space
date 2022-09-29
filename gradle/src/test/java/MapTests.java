@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Albert Yu
- *
+ * @author Haoting Chen
  *
  */
 public class MapTests {
@@ -20,7 +20,7 @@ public class MapTests {
 
     @BeforeEach
     public void beforeEachTestMethod() {
-        m = GameStateExamples.TEST_STATE_ONE.map;
+        m = new GameStateExamples().TEST_STATE_ONE.map;
     }
 
     @Test
@@ -42,16 +42,29 @@ public class MapTests {
         assertTrue(m.reachable(loc5));
     }
 
-//    @Test
-//    public void mapOneLessLine() {
-//        String[] map = new String[]{"         ", "         ","         ", "         ",
-//                "         ", "         ","         ", "         "};
-//        Exception exception = assertThrows(RuntimeException.class, () -> {
-//            Map m = new Map(0,map,null);
-//        });
-//
-//        String expectedMessage = "The map is not well-formed.";
-//        String actualMessage = exception.getMessage();
-//        assertTrue(actualMessage.contains(expectedMessage));
-//    }
+    @Test
+    public void lineNotWellFormed() {
+        String[] map = new String[]{"         ", "         ","         ", "         ",
+                "         ", "         ","         ", "         "};
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            Map m = new Map(0,map,null);
+        });
+
+        String expectedMessage = "The map is not well-formed.";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void columnNotWellFormed() {
+        String[] map = new String[]{"         ", "          ","         ", "         ",
+                "         ", "         ","         ", "         ", "         "};
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            Map m = new Map(0,map,null);
+        });
+
+        String expectedMessage = "The map is not well-formed.";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 }

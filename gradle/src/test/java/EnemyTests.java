@@ -2,6 +2,8 @@ package tests;
 import base.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utility.GameStateExamples;
+
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,30 +19,10 @@ public class EnemyTests {
 
     @BeforeEach
     public void setup(){
-        ArrayList<Enemy> enemies = new ArrayList<>();
-        Item item = new Item(new Location(-1,-1), ItemType.HP_Boost);
-        enemyEasy = new Enemy("easy",10,30,30,new Location(1,0),20,item);
-        enemyStrong = new Enemy("strong",10,150,50,new Location(1,2),150,item);
-        enemyTough = new Enemy("tough",100,1000,80,new Location(2,1),350,item);
-        Player player = new Player("Ben",100,100,100,new Location(1,1),0,0);
-
-        enemies.add(enemyEasy);
-        enemies.add(enemyStrong);
-        enemies.add(enemyTough);
-
-        String[] mapTest = new String[] {
-                "         ",
-                "EXE      ",
-                "-E---- --",
-                "         ",
-                "-- ------",
-                "         ",
-                "       H ",
-                "---------",
-                "         "};
-        char[] testWalls = new char[] {'-'};
-        Map testMap = new Map(-1,mapTest,testWalls);
-        st = new State(testMap,"abc",0, player,enemies,new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        st = new GameStateExamples().TEST_STATE_TWO;
+        enemyEasy = st.enemies.get(0);
+        enemyStrong = st.enemies.get(1);
+        enemyTough = st.enemies.get(2);
     }
 
 

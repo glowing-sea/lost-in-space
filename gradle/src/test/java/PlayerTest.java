@@ -20,7 +20,7 @@ public class PlayerTest {
 
     @BeforeEach
     public void setup(){
-        st = GameStateExamples.TEST_STATE_ONE;
+        st = new GameStateExamples().TEST_STATE_ONE;
         p = st.player;
     }
 

@@ -19,6 +19,10 @@ public class NPC extends Character {
 
     private String storyBackup = ""; // Backup the story box when first interact with the NPC
 
+    public String[] getDialogue() {
+        return dialogue;
+    }
+
     public NPC(String name, Location loc, String[] dialogue) {
         super(name, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, loc, 'N');
 
@@ -37,7 +41,8 @@ public class NPC extends Character {
         int i = 2;
         while (i <dialogue.length){
             if (dialogue[i].charAt(0) == '>'){
-                if (dialogue[i + 1].charAt(0) != '>'
+                if (i + 3 >= dialogue.length // Too short
+                        || dialogue[i + 1].charAt(0) != '>'
                         || dialogue[i + 2].charAt(0) != '<'
                         || dialogue[i + 3].charAt(0) != '<'){
                     return false;

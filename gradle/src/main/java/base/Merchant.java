@@ -16,13 +16,20 @@ public class Merchant extends Character{
 
     String storyBackup = ""; // Backup the story box when first interact with the NPC
 
+    public String[] getDialogue() {
+        return dialogue;
+    }
+    public List<Trade> getTrades() {
+        return trades;
+    }
+
     public Merchant(String name, Location loc, String[] dialogue, List<Trade> trades) {
         super(name, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, loc, 'M');
         // Default dialogue and trade
         if (dialogue == null)
             dialogue = GameConfiguration.DEFAULT_NPC_DIALOGUE;
         if (trades == null)
-            trades = new ArrayList<>();
+            trades = GameConfiguration.DEFAULT_TRADES;
         // Check format
         if (!isDialogueWellForm(dialogue))
             throw new IllegalArgumentException("The dialogue of this merchant is not well-formed.");

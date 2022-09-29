@@ -54,11 +54,16 @@ public class GameConfiguration {
 
     // These are the default attributes when an argument passing to the constructor is null
     public static final String DEFAULT_UNIT_NAME = "Unknown";
+    public static final char DEFAULT_UNIT_SYMBOL = 'U';
     public static final String[] DEFAULT_NPC_DIALOGUE = new String[]{"Bye", "Bye", "How are you?"};
+
+    public static final Location DEFAULT_UNIT_LOC = new Location(-1,-1);
 
     public static final String[] DEFAULT_MAP = new String[]{"         ", "         ","         ", "         ",
             "         ", "         ","         ", "         ","         "};
     public static final char[] DEFAULT_WALLS = new char[]{};
+
+    public static final List<Trade> DEFAULT_TRADES = new ArrayList<>();
 
 
     // Level 0 configuration
