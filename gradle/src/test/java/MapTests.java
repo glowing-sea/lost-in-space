@@ -29,6 +29,17 @@ public class MapTests {
     }
 
     @Test
+    public void testEqual() {
+        GameStateExamples ex = new GameStateExamples();
+        Map m1 = ex.TEST_STATE_ONE.map;
+        Map m2 = ex.TEST_STATE_TWO.map;
+        assertNotEquals(m1, m2);
+        assertNotEquals(m2, m1);
+        assertEquals(m1, m1);
+        assertEquals(m2, m2);
+    }
+
+    @Test
     public void testReachable() {
         Location loc1 = new Location(2,4);
         assertFalse(m.reachable(loc1));

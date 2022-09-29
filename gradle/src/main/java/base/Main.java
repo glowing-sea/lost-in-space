@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class Main {
 
-    public static String SAVE_LOAD_DIRECTORY = "./game_engine";
+    public static String SAVE_LOAD_DIRECTORY = "./saves";
     public static String SAVE_FILENAME =  "currentSave.json";
 
     public static void main(String[] args) {

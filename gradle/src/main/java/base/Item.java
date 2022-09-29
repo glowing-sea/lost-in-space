@@ -6,7 +6,14 @@ package base;
  */
 public class Item extends Unit{
 
-    private ItemType type;  // NOTE final keyword used here before. It is not right.
+    private final ItemType type;  // NOTE final keyword used here before. It is not right.
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Item i))
+            return false;
+        return this.type == i.type;
+    }
 
     //construction
     public Item(Location loc, ItemType type) {
@@ -69,14 +76,5 @@ public class Item extends Unit{
             default -> name = type.name();
         }
         return name;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Item loc))
-            return false;
-        else{
-            return this.getType() == ((Item) obj).getType();
-        }
     }
 }

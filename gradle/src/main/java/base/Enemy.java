@@ -15,6 +15,15 @@ public class Enemy extends Character {
         this.itemReward = itemReward;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Enemy e))
+            return false;
+        return this.expReward == e.expReward &&
+                this.itemReward.equals(e.itemReward) &&
+                super.equals(e);
+    }
+
     /**
      * Check if an enemy hp is less than zero
      * @return if the enemy is dead

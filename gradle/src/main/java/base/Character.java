@@ -18,6 +18,17 @@ public abstract class Character extends Unit{
         this.def = def;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || obj.getClass() != getClass())
+            return false;
+        Character c = (Character) obj;
+        return this.hp == c.hp &&
+                this.atk == c.atk &&
+                this.def == c.def &&
+                super.equals(c);
+    }
+
 
     public int getHp() {
         return hp;

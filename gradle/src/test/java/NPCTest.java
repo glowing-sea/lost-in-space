@@ -7,6 +7,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class NPCTest {
     @Test
+    public void equalNPC (){
+        NPC n1 = new NPC("Jack",new Location(1,1),null);
+        NPC n2 = new NPC("Jack",new Location(1,1),null);
+        NPC n3 = new NPC("Amy",new Location(1,1),null);
+        NPC n4 = new NPC("Amy",new Location(5,4),null);
+        NPC n5 = new NPC("Amy",new Location(5,4),new String[] {"Something Different","",""});
+        assertEquals(n1,n1);
+        assertEquals(n1,n2);
+        assertNotEquals(n1,n3);
+        assertNotEquals(n1,n4);
+        assertNotEquals(n1,n5);
+    }
+
+    @Test
     public void nullNPC (){
         NPC npc = new NPC(null,null,null);
         assertEquals(GameConfiguration.DEFAULT_UNIT_NAME, npc.getName());

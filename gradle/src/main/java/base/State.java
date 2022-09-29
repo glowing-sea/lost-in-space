@@ -23,6 +23,25 @@ public class State {
 
     public Unit interacting; // The Unit that the play is currently interact with
 
+    @Override
+    public boolean equals(Object obj){
+        if (! (obj instanceof State st))
+            return false;
+        boolean result = this.map.equals(st.map) &&
+                this.story.equals(st.story) &&
+                this.level == st.level &&
+                this.player.equals(st.player) &&
+                this.enemies.equals(st.enemies) &&
+                this.items.equals(st.items) &&
+                this.NPCs.equals(st.NPCs) &&
+                this.merchants.equals(st.merchants) &&
+                this.messageBox.equals(st.messageBox);
+        if (this.interacting == null)
+            return st.interacting == null & result;
+        else
+            return this.interacting.equals(st.interacting);
+    }
+
 
     // A new game
     public State(Map map, String story, int level, Player player, List<Enemy> enemies, List<Item> items, List<NPC> NPCs, List<Merchant> merchants) {

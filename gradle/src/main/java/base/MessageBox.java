@@ -8,7 +8,7 @@ import java.util.LinkedList;
  */
 public class MessageBox extends LinkedList<String> {
 
-    int SIZE = 10;
+    final int SIZE = 10;
 
     public void putMessage (String message){
         if (this.size() <= SIZE - 1){
@@ -19,7 +19,4 @@ public class MessageBox extends LinkedList<String> {
         }
     }
 
-    public void setSIZE(int SIZE) {
-        this.SIZE = SIZE;
-    }
 }

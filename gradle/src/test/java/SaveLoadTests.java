@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class SaveLoadTests {
 
-    private String SAVE_LOAD_DIRECTORY = "./game_engine";
+    private String SAVE_LOAD_DIRECTORY = "./saves";
     private String SAVE_FILENAME = "save-load-testing.json";
 
     /**
@@ -90,7 +90,7 @@ public class SaveLoadTests {
      */
     @Test
     public void testLoadGame() {
-        State state = Main.loadGame(SAVE_LOAD_DIRECTORY + "/" + "load-testing.json");
+        State state = Main.loadGame(SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME);
 
         System.out.println(state);
 

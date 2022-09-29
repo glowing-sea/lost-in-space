@@ -42,6 +42,16 @@ public class ItemTest {
         st = new State(testMap,"abc",0, player,new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
+    @Test
+    public void equalItemsTest(){
+        Item i1 = new Item(null,ItemType.ATK_Boost);
+        Item i2 = new Item(null,ItemType.ATK_Boost);
+        Item i3 = new Item(null,ItemType.DEF_Boost);
+        assertEquals(i1, i1);
+        assertEquals(i1, i2);
+        assertNotEquals(i1, i3);
+    }
+
 
     @Test
     public void useItemTest(){
@@ -58,11 +68,4 @@ public class ItemTest {
         assertEquals(8, st.player.getCapacity());
     }
 
-    @Test
-    public void interact(){
-        st.player.getInventory().get(0).setValid(false);
-        st.player.getInventory().get(1).setValid(false);
-        assertFalse(st.player.getInventory().get(0).interact(st, 0));
-        assertFalse(st.player.getInventory().get(0).interact(st, 0));
-    }
 }

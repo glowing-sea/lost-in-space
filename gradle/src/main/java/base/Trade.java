@@ -22,4 +22,13 @@ public class Trade {
     public Item getTRADE_IN() {
         return TRADE_IN;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Trade t))
+            return false;
+        return this.TRADE_OUT.equals(t.TRADE_OUT) &&
+                this.TRADE_IN.equals(t.TRADE_IN);
+    }
 }

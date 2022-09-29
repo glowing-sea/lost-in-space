@@ -4,6 +4,7 @@ import jdk.swing.interop.SwingInterOpUtils;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * An object storing the attributes and method of an NPC
@@ -35,12 +36,20 @@ public class NPC extends Character {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof NPC n))
+            return false;
+        return this.dialogue == n.dialogue &&
+                super.equals(n);
+    }
+
     public static boolean isDialogueWellForm (String[] dialogue){
         if (dialogue.length < 3)
             return false;
         int i = 2;
         while (i <dialogue.length){
-            if (dialogue[i].charAt(0) == '>'){
+            if (!dialogue[i].equals("") && dialogue[i].charAt(0) == '>'){
                 if (i + 3 >= dialogue.length // Too short
                         || dialogue[i + 1].charAt(0) != '>'
                         || dialogue[i + 2].charAt(0) != '<'
