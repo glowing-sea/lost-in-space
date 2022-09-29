@@ -18,4 +18,5 @@ public class Merchant extends Character{
         this.dialogue = dialogue;
         this.trades = trades;
     }
+    
 }

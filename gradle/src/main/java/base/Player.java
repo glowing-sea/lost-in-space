@@ -43,30 +43,38 @@ public class Player extends Character implements Movable{
      * @param st current game state
      * @return if the interaction succeeded
      */
-    public static boolean interact(State st, String direction){
+    public static boolean interact(State st, String option){
 
-        // Get the location that the player want to interact with.
-        Unit unit;
-        Location unitLoc = st.player.getLoc().locCopy();
-        switch (direction){
-            case "fa" -> {unitLoc.setY(unitLoc.getY() - 1);}
-            case "fd" -> {unitLoc.setY(unitLoc.getY() + 1);}
-            case "fw" -> {unitLoc.setX(unitLoc.getX() - 1);}
-            case "fs" -> {unitLoc.setX(unitLoc.getX() + 1);}
-        }
-        for(NPC npc: st.NPCs){
-            if(npc.contacting && npc.getLoc()!=unitLoc){
-                npc.setContacting(false);
+        // The player is currently interacting with an NPC or merchant
+        if (st.interacting != null) {
+            Unit unit = st.interacting;
+            switch (option){
+                case "A","(A)" -> unit.interact(st,1);
+                case "B","(B)" -> unit.interact(st,2);
+                case "G","(G)" -> unit.interact(st,3);
             }
         }
-        // Search if there is a unit to interact in this location
-        unit = unitLoc.findUnit(st);
-        if (unit == null) {
-            st.messageBox.putMessage("There is nothing to interact with.");
-            return false;
-        } else if (!unit.interact(st)){
-            st.messageBox.putMessage("Interact failed.");
-            return false;
+        else // The player is currently not interacting
+        {
+            // Get the location that the player want to interact with.
+            Unit unit;
+            Location unitLoc = st.player.getLoc().locCopy();
+            switch (option){
+                case "fa" -> {unitLoc.setY(unitLoc.getY() - 1);}
+                case "fd" -> {unitLoc.setY(unitLoc.getY() + 1);}
+                case "fw" -> {unitLoc.setX(unitLoc.getX() - 1);}
+                case "fs" -> {unitLoc.setX(unitLoc.getX() + 1);}
+            }
+
+            // Search if there is a unit to interact in this location
+            unit = unitLoc.findUnit(st);
+            if (unit == null) {
+                st.messageBox.putMessage("There is nothing to interact with.");
+                return false;
+            } else if (!unit.interact(st, 0)){
+                st.messageBox.putMessage("Interact failed.");
+                return false;
+            }
         }
         return true;
     }
@@ -137,6 +145,10 @@ public class Player extends Character implements Movable{
      * @return true if the character has moved
      */
     public boolean move (State st, String direction, int speed){
+        if (st.interacting != null) {
+            st.messageBox.putMessage("System: you need to say goodbye before leaving.");
+            return false;
+        }
         Location newLoc;
         Location adjLoc;
         switch (direction) {

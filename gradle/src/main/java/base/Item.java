@@ -48,7 +48,7 @@ public class Item extends Unit{
      * @return false if the item is invalid or the player's bag is full
      */
     @Override
-    public boolean interact(State st) {
+    public boolean interact(State st, int option) {
         if (!this.valid)
             return false;  // Invalid Item
         if (!st.player.addItem(this)){

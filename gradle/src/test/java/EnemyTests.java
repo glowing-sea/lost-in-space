@@ -75,6 +75,7 @@ public class EnemyTests {
 
     @Test
     public void farAway(){
+        st.player.move(st, "w", 1);
         st.player.move(st, "dd", 2);
         st.player.move(st, "dd", 2); // Move away
         Player.interact(st, "fs");

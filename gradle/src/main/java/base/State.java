@@ -21,6 +21,8 @@ public class State {
     // Display Variable
     public MessageBox messageBox; // Length must be <= 10
 
+    public Unit interacting; // The Unit that the play is currently interact with
+
 
     // A new game
     public State(Map map, String story, int level, Player player, List<Enemy> enemies, List<Item> items, List<NPC> NPCs, List<Merchant> merchants) {
@@ -34,6 +36,7 @@ public class State {
         this.merchants = merchants;
         this.messageBox = new MessageBox();
         this.messageBox.putMessage("Need Help? Type 'tips'");
+        this.interacting = null;
     }
     public void setStory(String story){this.story = story;}
 

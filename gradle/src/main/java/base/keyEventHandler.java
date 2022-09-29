@@ -27,15 +27,16 @@ public class keyEventHandler {
             // Update the game state according to the inputs
             int op = -1;
             switch (tokens[0]) {
-                // Movement & Interaction
-                case "w","s","a","d" -> state.player.move(state, tokens[0], 1);
-                case "ww","ss","aa","dd" -> state.player.move(state, tokens[0], 2);
-                case "fw","fa","fs","fd", "f" -> Player.interact(state, input);
+                // Movement & Instant Interaction
+                case "w","s","a","d" -> state.player.move(state, tokens[0], 1); // disable when st.interacting = true;
+                case "ww","ss","aa","dd" -> state.player.move(state, tokens[0], 2); // disable when st.interacting = true;
+                case "fw","fa","fs","fd", "f" -> Player.interact(state, input); // disable when st.interacting = true;
 
-                //talking with NPCs
-                case "A","(A)" -> op = 1;
-                case "B","(B)" -> op = 2;
-                case "L","(L)" -> op = 3;
+
+                // Continuous Interaction
+                case "A","(A)", "B","(B)", "G","(G)"-> Player.interact(state, input); // disable when st.interacting = false;
+
+
                 // Inventory Management
                 case "use" -> Player.takeOutItem(state, value, 0);
                 case "drop" -> Player.takeOutItem(state, value, 1);
@@ -56,18 +57,6 @@ public class keyEventHandler {
                 default -> {
                     state.messageBox.putMessage("Sorry, '" + input + "' is not a value input.");
                 }
-            }
-
-            NPC npc1= null;
-            for (NPC npc: state.NPCs){
-                if(npc.contacting){
-                    npc1 = npc;
-                    break;
-                }
-            }
-            if(npc1!=null) {
-                npc1.setOperations(op);
-                npc1.interact(state);
             }
 
             // If the player has not reached the final game level, check if the player can proceed to the next level

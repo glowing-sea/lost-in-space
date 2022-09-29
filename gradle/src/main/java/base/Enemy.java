@@ -54,7 +54,7 @@ public class Enemy extends Character {
      * @param st the game state
      */
     @Override
-    public boolean interact(State st) {
+    public boolean interact(State st, int option) {
         this.fight(st);
         st.messageBox.putMessage("System: you are fighting with the enemy " + this.getName() + "!");
         st.messageBox.putMessage("System: enemy's HP: " + this.getHp() + ".");

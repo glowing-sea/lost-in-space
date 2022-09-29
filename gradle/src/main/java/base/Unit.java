@@ -86,7 +86,7 @@ public abstract class Unit implements Interactive{
      * @return a list of location
      */
     @Override
-    public boolean interact(State st) {
+    public boolean interact(State st, int option) {
         st.messageBox.putMessage("You interact with " + this.name + "!");
         return true;
     }
