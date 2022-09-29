@@ -7,7 +7,6 @@ import java.io.File;
 /**
  * This the main class where the game runs.
  */
-
 public class Main {
 
     public static String SAVE_LOAD_DIRECTORY = "C:/game_engine";

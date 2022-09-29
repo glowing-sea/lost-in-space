@@ -11,6 +11,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * This unit tests are meant for the Save and Load Feature
+ * @author Albert Yu
+ */
 public class SaveLoadTests {
 
     @Test
