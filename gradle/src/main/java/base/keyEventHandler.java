@@ -15,6 +15,7 @@ public class keyEventHandler {
      * @return 0 if the game continue and 100 if the game ends.
      */
     public static int keyEventHandler(State state, String input) {
+
         String[] tokens = input.split("-");
         String value = "";
         if (tokens.length == 2)
@@ -33,9 +34,8 @@ public class keyEventHandler {
             case "A","(A)", "B","(B)", "G","(G)", "buy"-> Player.interact(state, tokens[0], value); // disable when st.interacting = false;
 
             // save game        
-            case "save" -> {Main.saveGame(state);
-                    System.out.println("Game saved.");}
-            case "load" -> System.out.println("Please run the game with 1 argument to load the currently saved game.");
+            case "save" -> Main.saveGame(state,value);
+            case "load" -> Main.loadGame(state,value);
 
             case "q" -> { // Should we save our game here? --Zhishang
                     System.out.println("=== Thank you for playing our game. See you soon. ===");
@@ -73,7 +73,6 @@ public class keyEventHandler {
             return 100;
         }
 
-        System.out.println(state);
         return 0;
     }
 }

@@ -20,23 +20,11 @@ import java.util.List;
  */
 public class Utility {
 
-    // Following used for testing purposes
-    private static String jsonString = "{\"level\":1, \"dialogue\":\"one\", \"enemies\":[{\"name\":\"Evil\", \"hp\":10, \"atk\": 10, \"def\": 11, \"location\":{\"x\":0, \"y\":0}, \"isDead\": false}]}";
-    private static String jsonStringSmall = "{\"level\":1, \"dialogue\":\"one\"}";
-
-    /**
-     * Main method used for testing purposes
-     */
-    public static void main(String[] args) {
-        // used for testing purposes:
-        //writeToJSON(s);
-        //readFromJSON();
-    }
 
     /**
      * Writes String data to a persistent file.
-     * @param fileName
-     * @param data
+     * @param fileName filename
+     * @param data current state
      */
     public static void writeToFile(String fileName, String data) {
 
@@ -62,16 +50,9 @@ public class Utility {
      */
     public static void writeToJSON(String fn, State s) {
 
-        Map map;
-        Player player;
-        List<Enemy> enemies;
-        int level;
-        String dialogue;
-
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
-
         writeToFile(fn, gson.toJson(s));
     }
 

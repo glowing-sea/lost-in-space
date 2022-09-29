@@ -33,7 +33,7 @@ public class State {
                 this.player.equals(st.player) &&
                 this.enemies.equals(st.enemies) &&
                 this.items.equals(st.items) &&
-//                this.NPCs.equals(st.NPCs) &&
+                this.NPCs.equals(st.NPCs) &&
                 this.merchants.equals(st.merchants) &&
                 this.messageBox.equals(st.messageBox);
         if (this.interacting == null)
