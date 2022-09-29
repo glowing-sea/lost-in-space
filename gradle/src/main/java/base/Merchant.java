@@ -13,7 +13,7 @@ import java.util.List;
 public class Merchant extends Character{
 
     private final String[] dialogue; // length 3 only
-    private List<Trade> trades; // up to 6 deals
+    private final List<Trade> trades; // up to 6 deals
 
     private String storyBackup = ""; // Backup the story box when first interact with the NPC
 

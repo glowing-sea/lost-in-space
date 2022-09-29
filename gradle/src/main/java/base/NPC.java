@@ -40,7 +40,7 @@ public class NPC extends Character {
     public boolean equals(Object obj) {
         if (!(obj instanceof NPC n))
             return false;
-        return this.dialogue == n.dialogue &&
+        return Arrays.equals(this.dialogue, n.dialogue) &&
                 super.equals(n);
     }
 
