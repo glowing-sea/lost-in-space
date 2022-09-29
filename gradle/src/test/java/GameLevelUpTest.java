@@ -30,8 +30,8 @@ public class GameLevelUpTest {
         char[] testWalls = new char[] {'-'};
         Map testMap = new Map(-1,mapTest,testWalls);
         st = new State(testMap,"abc",0, player,new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-        require1 = new GameLevelUpRequirement(new Location(6,7));
-        require2 = new GameLevelUpRequirement(new Location(8,0));
+        require1 = new GameLevelUpRequirement(new Location(6,7),false,false);
+        require2 = new GameLevelUpRequirement(new Location(8,0),false,false);
     }
     @Test
     public void levelUpWhenReachALocation(){

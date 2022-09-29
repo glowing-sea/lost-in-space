@@ -6,9 +6,13 @@ package base;
 public class GameLevelUpRequirement {
 
     private Location location;
+    private Boolean enemies;
+    private Boolean key;
 
-    public GameLevelUpRequirement(Location location) {
+    public GameLevelUpRequirement(Location location, Boolean enemies, Boolean key) {
         this.location = location;
+        this.enemies = enemies;
+        this.key = key;
     }
 
     public Location getLocation() {
@@ -19,7 +23,6 @@ public class GameLevelUpRequirement {
         this.location = location;
     }
 
-    // FIXME
     /*
     The current requirement of moving to the next game level is only based on the character's location.
     There may be more requirements (fields) in the future.
@@ -33,6 +36,48 @@ public class GameLevelUpRequirement {
      * @return satisfies or not
      */
     public boolean requirementSatisfied(State st){
-        return location.equals(st.player.getLoc());
+
+        boolean locationTrue;
+        boolean enemiesTrue = false;
+        boolean keyTrue = false;
+
+        //Are requirements satisfied
+        locationTrue = location.equals(st.player.getLoc());
+        if (st.enemies.isEmpty()) enemiesTrue = true;
+        for (Item item: st.player.getInventory()) {
+            if (item.getType() == ItemType.Key) keyTrue = true;
+        }
+
+
+        //Do requirements need to be satisfied
+        if (locationTrue) {
+        if (enemies) {
+            if (!(enemiesTrue)) {
+                st.messageBox.putMessage("You must beat all enemies before you leave");
+                if (key && !keyTrue) st.messageBox.putMessage("You must have a key to enter");
+                return false;
+            }
+
+        }
+        if (key) {
+            if (!(keyTrue)) {
+                st.messageBox.putMessage("You must have a key to enter");
+                return false;
+            }
+
+            //Use the key item when leveling up
+            for (Item item: st.player.getInventory()) {
+                String newstr = "" + (st.player.getInventory().indexOf(item) + 1);
+                if (item.getType() == ItemType.Key) {
+                    st.player.takeOutItem(st,newstr, 0) ;
+                    break;
+                }
+            }
+
+        }
+        return true;
+        }
+
+        return false;
     }
 }
