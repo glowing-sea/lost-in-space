@@ -57,8 +57,8 @@ public class Utility {
 
     /**
      * Writes a State object instance to a persistent JSON file.
-     * @param fn
-     * @param s
+     * @param fn filename
+     * @param s State
      */
     public static void writeToJSON(String fn, State s) {
 
