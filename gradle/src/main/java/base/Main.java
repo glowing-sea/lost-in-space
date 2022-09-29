@@ -153,9 +153,18 @@ public class Main {
      * @param fileName
      * @return the loaded game state
      */
-    public static State loadGame(String fileName) {
-
+    public static State loadGameTest(String fileName) {
         return Utility.readFromJSON(fileName);
+    }
+
+    /**
+     * save a game to file
+     * this method is only used for unit case testing.
+     * @param s current state
+     * @param filename file name
+     */
+    public static void saveGameTest(State s, String filename) {
+        Utility.writeToJSON(filename, s);
     }
 
 

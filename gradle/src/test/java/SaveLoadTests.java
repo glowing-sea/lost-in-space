@@ -44,7 +44,7 @@ public class SaveLoadTests {
 
         State s = ex.TEST_STATE_ONE;
 
-        Main.saveGame(s, SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME);
+        Main.saveGameTest(s, SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME);
 
         File f = new File(SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME);
 
@@ -56,7 +56,7 @@ public class SaveLoadTests {
      */
     @Test
     public void testLoadGame() {
-        State s1 = Main.loadGame(SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME);
+        State s1 = Main.loadGameTest(SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME);
         State s2 = ex.TEST_STATE_ONE;
         assertEquals(s1, s2);
     }
