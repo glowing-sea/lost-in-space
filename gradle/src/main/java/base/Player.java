@@ -43,7 +43,7 @@ public class Player extends Character implements Movable{
      * @param st current game state
      * @return if the interaction succeeded
      */
-    public static boolean interact(State st, String option){
+    public static boolean interact(State st, String option, String value){
 
         // The player is currently interacting with an NPC or merchant
         if (st.interacting != null) {
@@ -52,6 +52,16 @@ public class Player extends Character implements Movable{
                 case "A","(A)" -> unit.interact(st,1);
                 case "B","(B)" -> unit.interact(st,2);
                 case "G","(G)" -> unit.interact(st,3);
+                case "buy" ->{
+                    int goodIdx;
+                    try {
+                        goodIdx = Integer.parseInt(value);
+                    } catch(NumberFormatException e) {
+                        st.messageBox.putMessage("The good index is not well-formed.");
+                        return false;
+                    }
+                    unit.interact(st,goodIdx + 3);
+                }
             }
         }
         else // The player is currently not interacting

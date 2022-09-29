@@ -99,6 +99,7 @@ public class GameConfiguration {
         };
 
 
+
         Map mapOBJ = new Map(0, map, new char[] {'-', '+', '|'});
         Player player = new Player(new Location(0,1));
 
@@ -118,9 +119,16 @@ public class GameConfiguration {
         NPC Alice = new NPC("Alice", new Location(3,0), aliceSays);
         NPCs.add(Bob);
         NPCs.add(Alice);
+
         List<Trade> trades = new ArrayList<>();
-        trades.add(new Trade(item1, item2));
-        merchants.add(new Merchant("Amy", new Location(1,0), "Wants some trades", trades));
+        trades.add(new Trade(item2, item1));
+        trades.add(new Trade(item2, item3));
+        trades.add(new Trade(item2, item1));
+        trades.add(new Trade(item2, item3));
+        trades.add(new Trade(item2, item1));
+        trades.add(new Trade(item2, item3));
+
+        merchants.add(new Merchant("Amy", new Location(1,0), new String[]{"Goodbye", "Hope to deal with you again!","Welcome to my store!"}, trades));
 
         String dialogue = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +
                 "If a line exceed 103 character, the exceed part will not be displayed........................................";

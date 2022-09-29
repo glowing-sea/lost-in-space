@@ -30,11 +30,11 @@ public class keyEventHandler {
                 // Movement & Instant Interaction
                 case "w","s","a","d" -> state.player.move(state, tokens[0], 1); // disable when st.interacting = true;
                 case "ww","ss","aa","dd" -> state.player.move(state, tokens[0], 2); // disable when st.interacting = true;
-                case "fw","fa","fs","fd", "f" -> Player.interact(state, input); // disable when st.interacting = true;
+                case "fw","fa","fs","fd", "f" -> Player.interact(state, input, value); // disable when st.interacting = true;
 
 
                 // Continuous Interaction
-                case "A","(A)", "B","(B)", "G","(G)"-> Player.interact(state, input); // disable when st.interacting = false;
+                case "A","(A)", "B","(B)", "G","(G)", "buy"-> Player.interact(state, tokens[0], value); // disable when st.interacting = false;
 
 
                 // Inventory Management
