@@ -49,6 +49,7 @@ java:
     reports:
       junit: build/test-results/test/**/TEST-*.xml
 
+
 #artifacts:
 #  when: always
 #  paths:
