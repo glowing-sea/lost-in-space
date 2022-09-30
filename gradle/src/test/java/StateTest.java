@@ -27,8 +27,8 @@ public class StateTest {
 
     @BeforeEach
     public void setup() {
-        ex = new GameStateExamples();
-        st = new GameStateExamples().TEST_STATE_ONE;
+        GameStateExamples.initialise();
+        st = GameStateExamples.TEST_STATE_ONE;
         p = st.player;
     }
 

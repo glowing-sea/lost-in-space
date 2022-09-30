@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -11,12 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ItemTest {
 
-    // Initialise all fields in the GameConfiguration class
-    @BeforeAll
-    public static void initialise(){
-        GameConfiguration.initialise();
-    }
     State st;
+
 
     @BeforeEach
     public void setup(){
@@ -54,9 +52,15 @@ public class ItemTest {
         Item i1 = new Item(null,ItemType.ATK_Boost);
         Item i2 = new Item(null,ItemType.ATK_Boost);
         Item i3 = new Item(null,ItemType.DEF_Boost);
+        Item i5 = new Item("Key To Level 2", new Location(3,5));
+        Item i6 = new Item("Key To Level 1", null);
         assertEquals(i1, i1);
         assertEquals(i1, i2);
         assertNotEquals(i1, i3);
+        assertNotEquals(i5, i6);
+        List<Item> itemList = new ArrayList<>();
+        itemList.add(i5);
+        assertFalse(itemList.contains(i6));
     }
 
 

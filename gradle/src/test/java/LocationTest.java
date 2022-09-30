@@ -14,15 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test functions in the Location Class
  */
 public class LocationTest {
+    State st;
 
-    // Initialise all fields in the GameConfiguration class
-    @BeforeAll
-    public static void initialise(){
-        GameConfiguration.initialise();
+    @BeforeEach
+    public void setup(){
+        GameStateExamples.initialise();
+        st = GameStateExamples.TEST_STATE_TWO;
     }
-
-    GameStateExamples ex = new GameStateExamples();
-    State st = ex.TEST_STATE_TWO;
 
 
     @Test

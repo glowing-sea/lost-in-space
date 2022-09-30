@@ -12,13 +12,19 @@ public class Item extends Unit{
     public boolean equals(Object obj) {
         if (!(obj instanceof Item i))
             return false;
-        return this.type == i.type;
+        return this.type == i.type && this.getName().equals(i.getName());
     }
 
     //construction
     public Item(Location loc, ItemType type) {
         super(type.name(), loc, 'I');
         this.type = type;
+    }
+
+    //construction for making a key item with a specified name
+    public Item(String keyItemName, Location loc) {
+        super(keyItemName, loc, 'I');
+        this.type = ItemType.Key;
     }
 
     public ItemType getType() {
@@ -57,6 +63,7 @@ public class Item extends Unit{
         } else {
             st.items.remove(this); // Remove from the map
             st.messageBox.putMessage(st.player.getName() + " has picked up an item " + "[ " + this + " ]" + ".");
+            // System.out.println(st.player.getName() + " has picked up an item " + "[ " + this.getName() + " ]" + ".");
         }
 
         return true;
@@ -66,7 +73,7 @@ public class Item extends Unit{
     public String toString() {
         String name;
         switch(type){
-            case Key -> name = "Key Item";
+            case Key -> name = getName();
             case HP_Boost -> name = "HP+";
             case ATK_Boost -> name = "ATK+";
             case DEF_Boost -> name = "DEF+";

@@ -157,7 +157,12 @@ public class State {
 
         int count = 3; // The number of line that has text.
         for (Item item: this.player.getInventory()){
-            inventory[count] = "  " + DisplayUtility.fixLength( count - 2 + ": " + item, 14);
+            String itemName;
+            if (item.getType() == ItemType.Key)
+                itemName = item.getType().name();
+            else
+                itemName = item.toString();
+            inventory[count] = "  " + DisplayUtility.fixLength( count - 2 + ": " + itemName, 14);
             count++;
             if (count == 9)
                 break;

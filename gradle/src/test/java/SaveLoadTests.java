@@ -21,16 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class SaveLoadTests {
 
-    // Initialise all fields in the GameConfiguration class
-    @BeforeAll
-    public static void initialise(){
-        GameConfiguration.initialise();
-    }
 
-    private String SAVE_LOAD_DIRECTORY = "./saves";
-    private String SAVE_FILENAME = "save-load-testing.json";
+    private final String SAVE_LOAD_DIRECTORY = "./saves";
+    private final String SAVE_FILENAME = "save-load-testing.json";
 
-    GameStateExamples ex = new GameStateExamples();
 
     /**
      * Making the game engine working directory test.
@@ -49,7 +43,7 @@ public class SaveLoadTests {
     @Test
     public void testSaveGame() {
 
-        State s = ex.TEST_STATE_ONE;
+        State s = GameStateExamples.TEST_STATE_ONE;
 
         Main.saveGameTest(s, SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME);
 
@@ -64,7 +58,7 @@ public class SaveLoadTests {
     @Test
     public void testLoadGame() {
         State s1 = Main.loadGameTest(SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME);
-        State s2 = ex.TEST_STATE_ONE;
+        State s2 = GameStateExamples.TEST_STATE_ONE;
         assertEquals(s1, s2);
     }
 }

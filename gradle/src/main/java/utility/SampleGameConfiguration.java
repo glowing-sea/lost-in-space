@@ -1,57 +1,15 @@
-package base;
+package utility;
+
+import base.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This class tells what the game look like. This includes,
- * 1. the initial game state at each game level.
- * 2. the requirement for a state to move to the next level.
- * 3. which game state level indicate a finished game.
- * ...
- */
-
-public class GameConfiguration {
-
+public class SampleGameConfiguration {
     static {
         initialise();
     }
-
     public static void initialise(){
-        // Game Attributes
-        GAME_TITLE = "Lost in Space";
-        TIPS = new String[]{
-                "[ Game Manual ]",
-                "Character Movement: 'w', 's', 'a', 'd'",
-                "Interaction: 'fw', 'fs', 'fa', 'fd'",
-                "Inventory Management:",
-                "'use-index', 'drop-index', 'view-index'",
-                "Follow the goals implied in the story ",
-                "to advance to the next game level."
-        };
-        // Player Attributes
-        YOUR_NAME = "Jack";
-        INITIAL_HP = 100;
-        INITIAL_ATK = 100;
-        INITIAL_DEF = 100;
-        INITIAL_EXP = 0;
-        INITIAL_LEVEL = 0;
-        INITIAL_INVENTORY = new ArrayList<>();
-        Item item = new Item(new Location(-1,-1), ItemType.HP_Boost);
-        INITIAL_INVENTORY.add(item);
-        INITIAL_INVENTORY.add(item);
-        INITIAL_INVENTORY.add(item);
-        INITIAL_INVENTORY.add(item);
-        INITIAL_CAPACITY = 6;
-        // Unit Attributes
-        DEFAULT_UNIT_NAME = "Unknown";
-        DEFAULT_UNIT_SYMBOL = 'U';
-        DEFAULT_NPC_DIALOGUE = new String[]{"Bye", "Bye", "How are you?"};
-        DEFAULT_UNIT_LOC = new Location(-1,-1);
-        DEFAULT_MAP = new String[]{"         ", "         ","         ", "         ",
-                "         ", "         ","         ", "         ","         "};
-        DEFAULT_WALLS = new char[]{};
-        DEFAULT_TRADES = new ArrayList<>();
-
         setLevel0();
         setLevel1();
         setLevel2();
@@ -59,36 +17,11 @@ public class GameConfiguration {
         groupAllLevel ();
     }
 
-    // Game Attributes
-    public static String GAME_TITLE;
-    public static String[] TIPS;
-
-    // Player Attributes
-    public static String YOUR_NAME;
-    public static int INITIAL_HP;
-    public static int INITIAL_ATK;
-    public static int INITIAL_DEF;
-    public static int INITIAL_EXP;
-    public static int INITIAL_LEVEL;
-    public static List<Item> INITIAL_INVENTORY;
-    public static int INITIAL_CAPACITY;
-
-    // Default Unit Attributes (when they are set as null)
-    public static String DEFAULT_UNIT_NAME;
-    public static char DEFAULT_UNIT_SYMBOL;
-    public static String[] DEFAULT_NPC_DIALOGUE;
-    public static Location DEFAULT_UNIT_LOC;
-    public static String[] DEFAULT_MAP;
-    public static char[] DEFAULT_WALLS;
-    public static List<Trade> DEFAULT_TRADES;
-
-
-
     // The state level indicating a finished game.
     public static int FINAL_LEVEL;
     // An array of sequential game from start to finish.
     public static State[] GAME_STATES;
-    public static GameLevelUpRequirement [] LEVEL_UP_REQUIREMENTS;
+    public static GameLevelUpRequirement[] LEVEL_UP_REQUIREMENTS;
 
 
     // Level 0 configuration

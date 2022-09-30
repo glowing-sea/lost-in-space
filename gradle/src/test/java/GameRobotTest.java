@@ -19,31 +19,37 @@ public class GameRobotTest {
     }
 
 
-    List<String> Level0 = new RobotInstructions().Level0();
-    List<String> Level1 = new RobotInstructions().Level1();
-    List<String> Level2 = new RobotInstructions().Level2();
+    List<String> Level0 = RobotInstructions.Level0();
+    List<String> Level1 = RobotInstructions.Level1();
+    List<String> Level2 = RobotInstructions.Level2();
 
     @Test
     public void levelUpWhenReachALocation() {
 
-        boolean gamewon = false;
+        GameConfiguration.initialise();
+
+        boolean gameWon = false;
         State loadingState = GameConfiguration.GAME_STATES[0];
+        System.out.println(loadingState);
         for (String input:Level0) {
             keyEventHandler.keyEventHandler(loadingState, input);
-
+            System.out.println("User Input: " + input);
+            System.out.println(loadingState);
         }
         for (String input:Level1) {
             keyEventHandler.keyEventHandler(loadingState, input);
+            System.out.println("User Input: " + input);
+            System.out.println(loadingState);
 
         }
         for (String input:Level2) {
             keyEventHandler.keyEventHandler(loadingState, input);
-
+            System.out.println("User Input: " + input);
+            System.out.println(loadingState);
         }
-        if (loadingState.level == 3) gamewon = true;
+        if (loadingState.level == 3) gameWon = true;
 
-        if (!gamewon) System.out.print(loadingState);
-        assertEquals(gamewon, true);
+        if (!gameWon) System.out.print(loadingState);
+        assertEquals(gameWon, true);
     }
-
 }
