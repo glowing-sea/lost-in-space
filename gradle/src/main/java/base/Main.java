@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 /**
  * This the main class where the game runs.
+ * @Author Haoting Chen
+ * @Author Albert Yu
  */
 public class Main {
 
@@ -16,8 +18,6 @@ public class Main {
     public static String SAVE_FILENAME =  "currentSave.json";
 
     public static void main(String[] args) {
-
-
         loadingState = GameConfiguration.GAME_STATES[0];
 
         // Ensure save load directory is present in local machine
@@ -48,7 +48,7 @@ public class Main {
 
     /**
      * save a game to file
-     * @param s
+     * @param s State
      */
     public static void saveGame(State s) {
         Utility.writeToJSON(SAVE_LOAD_DIRECTORY + "/" + SAVE_FILENAME, s);
@@ -168,10 +168,9 @@ public class Main {
     }
 
 
-
-
     /**
      * makes the game save / load directory.
+     * @deprecated
      */
     public static void makeDirectory() {
         File f = new File(SAVE_LOAD_DIRECTORY);

@@ -5,6 +5,10 @@ package base;
  *  * @Albert Yu: FIXME this class is not required:
  *  * 1. Design is not so great.
  *  * 2. Also, when implementing load function, these fixed final constants cause a run-time error.
+ *
+ * UPDATE: Above comments done by Albert, when investigating bug.
+ *         Haoting Chen has updated this class (see code below). It functions better than before, and the bug no longer
+ *         manifests.
  */
 
 public class Trade {

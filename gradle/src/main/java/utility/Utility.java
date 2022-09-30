@@ -20,7 +20,6 @@ import java.util.List;
  */
 public class Utility {
 
-
     /**
      * Writes String data to a persistent file.
      * @param fileName filename

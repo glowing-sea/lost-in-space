@@ -28,4 +28,16 @@ member_declaration:
 - [2] https://stackoverflow.com/questions/68050125/gitlab-runner-prepare-environment-failed-to-start-process-pwsh-in-windows
 - [3] https://stackoverflow.com/questions/48496048/how-to-solve-a-stuck-gitlab-ci-pipeline
 - [4] https://docs.gitlab.com/
+- [5] Java 17 Recipes: A Problem-Solution Approach
+      By Josh Juneau, Luciano Manelli (Albert Yu)
+- [6] Game Engine Architecture, Third Edition, 3rd Edition
+      By Jason Gregory (Albert Yu)
+- [7] Unified Modeling Language User Guide, The, Second Edition
+      By Grady Booch, James Rumbaugh, Ivar Jacobson (Albert Yu)
+- [8] Lessons in IT Transformation: Technology Expert to Business Leader
+      By Larry Bonfante (Albert Yu)
+- [9] JUnit and Mockito Unit Testing for Java Developers
+      By Matthew Speake (Albert Yu)
+- [10] JSON Quick Syntax Reference
+       By Wallace Jackson (Albert Yu)
 - 

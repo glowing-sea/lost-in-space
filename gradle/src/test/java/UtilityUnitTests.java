@@ -54,6 +54,9 @@ public class UtilityUnitTests {
         s = new State(new Map(0, map, new char[] {'-', '+', '|'}), "dual", 10, p1, enemies,  i, null, null);
     }
 
+    /**
+     * Test the function "make directory", in Main.class
+     */
     @Test
     public void testMakeDirectory() {
         Main.makeDirectory();
@@ -61,6 +64,10 @@ public class UtilityUnitTests {
 
         assertTrue(f.exists());
     }
+
+    /**
+     * Test the saving function of this game engine.
+     */
     @Test
     public void testWriteToJson() {
 
@@ -69,6 +76,9 @@ public class UtilityUnitTests {
         assertTrue(f.exists());
     }
 
+    /**
+     * Test the load function of thie game engine.
+     */
     @Test
     public void testReadFromJson() {
         // first test
@@ -82,6 +92,9 @@ public class UtilityUnitTests {
         assertEquals(10, p.level);
     }
 
+    /**
+     * test an exception thrown by the Utility class.
+     */
     @Test
     void exceptionTesting() {
         // because C:/tempp does not exist on local
