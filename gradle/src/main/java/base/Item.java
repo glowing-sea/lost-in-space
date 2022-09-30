@@ -21,6 +21,12 @@ public class Item extends Unit{
         this.type = type;
     }
 
+    //construction for making a key item with a specified name
+    public Item(String keyItemName, Location loc) {
+        super(keyItemName, loc, 'I');
+        this.type = ItemType.Key;
+    }
+
     public ItemType getType() {
         return this.type;
     }
@@ -66,7 +72,7 @@ public class Item extends Unit{
     public String toString() {
         String name;
         switch(type){
-            case Key -> name = "Key Item";
+            case Key -> name = this.getName();
             case HP_Boost -> name = "HP+";
             case ATK_Boost -> name = "ATK+";
             case DEF_Boost -> name = "DEF+";
@@ -75,5 +81,10 @@ public class Item extends Unit{
             default -> name = type.name();
         }
         return name;
+    }
+
+    public static void main(String[] args) {
+        Item item = new Item("Key to Level 2", new Location(1,1));
+        System.out.println(item);
     }
 }

@@ -128,15 +128,21 @@ public class Player extends Character implements Movable{
         }
         Item item = st.player.getInventory().get(itemIdx);
 
-        if (action == 0){
-            st.player.getInventory().remove(itemIdx);
-            item.useItem(st);
-            st.messageBox.putMessage(st.player.getName() + " uses the item [ " + item + " ].");
-        } else if (action == 1) {
-            st.player.getInventory().remove(itemIdx);
-            st.messageBox.putMessage(st.player.getName() + " drops the item [ " + item + " ].");
-        } else {
+        if (action == 3){
             st.messageBox.putMessage("The item at index " + (itemIdx + 1) + " is: [ " + item + " ].");
+        }
+        if (item.getType() != ItemType.Key){
+            if (action == 0){
+                st.player.getInventory().remove(itemIdx);
+                item.useItem(st);
+                st.messageBox.putMessage(st.player.getName() + " uses the item [ " + item + " ].");
+            } else if (action == 1) {
+                st.player.getInventory().remove(itemIdx);
+                st.messageBox.putMessage(st.player.getName() + " drops the item [ " + item + " ].");
+            }
+        } else {
+            st.messageBox.putMessage("You cannot drop or use a key item!");
+            return false;
         }
         return true;
     }
@@ -151,7 +157,7 @@ public class Player extends Character implements Movable{
         int level = st.level;
         GameLevelUpRequirement levelUpRequirement= GameConfiguration.LEVEL_UP_REQUIREMENTS[level];
         if (levelUpRequirement != null){
-            Location destination = levelUpRequirement.getLocation();
+            Location destination = levelUpRequirement.getDestination();
             st.messageBox.putMessage("Your goal is to reach " + destination + ".");
             return true;
         } else {

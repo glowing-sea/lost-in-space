@@ -72,15 +72,17 @@ public class Enemy extends Character {
     @Override
     public boolean interact(State st, int option) {
         this.fight(st);
-        st.messageBox.putMessage("System: you are fighting with the enemy " + this.getName() + "!");
-        st.messageBox.putMessage("System: enemy's HP: " + this.getHp() + ".");
+        st.messageBox.putMessage("You are fighting with the enemy " + this.getName() + "!");
+        st.messageBox.putMessage("Enemy's HP: " + this.getHp() + " in this turn.");
 
         if (this.getHp() <= 0){
-            st.messageBox.putMessage("System: you killed the enemy " + this.getName() + "!");
+            st.messageBox.putMessage("You killed the enemy " + this.getName() + "!");
             st.enemies.remove(this);
             st.player.collectExp(this.expReward, st);
-            if (this.itemReward != null)
+            if (this.itemReward != null) {
                 st.player.addItem(this.itemReward);
+                st.messageBox.putMessage("You obtained " + "[ " + this.itemReward + " ]" + " from the enemy.");
+            }
         }
         return true;
     }

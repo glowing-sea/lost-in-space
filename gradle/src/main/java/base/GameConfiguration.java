@@ -37,8 +37,6 @@ public class GameConfiguration {
         INITIAL_INVENTORY.add(item);
         INITIAL_INVENTORY.add(item);
         INITIAL_INVENTORY.add(item);
-        INITIAL_INVENTORY.add(item);
-        INITIAL_INVENTORY.add(item);
         INITIAL_CAPACITY = 6;
         // Unit Attributes
         DEFAULT_UNIT_NAME = "Unknown";
@@ -158,7 +156,8 @@ public class GameConfiguration {
         items.add(item2);
         items.add(item3);
         items.add(item4);
-        enemies.add(new Enemy("Goblin1",10,150,50,new Location(0,4),20, item2));
+        Enemy e = new Enemy("Goblin1",10,150,50,new Location(0,4),20, item2);
+        enemies.add(e);
         NPC Bob = new NPC("Bob", new Location(2,0), bobSays);
         NPC Alice = new NPC("Alice", new Location(3,0), aliceSays);
         NPC NoName = new NPC(null, new Location(4,0), null);
@@ -180,7 +179,13 @@ public class GameConfiguration {
         String dialogue = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +
                 "If a line exceed 103 character, the exceed part will not be displayed........................................";
         LEVEL0_INITIAL_STATE = new State(mapOBJ, dialogue, 0, player, enemies, items, NPCs, merchants);
-        LEVEL0_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),false,true); // H is in 6,7
+
+
+        Location destination = new Location(6,7);
+        List<Enemy> enemiesMustBeKilled = new ArrayList<>();
+        enemiesMustBeKilled.add(e);
+        Item itemRequired = new Item("Key To Level 1", null);
+        LEVEL0_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(destination,enemiesMustBeKilled,itemRequired); // H is in 6,7
     }
 
     private static void setLevel1 () {
@@ -222,7 +227,7 @@ public class GameConfiguration {
 
         String dialogue = "fight against an enemy\n>>>>>";
         LEVEL1_INITIAL_STATE = new State(mapO1, dialogue, 1, player, enemies, items, NPCs, merchants);
-        LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),true,false); // H is in 6,7
+        LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),enemies,null); // H is in 6,7
     }
 
 
@@ -265,7 +270,7 @@ public class GameConfiguration {
 
         String dialogue = "continue adventure";
         LEVEL2_INITIAL_STATE = new State(mapO3, dialogue, 2, player, enemies, items, NPCs , merchants);
-        LEVEL2_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),false,false); // H is in 6,7
+        LEVEL2_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),null,null); // H is in 6,7
     }
 
 

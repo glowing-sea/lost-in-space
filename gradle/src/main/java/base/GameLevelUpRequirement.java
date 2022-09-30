@@ -1,83 +1,84 @@
 package base;
 
+import java.util.List;
+
 /**
  * This class stores the requirement for a current game state to move to the next game state
  */
 public class GameLevelUpRequirement {
 
-    private Location location;
-    private Boolean enemies;
-    private Boolean key;
+    private final Location destination;
+    private final List<Enemy> enemiesMustBeKilled;
+    private final Item itemRequired;
 
-    public GameLevelUpRequirement(Location location, Boolean enemies, Boolean key) {
-        this.location = location;
-        this.enemies = enemies;
-        this.key = key;
+    public GameLevelUpRequirement(Location destination, List<Enemy> enemiesMustBeKilled, Item itemRequired) {
+        if (destination == null){
+            throw new NullPointerException("A level up requirement must contain a location check!");
+        }
+        this.destination = destination;
+        this.enemiesMustBeKilled = enemiesMustBeKilled;
+        this.itemRequired = itemRequired;
     }
 
-    public Location getLocation() {
-        return location;
+    public Item getItemRequired() {
+        return itemRequired;
+    }
+    public List<Enemy> getEnemiesMustBeKilled() {
+        return enemiesMustBeKilled;
+    }
+    public Location getDestination() {
+        return destination;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
-    /*
-    The current requirement of moving to the next game level is only based on the character's location.
-    There may be more requirements (fields) in the future.
-
-    For example, if the player get to (5,5), the game moves to the next level.
-     */
 
     /**
      * This function check if the current game state satisfies the requirement to move to the next level
      * @param st the current game state
      * @return satisfies or not
+     * @author William (Created)
+     * @author Haoting (Refactor)
      */
     public boolean requirementSatisfied(State st){
 
-        boolean locationTrue;
-        boolean enemiesTrue = false;
-        boolean keyTrue = false;
+        boolean locationCheck;
+        boolean enemiesCheck = true;
+        boolean keyCheck = true;
 
-        //Are requirements satisfied
-        locationTrue = location.equals(st.player.getLoc());
-        if (st.enemies.isEmpty()) enemiesTrue = true;
-        for (Item item: st.player.getInventory()) {
-            if (item.getType() == ItemType.Key) keyTrue = true;
-        }
+        // location Check
+        locationCheck = this.destination.equals(st.player.getLoc());
 
-
-        //Do requirements need to be satisfied
-        if (locationTrue) {
-        if (enemies) {
-            if (!(enemiesTrue)) {
-                st.messageBox.putMessage("You must beat all enemies before you leave");
-                if (key && !keyTrue) st.messageBox.putMessage("You must have a key to enter");
-                return false;
-            }
-
-        }
-        if (key) {
-            if (!(keyTrue)) {
-                st.messageBox.putMessage("You must have a key to enter");
-                return false;
-            }
-
-            //Use the key item when leveling up
-            for (Item item: st.player.getInventory()) {
-                String newstr = "" + (st.player.getInventory().indexOf(item) + 1);
-                if (item.getType() == ItemType.Key) {
-                    st.player.takeOutItem(st,newstr, 0) ;
+        // enemies Check
+        if (this.enemiesMustBeKilled != null){
+            for (Enemy enemy : this.enemiesMustBeKilled){
+                if (st.enemies.contains(enemy)) {
+                    enemiesCheck = false;
                     break;
                 }
             }
-
         }
-        return true;
+        // key Check
+        if (this.itemRequired != null){
+            keyCheck = st.player.getInventory().contains(this.itemRequired);
         }
 
-        return false;
+        if (locationCheck){
+            if (enemiesCheck){
+                if (keyCheck){
+                    if (itemRequired != null) // Remove the key from the player
+                        st.player.getInventory().remove(itemRequired);
+                    return true;
+                } else {
+                    st.messageBox.putMessage("You must obtain " + this.itemRequired);
+                    st.messageBox.putMessage("to enter.");
+                    return false;
+                }
+            } else {
+                st.messageBox.putMessage("You must beat some enemies before you leave");
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }
