@@ -1,4 +1,6 @@
 package base;
+import base.Item;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +105,8 @@ public class GameConfiguration {
     public static GameLevelUpRequirement LEVEL2_LEVEL_UP_REQUIREMENT;
     public static State LEVEL3_INITIAL_STATE;
     public static GameLevelUpRequirement LEVEL3_LEVEL_UP_REQUIREMENT;
+    public static State LEVEL10_INITIAL_STATE;
+    public static base.GameLevelUpRequirement LEVEL10_LEVEL_UP_REQUIREMENT;
 
     private static void setLevel0 (){
         String[] map = new String[] {
@@ -112,7 +116,7 @@ public class GameConfiguration {
                 "    |    ",
                 "    +----",
                 "       A ",
-                "      AHA",
+                "      APA",
                 "---------",
                 "         "};
         String[] bobSays = new String[]{
@@ -201,7 +205,7 @@ public class GameConfiguration {
                 "         ",
                 "-- - ----",
                 "         ",
-                "       H ",
+                "       P ",
                 "---------",
                 "         "};
         String[] Csays = new String[]{
@@ -244,7 +248,7 @@ public class GameConfiguration {
                 "         ",
                 "         ",
                 "         ",
-                "       H ",
+                "       P ",
                 "---------",
                 "         "};
         String[] Davidsays = new String[]{
@@ -277,8 +281,36 @@ public class GameConfiguration {
         LEVEL2_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),null,null); // H is in 6,7
     }
 
-
     private static void setLevel3 ()  {
+        String[] map = new String[] {
+
+                "         ",
+                "         ",
+                "- ---- --",
+                "         ",
+                "         ",
+                "- ---- --",
+                "       P ",
+                "---------",
+                "         "};
+        Map mapO3 = new Map(3, map, new char[] {'-', '+', '|'});
+        ArrayList<Enemy> enemies = new ArrayList<>();
+        enemies.add(new Enemy("Goblin1",30,120,30,new Location(3,3),20, null));
+        enemies.add(new Enemy("Goblin3",30,120,30,new Location(3,5),20, null));
+        enemies.add(new Enemy("Goblin2",30,120,80,new Location(4,4),20, null));
+        Player player = new Player(new Location(3,4));
+        ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
+        ArrayList<Merchant> merchants = new ArrayList<>();
+        Item itemK = new Item("Key To Level 1", new Location(3,5));
+        items.add(itemK);
+        ArrayList<NPC> NPCs = new ArrayList<>();
+        String dialogue = "continue adventure";
+        LEVEL3_INITIAL_STATE = new State(mapO3, dialogue, 2, player, enemies, items, NPCs , merchants);
+        LEVEL3_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),null,null); // H is in 6,7
+    }
+
+
+    private static void setLevel10 ()  {
         String[] map = new String[] {
                 "         ",
                 "         ",
@@ -296,8 +328,8 @@ public class GameConfiguration {
         ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
         ArrayList<Merchant> merchants = new ArrayList<>();
         String dialogue = "You Win!";
-        LEVEL3_INITIAL_STATE = new State(mapOBJ, dialogue, 3, player, enemies, items, NPCs, merchants);
-        LEVEL3_LEVEL_UP_REQUIREMENT = null;
+        LEVEL10_INITIAL_STATE = new State(mapOBJ, dialogue, 3, player, enemies, items, NPCs, merchants);
+        LEVEL10_LEVEL_UP_REQUIREMENT = null;
     }
 
     private static void groupAllLevel () {
@@ -311,6 +343,7 @@ public class GameConfiguration {
                 LEVEL0_LEVEL_UP_REQUIREMENT,
                 LEVEL1_LEVEL_UP_REQUIREMENT,
                 LEVEL2_LEVEL_UP_REQUIREMENT,
+                LEVEL3_LEVEL_UP_REQUIREMENT,
                 null,
         };
         FINAL_LEVEL = GAME_STATES.length - 1;
