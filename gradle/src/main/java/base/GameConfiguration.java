@@ -124,9 +124,11 @@ public class GameConfiguration {
         Item item1 = new Item(new Location(3,2), ItemType.Inventory_Boost);
         Item item2 = new Item(new Location(5,2), ItemType.HP_Boost);
         Item item3 = new Item(new Location(5,4), ItemType.ATK_Boost);
+        Item item4 = new Item(new Location(3,5), ItemType.Key);
         items.add(item1);
         items.add(item2);
         items.add(item3);
+        items.add(item4);
         enemies.add(new Enemy("Goblin1",10,150,50,new Location(0,4),20, item2));
         NPC Bob = new NPC("Bob", new Location(2,0), bobSays);
         NPC Alice = new NPC("Alice", new Location(3,0), aliceSays);
@@ -149,7 +151,7 @@ public class GameConfiguration {
         String dialogue = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +
                 "If a line exceed 103 character, the exceed part will not be displayed........................................";
         LEVEL0_INITIAL_STATE = new State(mapOBJ, dialogue, 0, player, enemies, items, NPCs, merchants);
-        LEVEL0_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
+        LEVEL0_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),false,true); // H is in 6,7
     }
     // Level 1 configuration
 
@@ -197,7 +199,7 @@ public class GameConfiguration {
 
         String dialogue = "fight against an enemy\n>>>>>";
         LEVEL1_INITIAL_STATE = new State(mapO1, dialogue, 1, player, enemies, items, NPCs, merchants);
-        LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
+        LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),true,false); // H is in 6,7
     }
     public static State LEVEL2_INITIAL_STATE;
     // The game should move to the next level if the current state == LEVEL0_LEVEL_UP_STATE
@@ -242,7 +244,7 @@ public class GameConfiguration {
 
         String dialogue = "continue adventure";
         LEVEL2_INITIAL_STATE = new State(mapO3, dialogue, 2, player, enemies, items, NPCs , merchants);
-        LEVEL2_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7)); // H is in 6,7
+        LEVEL2_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),false,false); // H is in 6,7
     }
 
     // Level 3 Configuration

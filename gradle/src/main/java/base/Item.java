@@ -31,7 +31,6 @@ public class Item extends Unit{
     public void useItem(State st) {
         Player p = st.player;
         switch(type){
-            case Key -> st.messageBox.putMessage("Key function is not supported yet.");
             case HP_Boost -> p.setHp(p.getHp() + 20);
             case ATK_Boost -> p.setAtk(p.getAtk() + 20);
             case DEF_Boost -> p.setDef(p.getDef() + 20);
