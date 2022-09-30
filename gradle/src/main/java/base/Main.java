@@ -18,6 +18,7 @@ public class Main {
     public static String SAVE_FILENAME =  "currentSave.json";
 
     public static void main(String[] args) {
+        GameConfiguration.initialise();
         loadingState = GameConfiguration.GAME_STATES[0];
 
         // Ensure save load directory is present in local machine
@@ -127,6 +128,7 @@ public class Main {
                 switch (input){
                     case "Y", "y" -> {
                         Utility.writeToJSON(SAVE_LOAD_DIRECTORY + fileName + ".json", s);
+                        GameConfiguration.initialise();
                         loadingState = sLoad;
                         loadingState.messageBox.putMessage("Loaded successfully! " + "[" + fileName + ".json" + "]");
                     }
@@ -170,7 +172,6 @@ public class Main {
 
     /**
      * makes the game save / load directory.
-     * @deprecated
      */
     public static void makeDirectory() {
         File f = new File(SAVE_LOAD_DIRECTORY);

@@ -84,7 +84,7 @@ public class Player extends Character implements Movable{
         {
             // Get the location that the player want to interact with.
             Unit unit;
-            Location unitLoc = st.player.getLoc().locCopy();
+            Location unitLoc = st.player.getLoc().clone();
             switch (option){
                 case "fa" -> {unitLoc.setY(unitLoc.getY() - 1);}
                 case "fd" -> {unitLoc.setY(unitLoc.getY() + 1);}

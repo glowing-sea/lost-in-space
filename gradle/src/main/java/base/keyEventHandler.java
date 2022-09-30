@@ -48,7 +48,7 @@ public class keyEventHandler {
             case "view" -> Player.takeOutItem(state, value, 2);
 
             // Special Inputs
-            case "tips" -> {for (String st : GameConfiguration.tips){state.messageBox.putMessage(st);}}
+            case "tips" -> {for (String st : GameConfiguration.TIPS){state.messageBox.putMessage(st);}}
             case "quest" -> Player.getQuest(state); //print current location and destination location
             case "levelup" -> {
                 if (!state.isFinish())

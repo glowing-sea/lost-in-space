@@ -1,5 +1,6 @@
 package tests;
 import base.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utility.GameStateExamples;
@@ -13,6 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test functions in the Location Class
  */
 public class LocationTest {
+
+    // Initialise all fields in the GameConfiguration class
+    @BeforeAll
+    public static void initialise(){
+        GameConfiguration.initialise();
+    }
 
     GameStateExamples ex = new GameStateExamples();
     State st = ex.TEST_STATE_TWO;
@@ -59,9 +66,9 @@ public class LocationTest {
     @Test
     public void locCopyTest(){
         Location old = new Location(1,0);
-        Location n = old.locCopy();
+        Location n = old.clone();
         old.setY(45);
-        old.setY(34);
+        old.setX(34);
 
         assertEquals(1,n.getX());
         assertEquals(0,n.getY());

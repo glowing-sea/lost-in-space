@@ -1,11 +1,18 @@
 package tests;
 import base.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class NPCTest {
+
+    // Initialise all fields in the GameConfiguration class
+    @BeforeAll
+    public static void initialise(){
+        GameConfiguration.initialise();
+    }
     @Test
     public void equalNPC (){
         NPC n1 = new NPC("Jack",new Location(1,1),null);
