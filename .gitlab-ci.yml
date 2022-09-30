@@ -35,9 +35,10 @@ rspec:
   artifacts:
     when: always
     reports:
-      junit: rspec.xml
+      junit: build/test-results/test/**/TEST-*.xml
+      #junit: rspec.xml
     #reports:
-    #  junit: build/test-results/test/**/TEST-*.xml
+    #  
 
 
 
