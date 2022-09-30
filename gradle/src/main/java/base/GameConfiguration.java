@@ -28,6 +28,8 @@ public class GameConfiguration {
                 "Follow the goals implied in the story ",
                 "to advance to the next game level."
         };
+        PLAYER_LEVEL_UP_EFFECT = 20;
+
         // Player Attributes
         YOUR_NAME = "Jack";
         INITIAL_HP = 100;
@@ -62,6 +64,9 @@ public class GameConfiguration {
     // Game Attributes
     public static String GAME_TITLE;
     public static String[] TIPS;
+
+    // All atk, hp, and def increase by x when the player level increases by 1.
+    public static int PLAYER_LEVEL_UP_EFFECT;
 
     // Player Attributes
     public static String YOUR_NAME;
@@ -156,6 +161,8 @@ public class GameConfiguration {
         Item item2 = new Item(new Location(5,2), ItemType.HP_Boost);
         Item item3 = new Item(new Location(5,4), ItemType.ATK_Boost);
         Item item4 = new Item("Key To Level 1", new Location(3,5));
+        Item item5 = new Item(null,ItemType.EXP_Boost);
+        Item item6 = new Item(null,ItemType.DEF_Boost);
         items.add(item1);
         items.add(item2);
         items.add(item3);
@@ -174,8 +181,8 @@ public class GameConfiguration {
         trades.add(new Trade(item2, item3));
         trades.add(new Trade(item2, item1));
         trades.add(new Trade(item2, item3));
-        trades.add(new Trade(item2, item1));
-        trades.add(new Trade(item2, item3));
+        trades.add(new Trade(item2, item5));
+        trades.add(new Trade(item2, item6));
 
         merchants.add(new Merchant("Amy", new Location(1,0), new String[]{"Goodbye", "Hope to deal with you again!","Welcome to my store!"}, trades));
         merchants.add(new Merchant(null,new Location(5,0),null,null));
@@ -219,19 +226,22 @@ public class GameConfiguration {
         Map mapO1 = new Map(1, map, new char[] {'-', '+', '|'});
         Player player = new Player(new Location(0,1));
         ArrayList<Enemy> enemies = new ArrayList<>();
-        enemies.add(new Enemy("Goblin1",30,120,30,new Location(3,3),20, null));
+        Item enemyKey = new Item("Enemy Key",null);
+        enemies.add(new Enemy("Goblin1",30,120,30,new Location(3,3),20, enemyKey));
         enemies.add(new Enemy("Goblin3",30,120,30,new Location(4,4),20, null));
         enemies.add(new Enemy("Goblin2",30,120,80,new Location(6,2),20, null));
-        ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
         NPC C = new NPC("C",new Location(0,3),Csays);
         ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
         NPCs.add(C);
         ArrayList<Merchant> merchants = new ArrayList<>();
+        ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
+        Item item = new Item(new Location(1,0), ItemType.EXP_Boost);
+        items.add(item);
 
 
         String dialogue = "fight against an enemy\n>>>>>";
         LEVEL1_INITIAL_STATE = new State(mapO1, dialogue, 1, player, enemies, items, NPCs, merchants);
-        LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),enemies,null); // H is in 6,7
+        LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),enemies,enemyKey); // H is in 6,7
     }
 
 

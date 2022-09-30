@@ -249,6 +249,9 @@ public class Player extends Character implements Movable{
             this.playerLevel += levelIncreased;
             this.exp %= 100;
             st.messageBox.putMessage("System: you have leveled up!");
+            st.player.setHp(st.player.getHp() + GameConfiguration.PLAYER_LEVEL_UP_EFFECT);
+            st.player.setAtk(st.player.getAtk() + GameConfiguration.PLAYER_LEVEL_UP_EFFECT);
+            st.player.setDef(st.player.getDef() + GameConfiguration.PLAYER_LEVEL_UP_EFFECT);
         }
     }
 
