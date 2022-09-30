@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RobotInstructions {
-    public List<String> Level0() {
+    public static List<String> Level0() {
         List<String> Level0 = new ArrayList<>();
         Level0.add("s");
         Level0.add("dd");
@@ -19,7 +19,9 @@ public class RobotInstructions {
         Level0.add("d");
         Level0.add("ww");
         Level0.add("aa");
-        Level0.add("aa");
+        Level0.add("a");
+        Level0.add("fw");
+        Level0.add("a");
         Level0.add("ss");
         Level0.add("ss");
         Level0.add("s");
@@ -28,7 +30,7 @@ public class RobotInstructions {
         return Level0;
     }
 
-    public List<String> Level1() {
+    public static List<String> Level1() {
         List<String> Level1 = new ArrayList<>();
         Level1.add("s");
         Level1.add("dd");
@@ -49,7 +51,7 @@ public class RobotInstructions {
         Level1.add("dd");
         return Level1;
     }
-    public List<String> Level2() {
+    public static List<String> Level2() {
         List<String> Level2 = new ArrayList<>();
         Level2.add("dd");
         Level2.add("dd");
