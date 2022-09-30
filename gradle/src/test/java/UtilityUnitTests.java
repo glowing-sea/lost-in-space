@@ -86,6 +86,7 @@ public class UtilityUnitTests {
     /**
      * Test the load function of thie game engine.
      */
+    @Test
     public void testReadFromJson() {
         // first test
         State p = Utility.readFromJSON(ROOT_DIR + "/" + fn);
