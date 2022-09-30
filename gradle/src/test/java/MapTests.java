@@ -28,7 +28,8 @@ public class MapTests {
 
     @BeforeEach
     public void beforeEachTestMethod() {
-        m = new GameStateExamples().TEST_STATE_ONE.map;
+        GameStateExamples.initialise();
+        m = GameStateExamples.TEST_STATE_ONE.map;
     }
 
     @Test

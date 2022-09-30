@@ -69,7 +69,7 @@ public class GameLevelUpRequirement {
                         st.player.getInventory().remove(itemRequired);
                     return true;
                 } else {
-                    st.messageBox.putMessage("You must obtain " + this.itemRequired);
+                    st.messageBox.putMessage("You must obtain [ " + this.itemRequired + " ]");
                     st.messageBox.putMessage("to enter.");
                     return false;
                 }

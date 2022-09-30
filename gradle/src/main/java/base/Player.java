@@ -128,21 +128,22 @@ public class Player extends Character implements Movable{
         }
         Item item = st.player.getInventory().get(itemIdx);
 
-        if (action == 3){
+        if (action == 2){
             st.messageBox.putMessage("The item at index " + (itemIdx + 1) + " is: [ " + item + " ].");
-        }
-        if (item.getType() != ItemType.Key){
-            if (action == 0){
-                st.player.getInventory().remove(itemIdx);
-                item.useItem(st);
-                st.messageBox.putMessage(st.player.getName() + " uses the item [ " + item + " ].");
-            } else if (action == 1) {
-                st.player.getInventory().remove(itemIdx);
-                st.messageBox.putMessage(st.player.getName() + " drops the item [ " + item + " ].");
-            }
         } else {
-            st.messageBox.putMessage("You cannot drop or use a key item!");
-            return false;
+            if (item.getType() != ItemType.Key){
+                if (action == 0){
+                    st.player.getInventory().remove(itemIdx);
+                    item.useItem(st);
+                    st.messageBox.putMessage(st.player.getName() + " uses the item [ " + item + " ].");
+                } else if (action == 1) {
+                    st.player.getInventory().remove(itemIdx);
+                    st.messageBox.putMessage(st.player.getName() + " drops the item [ " + item + " ].");
+                }
+            } else {
+                st.messageBox.putMessage("You cannot drop or use a key item!");
+                return false;
+            }
         }
         return true;
     }

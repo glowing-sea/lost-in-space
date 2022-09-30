@@ -13,12 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class EnemyTests {
 
-    // Initialise all fields in the GameConfiguration class
-    @BeforeAll
-    public static void initialise(){
-        GameConfiguration.initialise();
-    }
-
     State st;
     Enemy enemyEasy;
     Enemy enemyStrong;
@@ -26,13 +20,14 @@ public class EnemyTests {
 
     @BeforeEach
     public void setup(){
-        st = new GameStateExamples().TEST_STATE_TWO;
-        enemyEasy = st.enemies.get(0);
-        enemyStrong = st.enemies.get(1);
-        enemyTough = st.enemies.get(2);
+        GameStateExamples.initialise();
+        this.st = GameStateExamples.TEST_STATE_TWO;
+        enemyEasy = GameStateExamples.TEST_STATE_TWO.enemies.get(0);
+        enemyStrong = GameStateExamples.TEST_STATE_TWO.enemies.get(1);
+        enemyTough = GameStateExamples.TEST_STATE_TWO.enemies.get(2);
     }
     @Test
-    public void equalPlayer(){
+    public void equalEnemy(){
         Item item1 = new Item(new Location(3,2), ItemType.Inventory_Boost);
         Item item2 = new Item(new Location(5,2), ItemType.HP_Boost);
         Enemy e1 = new Enemy("Goblin1",10,150,50,new Location(0,4),20, item1);
@@ -55,6 +50,12 @@ public class EnemyTests {
         assertNotEquals(e1, e8);
         assertNotEquals(e1, e9);
         assertNotEquals(e1, e10);
+    }
+    @Test
+    public void equalEnemy2(){
+        Enemy e1 = new Enemy("easy",10,30,30,new Location(1,0),20,null);
+        Enemy e2 = new Enemy("easy",10,30,30,new Location(1,0),20,null);
+        assertEquals(e1,e2);
     }
 
 

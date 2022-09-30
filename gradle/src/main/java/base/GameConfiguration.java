@@ -12,6 +12,10 @@ import java.util.List;
 
 public class GameConfiguration {
 
+    static {
+        initialise();
+    }
+
     public static void initialise(){
         // Game Attributes
         GAME_TITLE = "Lost in Space";
@@ -151,7 +155,7 @@ public class GameConfiguration {
         Item item1 = new Item(new Location(3,2), ItemType.Inventory_Boost);
         Item item2 = new Item(new Location(5,2), ItemType.HP_Boost);
         Item item3 = new Item(new Location(5,4), ItemType.ATK_Boost);
-        Item item4 = new Item(new Location(3,5), ItemType.Key);
+        Item item4 = new Item("Key To Level 1", new Location(3,5));
         items.add(item1);
         items.add(item2);
         items.add(item3);

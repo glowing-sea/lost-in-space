@@ -16,18 +16,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
 
-    // Initialise all fields in the GameConfiguration class
-    @BeforeAll
-    public static void initialise(){
-        GameConfiguration.initialise();
-    }
 
     State st;
     Player p;
 
     @BeforeEach
     public void setup(){
-        st = new GameStateExamples().TEST_STATE_ONE;
+        GameStateExamples.initialise();
+        GameConfiguration.initialise();
+        st = GameStateExamples.TEST_STATE_ONE;
         p = st.player;
     }
 
@@ -65,7 +62,7 @@ public class PlayerTest {
         assertTrue(Player.interact(st, "f",""));
         st.interacting = null; // Force leave
         // Talk to a Merchant
-        p.setLoc(new Location(3,5));
+        p.setLoc(new Location(1,0));
         assertTrue(Player.interact(st, "f",""));
         st.interacting = null; // Force leave
         // Pick an item
@@ -158,10 +155,6 @@ public class PlayerTest {
     public void addItemTest() {
         Item item = new Item(new Location(-1,-1),ItemType.HP_Boost);
         p.addItem(item);
-        p.addItem(item);
-        p.addItem(item);
-        p.addItem(item);
-        p.addItem(item);
         // Almost Full
         assertTrue(p.addItem(item));
         // Already Full
@@ -176,13 +169,13 @@ public class PlayerTest {
 
     @Test
     public void collectExpTest() {
-        assertEquals(20,p.getExp());
+        assertEquals(0,p.getExp());
         p.collectExp(150, st);
-        assertEquals(70,p.getExp());
+        assertEquals(50,p.getExp());
         // Leveled UP
-        assertEquals(21,p.getPlayerLevel());
+        assertEquals(1,p.getPlayerLevel());
         p.collectExp(10,st);
         // Not Leveled UP
-        assertEquals(21,p.getPlayerLevel());
+        assertEquals(1,p.getPlayerLevel());
     }
 }

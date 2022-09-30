@@ -18,7 +18,7 @@ public class Main {
     public static String SAVE_FILENAME =  "currentSave.json";
 
     public static void main(String[] args) {
-        GameConfiguration.initialise();
+
         loadingState = GameConfiguration.GAME_STATES[0];
 
         // Ensure save load directory is present in local machine
