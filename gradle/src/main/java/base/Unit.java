@@ -34,6 +34,16 @@ public abstract class Unit implements Interactive{
         this.loc = loc;
         this.SYMBOL = symbol;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || obj.getClass() != getClass())
+            return false;
+        Unit u = (Unit) obj;
+        return this.name.equals(u.name) &&
+                this.loc.equals(u.loc) &&
+                this.SYMBOL == u.SYMBOL;
+    }
+
 
     // Basic setter and getter method
     public Location getLoc() {
@@ -85,8 +95,9 @@ public abstract class Unit implements Interactive{
 
     /**
      * The default interact function to all unit
-     * @param units a list of unit
-     * @return a list of location
+     * @param st current state
+     * @param option different way to interact
+     * @return if an interaction succeeds
      */
     @Override
     public boolean interact(State st, int option) {

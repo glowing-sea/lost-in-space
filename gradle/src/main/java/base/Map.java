@@ -1,5 +1,7 @@
 package base;
 
+import java.util.Arrays;
+
 /**
  * An object storing a map in a game
  */
@@ -12,6 +14,15 @@ public class Map {
 
     // Map is stored as an array (size 9) of string (size 9)
     private String[] map;
+
+    @Override
+    public boolean equals(Object obj){
+        if (! (obj instanceof Map m))
+            return false;
+        return this.mapID == m.getMapID() &&
+                Arrays.equals(this.walls, m.getWalls()) &&
+                Arrays.equals(this.map, m.getMap());
+    }
 
     public Map(int mapID, String[] map, char[] walls) {
         if (map == null)

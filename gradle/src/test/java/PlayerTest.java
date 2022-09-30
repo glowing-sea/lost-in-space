@@ -25,6 +25,30 @@ public class PlayerTest {
     }
 
     @Test
+    public void equalPlayer(){
+        Player p1 = new Player("Jack", 100, 100, 100, new Location(0,1),20, 20);
+        Player p2 = new Player("Jack", 100, 100, 100, new Location(0,1),20, 20);
+        Player p3 = new Player("Amy", 100, 100, 100, new Location(0,1),20, 20);
+        Player p4 = new Player("Jack", 101, 100, 100, new Location(0,1),20, 20);
+        Player p5 = new Player("Jack", 100, 101, 100, new Location(0,1),20, 20);
+        Player p6 = new Player("Jack", 100, 101, 101, new Location(0,1),20, 20);
+        Player p7 = new Player("Jack", 100, 101, 101, new Location(1,1),20, 20);
+        Player p8 = new Player("Jack", 100, 101, 101, new Location(1,0),20, 20);
+        Player p9 = new Player("Jack", 100, 101, 101, new Location(1,0),21, 20);
+        Player p10 = new Player("Jack", 100, 101, 101, new Location(1,0),21, 21);
+        assertEquals(p1,p1);
+        assertEquals(p1,p2);
+        assertNotEquals(p1,p3);
+        assertNotEquals(p1,p4);
+        assertNotEquals(p1,p5);
+        assertNotEquals(p1,p6);
+        assertNotEquals(p1,p7);
+        assertNotEquals(p1,p8);
+        assertNotEquals(p1,p9);
+        assertNotEquals(p1,p10);
+    }
+
+    @Test
     public void interactTest(){
         // Kill Enemy
         p.setLoc(new Location(0,3));

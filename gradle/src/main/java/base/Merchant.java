@@ -1,6 +1,7 @@
 package base;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 /**
  * A character that has a list of trades.
@@ -11,10 +12,10 @@ import java.util.List;
 
 public class Merchant extends Character{
 
-    String[] dialogue; // length 3 only
-    List<Trade> trades; // up to 6 deals
+    private final String[] dialogue; // length 3 only
+    private final List<Trade> trades; // up to 6 deals
 
-    String storyBackup = ""; // Backup the story box when first interact with the NPC
+    private String storyBackup = ""; // Backup the story box when first interact with the NPC
 
     public String[] getDialogue() {
         return dialogue;
@@ -37,6 +38,15 @@ public class Merchant extends Character{
             throw new IllegalArgumentException("The trades of this merchant is not well-formed.");
         this.dialogue = dialogue;
         this.trades = trades;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Merchant m))
+            return false;
+        return Arrays.equals(this.dialogue, m.dialogue) &&
+                this.trades.equals(m.trades) &&
+                super.equals(m);
     }
 
     public boolean isDialogueWellForm (String[] dialogue){
@@ -76,7 +86,7 @@ public class Merchant extends Character{
         // Print out the deals
         st.messageBox.putMessage("=== Here are the deals ===");
         for (int i = 0; i < trades.size() && i < 6; i++){
-            st.messageBox.putMessage((i + 1) + ": " + "[ " + trades.get(i).TRADE_IN() + " ] -> [ " + trades.get(i).TRADE_OUT() + " ]");
+            st.messageBox.putMessage((i + 1) + ": " + "[ " + trades.get(i).getTRADE_IN() + " ] -> [ " + trades.get(i).getTRADE_OUT() + " ]");
         }
         // The user press A or B or interact with the merchant for the first time.
         if (option >= 0 && option <=2){
@@ -84,8 +94,12 @@ public class Merchant extends Character{
         }
         int tradeSelected = option - 4;
 
-        Item playerWantToSell = this.trades.get(tradeSelected).TRADE_IN();
-        Item playerWillGet = this.trades.get(tradeSelected).TRADE_OUT();
+        Item playerWantToSell = this.trades.get(tradeSelected).getTRADE_IN();
+        Item playerWillGet = this.trades.get(tradeSelected).getTRADE_OUT();
+        System.out.println("sell" + playerWantToSell);
+        for (Item i : st.player.getInventory()){
+            System.out.println(i);
+        }
         if (st.player.getInventory().contains(playerWantToSell)){
             st.player.getInventory().remove(playerWantToSell);
             st.player.getInventory().add(playerWillGet);

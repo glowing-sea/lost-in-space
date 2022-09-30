@@ -24,6 +24,19 @@ public class StateTest {
         st = new GameStateExamples().TEST_STATE_ONE;
         p = st.player;
     }
+
+    @Test
+    public void equalState() {
+        GameStateExamples ex = new GameStateExamples();
+        State s1 = ex.TEST_STATE_ONE;
+        State s2 = ex.TEST_STATE_TWO;
+        GameStateExamples ex1 = new GameStateExamples();
+        State s3 = ex1.TEST_STATE_TWO;
+        assertEquals(s1,s1);
+        assertEquals(s2,s3);
+        assertNotEquals(s1,s3);
+
+    }
     @Test
     public void gameOverTest() {
         p.setHp(0);

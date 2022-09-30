@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UtilityUnitTests {
 
     String fn = "SoftwareEngineering-TestingWriteToFile.json";
-    private final String ROOT_DIR = "C:/temp";
+    private final String ROOT_DIR = "./saves";
     private State s;
 
     @BeforeEach
@@ -52,6 +52,14 @@ public class UtilityUnitTests {
         Player p1 = new Player("talon", 100, 100, 100, new Location(10,20), 0, 1);
 
         s = new State(new Map(0, map, new char[] {'-', '+', '|'}), "dual", 10, p1, enemies,  i, null, null);
+    }
+
+    @Test
+    public void testMakeDirectory() {
+        Main.makeDirectory();
+        File f = new File(Main.SAVE_LOAD_DIRECTORY);
+
+        assertTrue(f.exists());
     }
     @Test
     public void testWriteToJson() {

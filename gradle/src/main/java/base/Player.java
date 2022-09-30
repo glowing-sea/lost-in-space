@@ -22,6 +22,16 @@ public class Player extends Character implements Movable{
         this.inventory = new ArrayList<>();
         this.capacity = 6;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Player p))
+            return false;
+        return this.exp == p.exp &&
+                this.playerLevel == p.playerLevel &&
+                this.inventory.equals(p.inventory) &&
+                this.capacity == p.capacity &&
+                super.equals(p);
+    }
 
     /**
      * A quick constructor that make a player according the attributes written in GameConfiguration
@@ -61,7 +71,7 @@ public class Player extends Character implements Movable{
                             st.messageBox.putMessage("The good index is not well-formed.");
                             return false;
                         }
-                        if (goodIdx < 1 || goodIdx > ((Merchant) unit).trades.size()) {
+                        if (goodIdx < 1 || goodIdx > ((Merchant) unit).getTrades().size()) {
                             st.messageBox.putMessage("The good index is out of bound!");
                         } else {
                             unit.interact(st, goodIdx + 3);

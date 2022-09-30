@@ -15,6 +15,7 @@ public class keyEventHandler {
      * @return 0 if the game continue and 100 if the game ends.
      */
     public static int keyEventHandler(State state, String input) {
+
         String[] tokens = input.split("-");
         String value = "";
         if (tokens.length == 2)
@@ -32,6 +33,14 @@ public class keyEventHandler {
             // Continuous Interaction
             case "A","(A)", "B","(B)", "G","(G)", "buy"-> Player.interact(state, tokens[0], value); // disable when st.interacting = false;
 
+            // save game        
+            case "save" -> Main.saveGame(state,value);
+            case "load" -> Main.loadGame(state,value);
+
+            case "q" -> { // Should we save our game here? --Zhishang
+                    System.out.println("=== Thank you for playing our game. See you soon. ===");
+                    return 100;
+            }    
 
             // Inventory Management
             case "use" -> Player.takeOutItem(state, value, 0);
@@ -44,11 +53,6 @@ public class keyEventHandler {
             case "levelup" -> {
                 if (!state.isFinish())
                     state.gameLevelUp(GameConfiguration.GAME_STATES[state.level + 1]);} // For testing only, direct get to the next level.
-
-            case "q" -> { // Should we save our game here? --Zhishang
-                System.out.println("=== Thank you for playing our game. See you soon. ===");
-                return 100;
-            }
 
             default -> {
                 state.messageBox.putMessage("Sorry, '" + input + "' is not a value input.");
@@ -69,7 +73,6 @@ public class keyEventHandler {
             return 100;
         }
 
-        System.out.println(state);
         return 0;
     }
 }

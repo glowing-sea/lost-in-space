@@ -6,15 +6,19 @@ package base;
  */
 public class Item extends Unit{
 
-    private boolean valid;
-    private final ItemType type;
+    private final ItemType type;  // NOTE final keyword used here before. It is not right.
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Item i))
+            return false;
+        return this.type == i.type;
+    }
 
     //construction
     public Item(Location loc, ItemType type) {
         super(type.name(), loc, 'I');
         this.type = type;
-        valid = true;
     }
 
     public ItemType getType() {
@@ -37,7 +41,6 @@ public class Item extends Unit{
             case EXP_Boost -> p.collectExp(20,st);
             case Inventory_Boost -> p.setCapacity(p.getCapacity() + 2);
         }
-        valid = false;
     }
 
     /**
@@ -48,8 +51,6 @@ public class Item extends Unit{
      */
     @Override
     public boolean interact(State st, int option) {
-        if (!this.valid)
-            return false;  // Invalid Item
         if (!st.player.addItem(this)){
             st.messageBox.putMessage("You bag is full!");
             return false; // Pick up unsuccessfully
@@ -74,19 +75,5 @@ public class Item extends Unit{
             default -> name = type.name();
         }
         return name;
-    }
-
-    // For testing only, do not use this method alone.
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Item loc))
-            return false;
-        else{
-            return this.getType() == ((Item) obj).getType();
-        }
     }
 }

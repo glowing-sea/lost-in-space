@@ -24,6 +24,31 @@ public class EnemyTests {
         enemyStrong = st.enemies.get(1);
         enemyTough = st.enemies.get(2);
     }
+    @Test
+    public void equalPlayer(){
+        Item item1 = new Item(new Location(3,2), ItemType.Inventory_Boost);
+        Item item2 = new Item(new Location(5,2), ItemType.HP_Boost);
+        Enemy e1 = new Enemy("Goblin1",10,150,50,new Location(0,4),20, item1);
+        Enemy e2 = new Enemy("Goblin1",10,150,50,new Location(0,4),20, item1);
+        Enemy e3 = new Enemy("Goblin2",10,150,50,new Location(0,4),20, item1);
+        Enemy e4 = new Enemy("Goblin1",11,150,50,new Location(0,4),20, item1);
+        Enemy e5 = new Enemy("Goblin1",10,151,50,new Location(0,4),20, item1);
+        Enemy e6 = new Enemy("Goblin1",10,150,51,new Location(0,4),20, item1);
+        Enemy e7 = new Enemy("Goblin1",10,150,50,new Location(0,1),20, item1);
+        Enemy e8 = new Enemy("Goblin1",10,150,50,new Location(1,4),20, item1);
+        Enemy e9 = new Enemy("Goblin1",10,150,50,new Location(0,4),21, item1);
+        Enemy e10 = new Enemy("Goblin1",10,150,50,new Location(0,4),20, item2);
+        assertEquals(e1, e1);
+        assertEquals(e1, e2);
+        assertNotEquals(e1, e3);
+        assertNotEquals(e1, e4);
+        assertNotEquals(e1, e5);
+        assertNotEquals(e1, e6);
+        assertNotEquals(e1, e7);
+        assertNotEquals(e1, e8);
+        assertNotEquals(e1, e9);
+        assertNotEquals(e1, e10);
+    }
 
 
     @Test
