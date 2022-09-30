@@ -38,9 +38,16 @@ rspec:
       junit: build/test-results/test/**/TEST-*.xml
       #junit: rspec.xml
     #reports:
-    #  
+    #
 
-
+java:
+  stage: test
+  script:
+    - gradle test
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
 
 #artifacts:
 #  when: always
