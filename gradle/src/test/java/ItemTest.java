@@ -1,5 +1,6 @@
 package tests;
 import base.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -9,6 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test functions in the Item Class
  */
 public class ItemTest {
+
+    // Initialise all fields in the GameConfiguration class
+    @BeforeAll
+    public static void initialise(){
+        GameConfiguration.initialise();
+    }
     State st;
 
     @BeforeEach

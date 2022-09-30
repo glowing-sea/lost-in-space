@@ -19,9 +19,16 @@ public class Enemy extends Character {
     public boolean equals(Object obj) {
         if (!(obj instanceof Enemy e))
             return false;
-        return this.expReward == e.expReward &&
-                this.itemReward.equals(e.itemReward) &&
-                super.equals(e);
+        if (this.expReward != e.expReward)
+            return false;
+        if (this.itemReward == null) {
+            if (e.itemReward != null)
+                return false;
+        } else {
+            if (!this.itemReward.equals(e.itemReward))
+                return false;
+        }
+        return super.equals(e);
     }
 
     /**

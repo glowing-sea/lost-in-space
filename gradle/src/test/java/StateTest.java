@@ -1,5 +1,6 @@
 package tests;
 import base.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utility.GameStateExamples;
@@ -12,6 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 public class StateTest {
+
+    // Initialise all fields in the GameConfiguration class
+    @BeforeAll
+    public static void initialise(){
+        GameConfiguration.initialise();
+    }
 
     State st;
     Player p;
@@ -35,8 +42,8 @@ public class StateTest {
         assertEquals(s1,s1);
         assertEquals(s2,s3);
         assertNotEquals(s1,s3);
-
     }
+
     @Test
     public void gameOverTest() {
         p.setHp(0);

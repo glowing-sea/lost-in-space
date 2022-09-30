@@ -6,7 +6,7 @@ import java.util.List;
  * An object shoring a location (x and y coordinate).
  */
 
-public class Location {
+public class Location implements Cloneable{
     private int x;
     private int y;
 
@@ -104,5 +104,14 @@ public class Location {
     @Override
     public String toString() {
         return "(" + this.x + ", " + this.y + ")";
+    }
+
+    @Override
+    public Location clone() {
+        try {
+            return (Location) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

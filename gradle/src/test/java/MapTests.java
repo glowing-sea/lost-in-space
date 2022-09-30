@@ -1,7 +1,9 @@
 package tests;
 
+import base.GameConfiguration;
 import base.Location;
 import base.Map;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utility.GameStateExamples;
@@ -14,6 +16,12 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  */
 public class MapTests {
+
+    // Initialise all fields in the GameConfiguration class
+    @BeforeAll
+    public static void initialise(){
+        GameConfiguration.initialise();
+    }
 
     String[] testMap;
     Map m;

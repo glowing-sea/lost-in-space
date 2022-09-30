@@ -1,6 +1,7 @@
 package tests;
 
 import base.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utility.GameStateExamples;
@@ -19,6 +20,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Albert Yu
  */
 public class SaveLoadTests {
+
+    // Initialise all fields in the GameConfiguration class
+    @BeforeAll
+    public static void initialise(){
+        GameConfiguration.initialise();
+    }
 
     private String SAVE_LOAD_DIRECTORY = "./saves";
     private String SAVE_FILENAME = "save-load-testing.json";

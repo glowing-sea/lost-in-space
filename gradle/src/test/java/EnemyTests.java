@@ -1,5 +1,6 @@
 package tests;
 import base.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utility.GameStateExamples;
@@ -11,6 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test functions in the Enemy Class
  */
 public class EnemyTests {
+
+    // Initialise all fields in the GameConfiguration class
+    @BeforeAll
+    public static void initialise(){
+        GameConfiguration.initialise();
+    }
 
     State st;
     Enemy enemyEasy;
