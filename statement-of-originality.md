@@ -18,8 +18,8 @@ member_declaration:
     name: William Barter
     uid: u6607927
   -
-    name: 
-    uid:
+    name: Haoting Chen
+    uid: u7227871
 
 # list numbered references below (replace the example with your own references) 
 ---
