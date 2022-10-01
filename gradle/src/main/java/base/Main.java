@@ -31,7 +31,7 @@ public class Main {
         do{
             System.out.println(loadingState); // Print out the state
             input = scanner.next();
-            result = keyEventHandler.keyEventHandler(loadingState, input);
+            result = KeyEventHandler.keyEventHandler(loadingState, input);
         } while (result != 100);
     }
 
@@ -42,7 +42,7 @@ public class Main {
      */
     public static void mainPhaseTwo(State s) {
         // Pass the new state
-        keyEventHandler keyEventHandler = new keyEventHandler();
+        KeyEventHandler keyEventHandler = new KeyEventHandler();
         keyEventHandler.keyEventHandler(s,null);
     }
 

@@ -192,6 +192,7 @@ public class Player extends Character implements Movable{
      * @return true if the character has moved
      */
     public boolean move (State st, String direction, int speed){
+        Location playLoc = st.player.getLoc();
         if (st.interacting != null) {
             st.messageBox.putMessage("System: you need to say goodbye before leaving.");
             return false;
@@ -200,28 +201,28 @@ public class Player extends Character implements Movable{
         Location adjLoc;
         switch (direction) {
             case "w", "ww" -> {
-                int newX = getLoc().getX() - speed;
-                int adjX = getLoc().getX() - 1;
-                newLoc = new Location(newX, getLoc().getY());
-                adjLoc = new Location(adjX, getLoc().getY());
+                int newX = playLoc.getX() - speed;
+                int adjX = playLoc.getX() - 1;
+                newLoc = new Location(newX, playLoc.getY());
+                adjLoc = new Location(adjX, playLoc.getY());
             }
             case "s", "ss" -> {
-                int newX = getLoc().getX() + speed;
-                int adjX = getLoc().getX() + 1;
-                newLoc = new Location(newX, getLoc().getY());
-                adjLoc = new Location(adjX, getLoc().getY());
+                int newX = playLoc.getX() + speed;
+                int adjX = playLoc.getX() + 1;
+                newLoc = new Location(newX, playLoc.getY());
+                adjLoc = new Location(adjX, playLoc.getY());
             }
             case "d", "dd" -> {
-                int newY = getLoc().getY() + speed;
-                int adjY = getLoc().getY() + 1;
-                newLoc = new Location(getLoc().getX(), newY);
-                adjLoc = new Location(getLoc().getX(), adjY);
+                int newY = playLoc.getY() + speed;
+                int adjY = playLoc.getY() + 1;
+                newLoc = new Location(playLoc.getX(), newY);
+                adjLoc = new Location(playLoc.getX(), adjY);
             }
             case "a", "aa" -> {
-                int newY = getLoc().getY() - speed;
-                int adjY = getLoc().getY() - 1;
-                newLoc = new Location(getLoc().getX(), newY);
-                adjLoc = new Location(getLoc().getX(), adjY);
+                int newY = playLoc.getY() - speed;
+                int adjY = playLoc.getY() - 1;
+                newLoc = new Location(playLoc.getX(), newY);
+                adjLoc = new Location(playLoc.getX(), adjY);
             }
             default -> {return false;}
         }
@@ -267,6 +268,9 @@ public class Player extends Character implements Movable{
             this.playerLevel += levelIncreased;
             this.exp %= 100;
             st.messageBox.putMessage("System: you have leveled up!");
+            st.player.setHp(st.player.getHp() + GameConfiguration.PLAYER_LEVEL_UP_EFFECT);
+            st.player.setAtk(st.player.getAtk() + GameConfiguration.PLAYER_LEVEL_UP_EFFECT);
+            st.player.setDef(st.player.getDef() + GameConfiguration.PLAYER_LEVEL_UP_EFFECT);
         }
     }
 

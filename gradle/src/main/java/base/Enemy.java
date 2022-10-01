@@ -91,7 +91,7 @@ public class Enemy extends Character {
             st.enemies.remove(this);
             st.player.collectExp(this.expReward, st);
             if (this.itemReward != null) {
-                st.player.addItem(this.itemReward);
+                st.player.getInventory().add(this.itemReward); // Forcibly Add
                 st.messageBox.putMessage("You obtained " + "[ " + this.itemReward + " ]" + " from the enemy.");
             }
         }

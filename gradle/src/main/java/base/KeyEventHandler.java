@@ -1,12 +1,10 @@
 package base;
-import java.util.Objects;
-import java.util.Scanner;
 
 /**
  * A class managing the key inputs from the user
  */
 
-public class keyEventHandler {
+public class KeyEventHandler {
     /**
      * @author Haoting Chen
      * @author William Barter
@@ -53,7 +51,7 @@ public class keyEventHandler {
             // Special Inputs
             case "tips" -> {for (String st : GameConfiguration.TIPS){state.messageBox.putMessage(st);}}
             case "quest" -> Player.getQuest(state); //print current location and destination location
-            case "levelup" -> {
+            case "levelup" -> {  // Secret Command
                 if (!state.isFinish())
                     state.gameLevelUp(GameConfiguration.GAME_STATES[state.level + 1]);} // For testing only, direct get to the next level.
 

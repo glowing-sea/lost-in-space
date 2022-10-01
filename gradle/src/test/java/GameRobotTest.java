@@ -1,10 +1,9 @@
 package tests;
 import base.*;
-import org.junit.jupiter.api.BeforeEach;
 import utility.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,18 +31,18 @@ public class GameRobotTest {
         State loadingState = GameConfiguration.GAME_STATES[0];
         System.out.println(loadingState);
         for (String input:Level0) {
-            keyEventHandler.keyEventHandler(loadingState, input);
+            KeyEventHandler.keyEventHandler(loadingState, input);
             System.out.println("User Input: " + input);
             System.out.println(loadingState);
         }
         for (String input:Level1) {
-            keyEventHandler.keyEventHandler(loadingState, input);
+            KeyEventHandler.keyEventHandler(loadingState, input);
             System.out.println("User Input: " + input);
             System.out.println(loadingState);
 
         }
         for (String input:Level2) {
-            keyEventHandler.keyEventHandler(loadingState, input);
+            KeyEventHandler.keyEventHandler(loadingState, input);
             System.out.println("User Input: " + input);
             System.out.println(loadingState);
         }
