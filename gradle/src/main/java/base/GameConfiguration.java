@@ -58,7 +58,7 @@ public class GameConfiguration {
         setLevel1();
         setLevel2();
         setLevel3();
-        groupAllLevel ();
+        groupAllLevel();
     }
 
     // Game Attributes
@@ -118,7 +118,7 @@ public class GameConfiguration {
                 "    +----",
                 "       A ",
                 "      AHA",
-                "---------",
+                " --------",
                 "         "};
         String[] bobSays = new String[]{
                 "Goodbye Bob", // how the player say goodbye to bob
@@ -187,9 +187,9 @@ public class GameConfiguration {
         merchants.add(new Merchant("Amy", new Location(1,0), new String[]{"Goodbye", "Hope to deal with you again!","Welcome to my store!"}, trades));
         merchants.add(new Merchant(null,new Location(5,0),null,null));
 
-        String dialogue = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +
+        String story = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +
                 "If a line exceed 103 character, the exceed part will not be displayed........................................";
-        LEVEL0_INITIAL_STATE = new State(mapOBJ, dialogue, 0, player, enemies, items, NPCs, merchants);
+        LEVEL0_INITIAL_STATE = new State(mapOBJ, story, 0, player, enemies, items, NPCs, merchants);
 
 
         Location destination = new Location(6,7);
@@ -282,8 +282,8 @@ public class GameConfiguration {
         NPCs.add(David);
         ArrayList<Merchant> merchants = new ArrayList<>();
 
-        String dialogue = "continue adventure";
-        LEVEL2_INITIAL_STATE = new State(mapO3, dialogue, 2, player, enemies, items, NPCs , merchants);
+        String story = "continue adventure";
+        LEVEL2_INITIAL_STATE = new State(mapO3, story, 2, player, enemies, items, NPCs , merchants);
         LEVEL2_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),null,null); // H is in 6,7
     }
 
