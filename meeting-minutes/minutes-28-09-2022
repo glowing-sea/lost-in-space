@@ -1,0 +1,87 @@
+Author: Zhishang Bian
+Absence: None
+Date: 28th Sep 2022
+1)
+Haoting summarized the instructions on assignment page and make a conclusion about what we are currently missing. He suggests that we were doing tests for our codes during developing, now we should do some tests for fundamental function, e.g., keyboard input, a script that play the game automatically.
+
+2)
+We list the features that we should talk about in user stories.
+
+3)
+We agreed that so far commit history is good for task 1.2 and 2, but we should write Java Doc (authorship). If we are unsure about the authorship, we will check intellij
+
+4)
+Mohan will work on user stories, later on he will work on Wiki page since he knows the program best. Everyone should go to the functions they written before and write the authorship. Albert will create a menu for saving, loading, new game
+
+5) 
+We talk about what should contain in game engine: How to play the game, how to use game engine, commit history in GitKaren.
+
+6)
+We agree that we will finalize our coding
+
+Zhishang will work on NPC test
+
+Albert will work on Save and Loading
+
+Mohan will work on back story
+
+William may work on item Book which tells player background story and license
+
+Haoting will work on more level-up conditions
+
+
+Things we need to do in 4 days
+
+
+Task 0.1 Finished
+Task 0.2 Finished
+Task 1.1 
+	We need to have user stories for each listed feature and 5 additional features and implement them
+	Additional Features we currently have 
+		1 View Stats
+		2 View Inventory
+		3 In-game terminal (message box) that output text in a dedicated place.
+		4 Merchant (may not have time) We still need to have this user story although we do not implement it
+		5 Talk with NPC. Choose what to say.
+		6 Paser
+		7 Invisible walls
+		8 more level-up cases
+		9 Title page
+
+Task 1.2 Evidence of planning (Making issues, assigning people to do the issues) (So far so good)
+
+Task 2 Pull Request. Issue tracking. Label. Milestone. (So far so good)
+
+Task 3.1 Git Wiki & License
+Task 3.2 Java Doc
+Task 3.3 Testing
+
+
+About the programming (1.1)
+
+Automatic tests (not only can run automatically but also generate user input, as if a robot is playing the game)
+Issue #35
+
+Merchant (May not be implemented due to time limit)
+
+More Level Up cases (game levels up when the player kills a specific enemy or processes a specific item)
+Issue #30
+
+Save and Load a game state
+Issue #32
+
+Starting menu of the game (Do after #32)
+Issue #31
+
+Mohan uses the game engine 2.0 to implement his game design. Editing the GameConfiguration class.
+
+Documentation
+
+Java Doc (3.1)
+
+Wiki & License (3.1)
+
+User Stories (1.1)
+
+Testing (unit/automatic/integrated) (3.3)
+
