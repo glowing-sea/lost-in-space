@@ -33,6 +33,7 @@ public class Location implements Cloneable{
 
 
     /**
+     * @author Haoting
      * Check if two locations are equal
      * @param obj  other's location
      * @return true if the two location are equal
@@ -48,6 +49,7 @@ public class Location implements Cloneable{
 
 
     /**
+     * @author Zhishang Bian
      * Check if one location is in an arraylist of locations
      * @param locs a set of locations where u want to check if "this" is in it.
      * @return true if "this" is in the arraylist
@@ -65,6 +67,7 @@ public class Location implements Cloneable{
     }
 
     /**
+     * @author Haoting Chen
      * Check if there is any unit, such as an enemy at this location
      * @param st current game state
      * @return return the unit if found.
@@ -94,6 +97,7 @@ public class Location implements Cloneable{
     }
 
     /**
+     * @author Haoting
      * Make an exact copy of the location object
      * @return a copy of this location
      */
@@ -101,11 +105,19 @@ public class Location implements Cloneable{
         return new Location(x, y);
     }
 
+    /**
+     * @author Haoting
+     * @return display the location
+     */
     @Override
     public String toString() {
         return "(" + this.x + ", " + this.y + ")";
     }
 
+    /**
+     * @author Haoting
+     * @return clone location
+     */
     @Override
     public Location clone() {
         try {

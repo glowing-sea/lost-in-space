@@ -23,6 +23,12 @@ public class State {
 
     public Unit interacting; // The Unit that the play is currently interact with
 
+    /**
+     * @author Haoting Chen
+     * check if state == state
+     * @param obj state
+     * @return true if equals
+     */
     @Override
     public boolean equals(Object obj){
         if (! (obj instanceof State st))
@@ -60,6 +66,7 @@ public class State {
     public void setStory(String story){this.story = story;}
 
     /**
+     * @author Haoting Chen
      * Check whether the game state is a finish state (last state of the whole game).
      * @return ture or false
      */
@@ -68,6 +75,7 @@ public class State {
     }
 
     /**
+     * @author Haoting Chen
      * Check whether the game state is over
      * @return ture or false
      */
@@ -76,6 +84,7 @@ public class State {
     }
 
     /**
+     * @author Haoting Chen
      * Update the current game state according to the input game state
      * Any fields in the new game state that has null or Integer.MIN_VALUE means that this field do not need to update.
      * @param newGameState the next game state.
@@ -103,6 +112,7 @@ public class State {
     }
 
     /**
+     * @author Haoting Chen
      * Print a game state into the terminal
      * @return a graphical view of a game state.
      */

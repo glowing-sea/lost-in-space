@@ -5,6 +5,10 @@ import base.Location;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author William Barter
+ * automate testing
+ */
 public class RobotInstructions {
     public static List<String> Level0() {
         List<String> Level0 = new ArrayList<>();

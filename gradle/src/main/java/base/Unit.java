@@ -34,6 +34,12 @@ public abstract class Unit implements Interactive{
         this.loc = loc;
         this.SYMBOL = symbol;
     }
+
+    /**
+     * @author Haoting Chen
+     * @param obj unit (player, enemy, npc, merchant)
+     * @return true if equals
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null || obj.getClass() != getClass())
@@ -65,6 +71,7 @@ public abstract class Unit implements Interactive{
 
 
     /**
+     * @author Zhishang Bian
      * check if a unit is adjacent to the input location
      * @param other a location you want to test
      * @return nearby you or not
@@ -79,6 +86,7 @@ public abstract class Unit implements Interactive{
     }
 
     /**
+     * @author Haoting Chen
      * Extra a list of locations from a list of units
      * @param units a list of unit
      * @return a list of location
@@ -94,6 +102,7 @@ public abstract class Unit implements Interactive{
     }
 
     /**
+     * @author Haoting
      * The default interact function to all unit
      * @param st current state
      * @param option different way to interact
@@ -106,6 +115,10 @@ public abstract class Unit implements Interactive{
     }
 
 
+    /**
+     * @author Haoting Chen
+     * @return display unit
+     */
     @Override
     public String toString() {
         return getSYMBOL() + "";

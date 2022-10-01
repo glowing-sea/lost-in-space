@@ -1,6 +1,7 @@
 package base;
 
 /**
+ *
  * An object that store the item the seller accepts and the item the seller will give out.
  *  * @Albert Yu: FIXME this class is not required:
  *  * 1. Design is not so great.
@@ -28,6 +29,12 @@ public class Trade {
     }
 
 
+    /**
+     * @author Haoting Chen
+     * check if trade == trade
+     * @param obj trade
+     * @return true if equals
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Trade t))

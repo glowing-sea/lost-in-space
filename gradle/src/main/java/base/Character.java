@@ -18,6 +18,11 @@ public abstract class Character extends Unit{
         this.def = def;
     }
 
+    /**
+     * @author Haoting Chen
+     * @param obj enemy or player
+     * @return True if two unit is same
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null || obj.getClass() != getClass())

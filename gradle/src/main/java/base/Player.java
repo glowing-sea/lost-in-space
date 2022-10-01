@@ -22,6 +22,13 @@ public class Player extends Character implements Movable{
         this.inventory = new ArrayList<>();
         this.capacity = 6;
     }
+
+    /**
+     * @author Haoting Chen
+     * check player == player
+     * @param obj  player
+     * @return true if player == player
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Player p))
@@ -34,6 +41,7 @@ public class Player extends Character implements Movable{
     }
 
     /**
+     * @Haoting Chen
      * A quick constructor that make a player according the attributes written in GameConfiguration
      * @param loc
      */
@@ -47,6 +55,8 @@ public class Player extends Character implements Movable{
 
 
     /**
+     * @author ZHishang Bian (created)
+     * @author Haoting Chen (refactor)
      * This function handle user's input of interaction
      * 1. Find the Unit that the player want to interact with
      * 2. Call the interact function of that Unit
@@ -107,6 +117,8 @@ public class Player extends Character implements Movable{
 
 
     /**
+     * @author William Barter (created)
+     * @author Hoating Chen (refactor)
      * Use the items within the players inventory at the requested number.
      * @param st the state the game is currently in
      * @param  itemIndex the inventory position which item is being used
@@ -150,6 +162,7 @@ public class Player extends Character implements Movable{
 
 
     /**
+     * @author Haoting Chen
      * Output the requirement to advance to the next game level
      * @param st current game state
      * @return true there is a next level and vice versa.
@@ -171,6 +184,7 @@ public class Player extends Character implements Movable{
 
 
     /**
+     * @author Haoting Chen
      * Move the character according to the input direction and speed
      * @param st current game state
      * @param direction forward (w), backward (s), right (a), or left (d)
@@ -223,6 +237,8 @@ public class Player extends Character implements Movable{
 
 
     /**
+     * @author William Barter (created)
+     * @authr Haoting Chen (refactor)
      * Add an item to the player's inventory if it is not full
      * @param item item that is going to be added
      * @return whether the item has been added
@@ -237,6 +253,8 @@ public class Player extends Character implements Movable{
     }
 
     /**
+     * @author William Barter
+     * @author Haoting Chen
      * Increase Player EXP by a certain amount.
      * Whenever the EXP exceed 100, increase the level by 1.
      * @param exp amount of EXP to increase

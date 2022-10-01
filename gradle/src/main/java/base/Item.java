@@ -8,6 +8,11 @@ public class Item extends Unit{
 
     private final ItemType type;  // NOTE final keyword used here before. It is not right.
 
+    /**
+     * @author Haoting
+     * @param obj item
+     * @return true if item.equals(item)
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Item i))
@@ -15,12 +20,23 @@ public class Item extends Unit{
         return this.type == i.type && this.getName().equals(i.getName());
     }
 
+    /**
+     * @author William Barter (created)
+     * @author Haoting (refactor)
+     * @param loc item location
+     * @param type item type
+     */
     //construction
     public Item(Location loc, ItemType type) {
         super(type.name(), loc, 'I');
         this.type = type;
     }
+    /**
 
+     * @author Haoting
+     * @param keyItemName item name
+     * @param loc item location
+     */
     //construction for making a key item with a specified name
     public Item(String keyItemName, Location loc) {
         super(keyItemName, loc, 'I');
@@ -33,6 +49,8 @@ public class Item extends Unit{
 
 
     /**
+     * @author William Barter (created)
+     * @author Haoting Chen (refactor)
      * Helper function of the interact function
      * 1. Increase player's stats according to the type of the input item
      * 2. Make the item invalid
@@ -50,6 +68,8 @@ public class Item extends Unit{
     }
 
     /**
+     * @author William Barter (created)
+     * @author Haoting Chen (refactor)
      * The function tells what happens when the player interact with an item.
      * Increase player's stats according to the type of the input item.
      * @param st current game state
@@ -69,6 +89,10 @@ public class Item extends Unit{
         return true;
     }
 
+    /**
+     * @author Haoting
+     * @return Display usage of items
+     */
     @Override
     public String toString() {
         String name;

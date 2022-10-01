@@ -36,6 +36,12 @@ public class NPC extends Character {
         }
     }
 
+    /**
+     * @author Haoting Chen
+     * check if two npc are equal
+     * @param obj npc
+     * @return true if npc == npc
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof NPC n))
@@ -44,6 +50,13 @@ public class NPC extends Character {
                 super.equals(n);
     }
 
+
+    /**
+     * @author Haoting Chen
+     * check if dialogue is well-formed
+     * @param dialogue dialogue
+     * @return true if dialogue is well-formed
+     */
     public static boolean isDialogueWellForm (String[] dialogue){
         if (dialogue.length < 3)
             return false;
@@ -65,6 +78,8 @@ public class NPC extends Character {
     }
 
     /**
+     * @author Zhishang Bian (created)
+     * @author Haoting Chen (refactor)
      * The function tell what happens when the player interact with an NPC
      * When the player interact with a NPC, their conversation will be shown in the message box.
      * @param st the current game state

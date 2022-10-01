@@ -5,6 +5,10 @@ import base.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Haoting Chen
+ * automate testing
+ */
 public class SampleGameConfiguration {
     static {
         initialise();

@@ -21,6 +21,7 @@ import java.util.List;
 public class Utility {
 
     /**
+     * @author Albert Yu
      * Writes String data to a persistent file.
      * @param fileName filename
      * @param data current state
@@ -43,6 +44,7 @@ public class Utility {
     }
 
     /**
+     * @author Albert Yu
      * Writes a State object instance to a persistent JSON file.
      * @param fn filename
      * @param s State
@@ -56,6 +58,8 @@ public class Utility {
     }
 
     /**
+     * @author Albert YU (created)
+     * @author Mohan Balaji Paranthaman (refactor)
      * Reads a persistent JSON file, and places the data onto a State object.
      * @param filename
      * @return State

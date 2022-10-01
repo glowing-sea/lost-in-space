@@ -48,6 +48,7 @@ public class Main {
 
 
     /**
+     * @author Albert Yu
      * save a game to file
      * @param s State
      */
@@ -57,6 +58,8 @@ public class Main {
 
 
     /**
+     * @author Albert Yu (created)
+     * @author Haoting Chen (refactor)
      * save a game to file
      * this method is only used for unit case testing.
      * @param s current state
@@ -99,6 +102,8 @@ public class Main {
     }
 
     /**
+     * @author Albert Yu (created)
+     * @author Haoting Chen (refactor)
      * load a game from file
      * @param s current game state
      * @param fileName file name
@@ -139,6 +144,12 @@ public class Main {
     }
 
 
+    /**
+     * @author Haoting Chen
+     * check if the filename is invalid or not, the name of the file is "filename"
+     * @param filename save as "filename"
+     * @return true if filename is invalid
+     */
     public static boolean inValidFileName(String filename){
         if (filename == null || filename.isEmpty())
             return true;
@@ -151,6 +162,7 @@ public class Main {
     }
 
     /**
+     * @author Haoting Chen
      * load a game from file
      * @param fileName
      * @return the loaded game state
@@ -160,6 +172,7 @@ public class Main {
     }
 
     /**
+     * @author Haoting Chen
      * save a game to file
      * this method is only used for unit case testing.
      * @param s current state
@@ -171,6 +184,7 @@ public class Main {
 
 
     /**
+     * @author Albert Yu
      * makes the game save / load directory.
      */
     public static void makeDirectory() {

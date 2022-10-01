@@ -1,6 +1,9 @@
 package base;
 
 /**
+* @author William Barter (created)
+ *@author Haoting Chen (refactor)
+ *
  * Different types of item
  */
 public enum ItemType {

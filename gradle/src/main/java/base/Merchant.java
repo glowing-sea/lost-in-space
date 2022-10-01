@@ -40,6 +40,12 @@ public class Merchant extends Character{
         this.trades = trades;
     }
 
+    /**
+     * @author Haoting Chen
+     * check if two merchants are equal
+     * @param obj merchant
+     * @return true if they are equal
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Merchant m))
@@ -49,15 +55,28 @@ public class Merchant extends Character{
                 super.equals(m);
     }
 
+    /**
+     * @author Haoting Chen
+     * check if dialogue is well-formed
+     * @param dialogue NPC's dialogue
+     * @return true if dialogue is well-formed
+     */
     public boolean isDialogueWellForm (String[] dialogue){
         return dialogue.length == 3;
     }
 
+    /**
+     * @author Haoting Chen
+     * check if trades are well-formed
+     * @param trades trades
+     * @return true if trades are well-formed
+     */
     public boolean isTradesWellForm (List<Trade> trades){
         return trades.size() <= 6;
     }
 
     /**
+     * @author Haoting Chen
      * The function tell what happens when the player interact with an NPC
      * When the player interact with a NPC, their conversation will be shown in the message box.
      * @param st the current game state

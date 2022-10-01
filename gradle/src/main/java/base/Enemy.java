@@ -15,6 +15,12 @@ public class Enemy extends Character {
         this.itemReward = itemReward;
     }
 
+    /**
+     * @author Haoting
+     *
+     * @param obj enemy or player
+     * @return true if enemy.equals(enemy)
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Enemy e))
@@ -32,6 +38,7 @@ public class Enemy extends Character {
     }
 
     /**
+     * @author Zhishang Bian
      * Check if an enemy hp is less than zero
      * @return if the enemy is dead
      */
@@ -40,6 +47,8 @@ public class Enemy extends Character {
     }
 
     /**
+     * @author Zhishang Bian (created)
+     * @author Haoting Chen (refactor)
      * fight against nearby enemy
      * notice: the game will exit if the player loses all their hp
      * @param st the game state
@@ -64,6 +73,8 @@ public class Enemy extends Character {
     }
 
     /**
+     * @author Zhishang Bian (created)
+     * @author Haoting Chen (refactor)
      * The function tells what happen if the player interact with an enemy.
      * 1. Fight: update their hp.
      * 2. IF the enemy is dead, remove them from the map.

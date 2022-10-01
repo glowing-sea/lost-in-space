@@ -15,6 +15,12 @@ public class Map {
     // Map is stored as an array (size 9) of string (size 9)
     private String[] map;
 
+    /**
+     * @author Haoting Chen
+     * check if map == map
+     * @param obj map
+     * @return true if map == map
+     */
     @Override
     public boolean equals(Object obj){
         if (! (obj instanceof Map m))
@@ -38,6 +44,12 @@ public class Map {
         this.walls = walls;
     }
 
+    /**
+     * @author Haoting Chen
+     * check if the map is well-formed or not
+     * @param map
+     * @return ture if map is well-formed
+     */
     public static boolean isMapWellFormed (String[] map){
         if (map.length != 9)
             return false;
@@ -72,6 +84,8 @@ public class Map {
 
 
     /**
+     * @author Zhishang Bian (created)
+     * @author Haoting Chen (refactor)
      * Check if a location is reachable in the map
      * @param location the location that a character wants to go
      * @return true if the character can go there
@@ -87,26 +101,5 @@ public class Map {
         }
         return true;
     }
-    /**
-     * input location, the char you will replace with
-     * output replace the location with the char you set
-     * @param location
-     * @param newchar
-     */
-    // currently no function is using this due to refactoring on 10/9 by Zhishang
-    // feel free to use this
-    public void refreshLocation(Location location, char newchar){ // entre the new string and location where you want the string to be
-        int X = location.getX();
-        int Y = location.getY();
-        if(X<0||X>8||Y<0||Y>8){ // this statement has some problem
-            throw new NullPointerException("this is <0 or >8");
-        }else{
-            String[] thenew = this.getMap();
-            char[] newline = thenew[X].toCharArray();
-            newline[Y] = newchar;
-            thenew[X] = String.valueOf(newline);
-            this.setMap(thenew);
 
-        }
-    }
 }

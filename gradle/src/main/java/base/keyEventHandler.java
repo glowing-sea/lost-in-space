@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 public class keyEventHandler {
     /**
+     * @author Haoting Chen
+     * @author William Barter
+     * @author Mohan Balaji Paranthaman (refactor)
      * Update and display the game state after the use input a valid command.
      * Any invalid input display's a Try again message.
      *

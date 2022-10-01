@@ -10,6 +10,7 @@ package utility;
 public class DisplayUtility {
 
     /**
+     * @author Haoting Chen
      * This function adjust a string to a specific length by adding more space or remove exceeding characters.
      * @param str a string
      * @param newLength the length of the output string
@@ -25,6 +26,13 @@ public class DisplayUtility {
         return str;
     }
 
+    /**
+     * @author Haoting Chen
+     * display text in middle of text block
+     * @param text text
+     * @param length length of text
+     * @return text with appropriate space in front of it and after it
+     */
     public static String centerText (String text, int length){
         int textLength = text.length();
         if (textLength >= length)

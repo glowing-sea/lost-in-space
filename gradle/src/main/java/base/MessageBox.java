@@ -10,6 +10,11 @@ public class MessageBox extends LinkedList<String> {
 
     final int SIZE = 10;
 
+    /**
+     * @author Haoting chen
+     * put message in message box
+     * @param message
+     */
     public void putMessage (String message){
         if (this.size() <= SIZE - 1){
             addLast(message);
