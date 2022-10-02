@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests all functions and inputs in the game
+ * @author William
  */
 public class GameRobotTest {
     @BeforeAll

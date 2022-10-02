@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test functions in the Enemy Class
+ * @author Zishang Bian
+ * @author Haoting Chen (improvement)
  */
 public class EnemyTests {
 
@@ -117,7 +119,7 @@ public class EnemyTests {
         Player.interact(st, "fd","");
         System.out.println(st);
 
-        assertEquals(50,st.player.getHp());
+        assertEquals(70,st.player.getHp());
         assertEquals(0,enemyStrong.getHp());
         assertTrue(enemyStrong.isDead());
     }
@@ -129,6 +131,6 @@ public class EnemyTests {
         Player.interact(st, "fa","");
         Player.interact(st, "fd","");
         assertTrue(enemyStrong.isDead() && enemyEasy.isDead());
-        assertEquals(50,st.player.getHp());
+        assertEquals(70,st.player.getHp());
     }
 }

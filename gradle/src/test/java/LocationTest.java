@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test functions in the Location Class
+ * @author Haoting Chen
  */
 public class LocationTest {
     State st;

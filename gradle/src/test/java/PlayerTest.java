@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utility.GameStateExamples;
+import utility.RobotInstructions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test functions in the Enemy Class
+ * @author Haoting Chen
+ * @author Zishang Bian
  */
 
 public class PlayerTest {
@@ -26,6 +29,63 @@ public class PlayerTest {
         GameConfiguration.initialise();
         st = GameStateExamples.TEST_STATE_ONE;
         p = st.player;
+    }
+
+    @Test
+    public void useItemTest(){
+        List<Item> INITIAL_INVENTORY = new ArrayList<>();
+        Item i1 = new Item(new Location(-1,-1), ItemType.HP_Boost);
+        Item i2 = new Item(new Location(-1,-1), ItemType.ATK_Boost);
+        Item i3 = new Item(new Location(-1,-1), ItemType.DEF_Boost);
+        Item i4 = new Item(new Location(-1,-1), ItemType.EXP_Boost);
+        Item i5 = new Item(new Location(-1,-1), ItemType.Inventory_Boost);
+        INITIAL_INVENTORY.add(i1);
+        INITIAL_INVENTORY.add(i2);
+        INITIAL_INVENTORY.add(i3);
+        INITIAL_INVENTORY.add(i4);
+        INITIAL_INVENTORY.add(i5);
+        st.player.setInventory(INITIAL_INVENTORY);
+
+        assertEquals(5,st.player.getInventory().size()); // Before use
+        String inputs = "use-5 use-4 use-3 use-2 use-1";
+        RobotInstructions.inputReader(st,inputs);
+        assertEquals(0,st.player.getInventory().size()); // After user
+
+        // Stats increase
+        assertEquals(120, st.player.getHp());
+        assertEquals(120, st.player.getDef());
+        assertEquals(120, st.player.getAtk());
+        assertEquals(20, st.player.getExp());
+        assertEquals(8, st.player.getCapacity());
+    }
+
+
+    @Test
+    public void dropItemTest(){
+        List<Item> INITIAL_INVENTORY = new ArrayList<>();
+        Item i1 = new Item(new Location(-1,-1), ItemType.HP_Boost);
+        Item i2 = new Item(new Location(-1,-1), ItemType.ATK_Boost);
+        Item i3 = new Item(new Location(-1,-1), ItemType.DEF_Boost);
+        Item i4 = new Item(new Location(-1,-1), ItemType.EXP_Boost);
+        Item i5 = new Item(new Location(-1,-1), ItemType.Inventory_Boost);
+        INITIAL_INVENTORY.add(i1);
+        INITIAL_INVENTORY.add(i2);
+        INITIAL_INVENTORY.add(i3);
+        INITIAL_INVENTORY.add(i4);
+        INITIAL_INVENTORY.add(i5);
+        st.player.setInventory(INITIAL_INVENTORY);
+
+        assertEquals(5,st.player.getInventory().size()); // Before use
+        String inputs = "drop-5 drop-4 drop-3 drop-2 drop-1";
+        RobotInstructions.inputReader(st,inputs);
+        assertEquals(0,st.player.getInventory().size()); // After user
+
+        // Stats increase
+        assertEquals(100, st.player.getHp());
+        assertEquals(100, st.player.getDef());
+        assertEquals(100, st.player.getAtk());
+        assertEquals(0, st.player.getExp());
+        assertEquals(6, st.player.getCapacity());
     }
 
     @Test

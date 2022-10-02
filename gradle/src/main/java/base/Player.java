@@ -10,7 +10,7 @@ import java.util.List;
 public class Player extends Character implements Movable{
     private int exp;
     private int playerLevel;
-    private final List<Item> inventory;
+    private List<Item> inventory;
     private int capacity;
 
 
@@ -282,6 +282,9 @@ public class Player extends Character implements Movable{
     public int getCapacity() {
         return capacity;
     }
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
+    } // For testing only
     public List<Item> getInventory() {
         return this.inventory;
     }
@@ -291,6 +294,7 @@ public class Player extends Character implements Movable{
     public int getPlayerLevel() {
         return playerLevel;
     }
+
 
 
     // For testing only, please use collectExp if you want to increase player's level.

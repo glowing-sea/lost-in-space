@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test functions in the Enemy Class
+ * @author Haoting Chen
  */
 
 public class StateTest {
