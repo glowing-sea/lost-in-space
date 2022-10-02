@@ -22,7 +22,9 @@ public class RobotInstructions {
     public static void inputReader(State st, String in){
         String[] inputs = in.split(" ");
         for (String input : inputs){
+            System.out.println(st);
             KeyEventHandler.keyEventHandler(st, input);
+            System.out.println("User Input: " + input);
         }
     }
 
