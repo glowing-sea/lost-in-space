@@ -58,6 +58,7 @@ public class GameConfiguration {
         setLevel1();
         setLevel2();
         setLevel3();
+        setLevel9();
         groupAllLevel();
     }
 
@@ -108,7 +109,23 @@ public class GameConfiguration {
     public static GameLevelUpRequirement LEVEL2_LEVEL_UP_REQUIREMENT;
     public static State LEVEL3_INITIAL_STATE;
     public static GameLevelUpRequirement LEVEL3_LEVEL_UP_REQUIREMENT;
+    public static State LEVEL4_INITIAL_STATE;
+    public static GameLevelUpRequirement LEVEL4_LEVEL_UP_REQUIREMENT;
+    public static State LEVEL5_INITIAL_STATE;
+    public static GameLevelUpRequirement LEVEL5_LEVEL_UP_REQUIREMENT;
+    public static State LEVEL6_INITIAL_STATE;
+    public static GameLevelUpRequirement LEVEL6_LEVEL_UP_REQUIREMENT;
+    public static State LEVEL7_INITIAL_STATE;
+    public static GameLevelUpRequirement LEVEL7_LEVEL_UP_REQUIREMENT;
+    public static State LEVEL8_INITIAL_STATE;
+    public static GameLevelUpRequirement LEVEL8_LEVEL_UP_REQUIREMENT;
+    public static State LEVEL9_INITIAL_STATE;
+    public static GameLevelUpRequirement LEVEL9_LEVEL_UP_REQUIREMENT;
 
+
+    /**
+     * @designer Haoting Chen
+     */
     private static void setLevel0 (){
         String[] map = new String[] {
                 "    -----",
@@ -199,6 +216,9 @@ public class GameConfiguration {
         LEVEL0_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(destination,enemiesMustBeKilled,itemRequired); // H is in 6,7
     }
 
+    /**
+     * @designer Zhishang Bian
+     */
     private static void setLevel1 () {
         String[] map = new String[] {
 
@@ -241,10 +261,14 @@ public class GameConfiguration {
 
         String dialogue = "fight against an enemy\n>>>>>";
         LEVEL1_INITIAL_STATE = new State(mapO1, dialogue, 1, player, enemies, items, NPCs, merchants);
-        LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),enemies,enemyKey); // H is in 6,7
+
+        LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),null,null); // H is in 6,7
     }
 
 
+    /**
+     * @designer
+     */
     private static void setLevel2 ()  {
         String[] map = new String[] {
 
@@ -275,6 +299,9 @@ public class GameConfiguration {
         enemies.add(new Enemy("Goblin1",30,120,30,new Location(6,6),20, null));
         enemies.add(new Enemy("Goblin3",30,120,30,new Location(5,7),20, null));
         enemies.add(new Enemy("Goblin2",30,120,80,new Location(7,6),20, null));
+        enemies.add(new Enemy("Goblin4",30,120,30,new Location(6,3),20, null));
+        enemies.add(new Enemy("Goblin5",30,120,30,new Location(5,2),20, null));
+        enemies.add(new Enemy("Goblin6",30,120,30,new Location(3,8),20, null));
         Player player = new Player(new Location(0,1));
         ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
         NPC David = new NPC("David",new Location(3,3),Davidsays);
@@ -286,9 +313,48 @@ public class GameConfiguration {
         LEVEL2_INITIAL_STATE = new State(mapO3, story, 2, player, enemies, items, NPCs , merchants);
         LEVEL2_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),null,null); // H is in 6,7
     }
+    private static void setLevel3()  {
+        String[] map = new String[] {
 
+                "         ",
+                "  +      ",
+                " /-|     ",
+                "/-  |    ",
+                "  @ /    ",
+                "   +     ",
+                "__/      ",
+                "---------",
+                "         "};
+        String[] Ethansays = new String[]{
+                "See you",
+                "bye-bye",
+                "` Good morning",
+                "Hi, This is Ethan",
+                "Anything i can help?",
+                "> Where is entrance for next level",
+                "> What is that",
+                "< I would suggest check cat's eye",
+                "< That is rock, of course",
+                "> What cat",
+                "> Rock?",
+                "< A rock in cat shape",
+                "< A rock in cat shape",
+                "Good luck",
+        };
+        Map mapO4 = new Map(4, map, new char[] {'-', '|','/','@','_'});
+        ArrayList<Enemy> enemies = new ArrayList<>();
+        Player player = new Player(new Location(0,1));
+        ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
+        ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
+        NPCs.add(new NPC("Ethan",new Location(0,8),Ethansays));
+        ArrayList<Merchant> merchants = new ArrayList<>();
 
-    private static void setLevel3 ()  {
+        String story = "continue adventure";
+        LEVEL3_INITIAL_STATE = new State(mapO4, story, 3, player, enemies, items, NPCs , merchants);
+        LEVEL3_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(4,1),null,null); // H is in 6,7
+    }
+
+    private static void setLevel9 ()  {
         String[] map = new String[] {
                 "         ",
                 "         ",
@@ -306,8 +372,8 @@ public class GameConfiguration {
         ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
         ArrayList<Merchant> merchants = new ArrayList<>();
         String dialogue = "You Win!";
-        LEVEL3_INITIAL_STATE = new State(mapOBJ, dialogue, 3, player, enemies, items, NPCs, merchants);
-        LEVEL3_LEVEL_UP_REQUIREMENT = null;
+        LEVEL9_INITIAL_STATE = new State(mapOBJ, dialogue, 9, player, enemies, items, NPCs, merchants);
+        LEVEL9_LEVEL_UP_REQUIREMENT = null;
     }
 
     private static void groupAllLevel () {
@@ -315,12 +381,14 @@ public class GameConfiguration {
                 LEVEL0_INITIAL_STATE,
                 LEVEL1_INITIAL_STATE,
                 LEVEL2_INITIAL_STATE,
-                LEVEL3_INITIAL_STATE};
+                LEVEL3_INITIAL_STATE,
+                LEVEL9_INITIAL_STATE};
 
         LEVEL_UP_REQUIREMENTS = new GameLevelUpRequirement[]{
                 LEVEL0_LEVEL_UP_REQUIREMENT,
                 LEVEL1_LEVEL_UP_REQUIREMENT,
                 LEVEL2_LEVEL_UP_REQUIREMENT,
+                LEVEL3_LEVEL_UP_REQUIREMENT,
                 null,
         };
         FINAL_LEVEL = GAME_STATES.length - 1;
