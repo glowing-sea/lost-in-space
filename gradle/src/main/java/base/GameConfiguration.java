@@ -58,7 +58,7 @@ public class GameConfiguration {
         setLevel1();
         setLevel2();
         setLevel3();
-        setLevel9();
+        setLevel4();
         groupAllLevel();
     }
 
@@ -354,7 +354,7 @@ public class GameConfiguration {
         LEVEL3_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(4,1),null,null); // H is in 6,7
     }
 
-    private static void setLevel9 ()  {
+    private static void setLevel4 ()  {
         String[] map = new String[] {
                 "         ",
                 "         ",
@@ -372,8 +372,8 @@ public class GameConfiguration {
         ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
         ArrayList<Merchant> merchants = new ArrayList<>();
         String dialogue = "You Win!";
-        LEVEL9_INITIAL_STATE = new State(mapOBJ, dialogue, 9, player, enemies, items, NPCs, merchants);
-        LEVEL9_LEVEL_UP_REQUIREMENT = null;
+        LEVEL4_INITIAL_STATE = new State(mapOBJ, dialogue, 4, player, enemies, items, NPCs, merchants);
+        LEVEL4_LEVEL_UP_REQUIREMENT = null;
     }
 
     private static void groupAllLevel () {
@@ -382,7 +382,7 @@ public class GameConfiguration {
                 LEVEL1_INITIAL_STATE,
                 LEVEL2_INITIAL_STATE,
                 LEVEL3_INITIAL_STATE,
-                LEVEL9_INITIAL_STATE};
+                LEVEL4_INITIAL_STATE};
 
         LEVEL_UP_REQUIREMENTS = new GameLevelUpRequirement[]{
                 LEVEL0_LEVEL_UP_REQUIREMENT,
