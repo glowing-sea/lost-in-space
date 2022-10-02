@@ -22,7 +22,9 @@ public class RobotInstructions {
     public static void inputReader(State st, String in){
         String[] inputs = in.split(" ");
         for (String input : inputs){
+            System.out.println(st);
             KeyEventHandler.keyEventHandler(st, input);
+            System.out.println("User Input: " + input);
         }
     }
 
@@ -78,7 +80,7 @@ public class RobotInstructions {
         Level2.add("dd");
         Level2.add("d");
         Level2.add("ss");
-        Level2.add("w");
+        Level2.add("a");
         Level2.add("ss");
         Level2.add("d");
         Level2.add("ss");

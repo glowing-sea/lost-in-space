@@ -203,7 +203,7 @@ public class GameConfiguration {
         trades.add(new Trade(item2, item6));
 
         merchants.add(new Merchant("Amy", new Location(1,0), new String[]{"Goodbye", "Hope to deal with you again!","Welcome to my store!"}, trades));
-        merchants.add(new Merchant(null,new Location(5,0),null,null));
+        // merchants.add(new Merchant(null,new Location(5,0),null,null));
 
         String story = "In 3022, earth has become hard to live due to a nuclear explosion causing ripples in the earth core.\n" +
                 "Due to this explosion the natural stability was destroyed causing multiple global disasters.\n" +
@@ -249,9 +249,10 @@ public class GameConfiguration {
         Player player = new Player(new Location(0,1));
         ArrayList<Enemy> enemies = new ArrayList<>();
         Item enemyKey = new Item("Enemy Key",null);
+        Item hp = new Item(null,ItemType.HP_Boost);
         enemies.add(new Enemy("Goblin1",30,120,30,new Location(3,3),20, enemyKey));
-        enemies.add(new Enemy("Goblin3",30,120,30,new Location(4,4),20, null));
-        enemies.add(new Enemy("Goblin2",30,120,80,new Location(6,2),20, null));
+        enemies.add(new Enemy("Goblin3",30,120,30,new Location(4,4),20, hp));
+        enemies.add(new Enemy("Goblin2",30,120,80,new Location(6,2),20, hp));
         NPC C = new NPC("C",new Location(0,3),Csays);
         ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
         NPCs.add(C);
@@ -266,7 +267,7 @@ public class GameConfiguration {
                 "I am the captain of the ship ";
         LEVEL1_INITIAL_STATE = new State(mapO1, dialogue, 1, player, enemies, items, NPCs, merchants);
 
-        LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),null,null); // H is in 6,7
+        LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),null,enemyKey); // H is in 6,7
     }
 
 
@@ -300,12 +301,15 @@ public class GameConfiguration {
         };
         Map mapO3 = new Map(3, map, new char[] {'-', '+', '|'});
         ArrayList<Enemy> enemies = new ArrayList<>();
-        enemies.add(new Enemy("Goblin1",30,120,30,new Location(6,6),20, null));
-        enemies.add(new Enemy("Goblin3",30,120,30,new Location(5,7),20, null));
-        enemies.add(new Enemy("Goblin2",30,120,80,new Location(7,6),20, null));
-        enemies.add(new Enemy("Goblin4",30,120,30,new Location(6,3),20, null));
-        enemies.add(new Enemy("Goblin5",30,120,30,new Location(5,2),20, null));
-        enemies.add(new Enemy("Goblin6",30,120,30,new Location(3,8),20, null));
+        Item hp = new Item(null,ItemType.HP_Boost);
+        Item def = new Item(null,ItemType.DEF_Boost);
+        Item atk = new Item(null,ItemType.ATK_Boost);
+        enemies.add(new Enemy("Goblin1",30,120,30,new Location(6,6),20, hp));
+        enemies.add(new Enemy("Goblin3",30,120,30,new Location(5,7),20, def));
+        enemies.add(new Enemy("Goblin2",30,120,80,new Location(7,6),20, atk));
+        enemies.add(new Enemy("Goblin4",30,120,30,new Location(6,3),20, hp));
+        enemies.add(new Enemy("Goblin5",30,120,30,new Location(5,2),20, def));
+        enemies.add(new Enemy("Goblin6",30,120,30,new Location(3,8),20, atk));
         Player player = new Player(new Location(0,1));
         ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
         NPC David = new NPC("David",new Location(3,3),Davidsays);
@@ -392,25 +396,38 @@ public class GameConfiguration {
                 "be careful when fighting against him",
                 "` Keep breathing, i will kill it",
         };
+        Item item1 = new Item(null, ItemType.Inventory_Boost);
+        Item item2 = new Item(null, ItemType.HP_Boost);
+        Item item3 = new Item(new Location(5,5), ItemType.ATK_Boost);
+        Item item4 = new Item(null,ItemType.EXP_Boost);
+        Item item5 = new Item(null,ItemType.DEF_Boost);
+        List<Trade> trades = new ArrayList<>();
+        trades.add(new Trade(item1, item2));
+        trades.add(new Trade(item2, item3));
+        trades.add(new Trade(item3, item4));
+        trades.add(new Trade(item4, item5));
+        trades.add(new Trade(item5, item1));
+        ArrayList<Merchant> merchants = new ArrayList<>();
+        merchants.add(new Merchant("Alice", new Location(0,5), new String[]{"Goodbye", "Hope to deal with you again!","Welcome to my store!"}, trades));
+
+
         Map mapO4 = new Map(5, map, new char[] {'-', '|','/','@','_'});
         ArrayList<Enemy> enemies = new ArrayList<>();
         Player player = new Player(new Location(4,1));
         ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
         ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
         NPCs.add(new NPC("Francis",new Location(4,5),Francissays));
-        ArrayList<Merchant> merchants = new ArrayList<>();
 
-        Item item1 = new Item(new Location(5,5), ItemType.ATK_Boost);
         Enemy goblinK = new Enemy("Goblin King",400,150,20,new Location(2,1),100,null);
 
         String story = "What had happened to Francis\n"+"i get to check his state\n"+"i had a presentiment that spaceship is nearby";
 
-        items.add(item1);
+        items.add(item3);
 
         enemies.add(goblinK);
 
-        Item item2 = new Item("Key", new Location(3,7));
-        items.add(item2);
+        Item item6 = new Item("Key", new Location(3,7));
+        items.add(item6);
         Item itemRequired = new Item("Key", null);
         LEVEL4_INITIAL_STATE = new State(mapO4, story, 4, player, enemies, items, NPCs , merchants);
         Location destination = new Location(6,7);
