@@ -66,6 +66,11 @@ public class Main {
      * @param filename file name
      */
     public static void saveGame(State s, String filename) {
+        if (s.interacting != null){
+            s.messageBox.putMessage("You cannot save while interacting with some one!");
+            return;
+        }
+
         if (inValidFileName(filename)){
             s.messageBox.putMessage("The filename can only contains letters, numbers");
             s.messageBox.putMessage("'-' and '_'");
