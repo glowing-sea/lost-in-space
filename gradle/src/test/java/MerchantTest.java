@@ -3,13 +3,53 @@ import base.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utility.GameStateExamples;
+import utility.RobotInstructions;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Haoting Chen
+ */
+
 public class MerchantTest {
+
+    State st = GameStateExamples.TEST_STATE_ONE;
+
+    @BeforeEach
+    public void setup() {
+        List<Item> INITIAL_INVENTORY = new ArrayList<>();
+        Item item = new Item(new Location(-1,-1), ItemType.HP_Boost);
+        INITIAL_INVENTORY.add(item);
+        INITIAL_INVENTORY.add(item);
+        INITIAL_INVENTORY.add(item);
+        INITIAL_INVENTORY.add(item);
+        st.player.setInventory(INITIAL_INVENTORY);
+    }
+
+    @Test
+    public void buyAsManyAsICan(){
+        assertNull(st.interacting);
+        String inputs = "s fa buy-1 buy-2 buy-3 buy-4";
+        RobotInstructions.inputReader(st,inputs);
+        // Check player's inventory
+        assertEquals(st.player.getInventory().get(0).getType(), ItemType.Inventory_Boost);
+        assertEquals(st.player.getInventory().get(1).getType(), ItemType.ATK_Boost);
+        assertEquals(st.player.getInventory().get(2).getType(), ItemType.Inventory_Boost);
+        assertEquals(st.player.getInventory().get(3).getType(), ItemType.ATK_Boost);
+        // Cannot but anymore
+        inputs = "buy-2 buy-3 buy-4 G";
+        RobotInstructions.inputReader(st,inputs);
+        assertEquals(st.player.getInventory().get(0).getType(), ItemType.Inventory_Boost);
+        assertEquals(st.player.getInventory().get(1).getType(), ItemType.ATK_Boost);
+        assertEquals(st.player.getInventory().get(2).getType(), ItemType.Inventory_Boost);
+        assertEquals(st.player.getInventory().get(3).getType(), ItemType.ATK_Boost);
+        assertNull(st.interacting);
+    }
 
 
     @Test

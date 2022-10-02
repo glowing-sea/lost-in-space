@@ -3,10 +3,53 @@ import base.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utility.GameStateExamples;
+import utility.RobotInstructions;
+
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Haoting Chen
+ */
+
 public class NPCTest {
+
+    State st;
+
+    @BeforeEach
+    public void setup() {
+        st = GameStateExamples.TEST_STATE_ONE;
+    }
+
+    @Test
+    public void readAllDialogue(){
+        assertNull(st.interacting);
+        String inputs = "ss fa A A G";
+        RobotInstructions.inputReader(st,inputs);
+        RobotInstructions.inputReader(st,inputs);
+        assertNull(st.interacting);
+        inputs = "fa B B G";
+        RobotInstructions.inputReader(st,inputs);
+        assertNull(st.interacting);
+    }
+
+    @Test
+    public void sayGoodbyeImmediately(){
+        assertNull(st.interacting);
+        String inputs = "ss fa G";
+        RobotInstructions.inputReader(st,inputs);
+        assertNull(st.interacting);
+    }
+
+    @Test
+    public void sayGoodbyeMidway(){
+        assertNull(st.interacting);
+        String inputs = "ss fa A G";
+        RobotInstructions.inputReader(st,inputs);
+        assertNull(st.interacting);
+    }
+
 
     @Test
     public void equalNPC (){

@@ -1,6 +1,8 @@
 package utility;
 
+import base.KeyEventHandler;
 import base.Location;
+import base.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,20 @@ import java.util.List;
  * automate testing
  */
 public class RobotInstructions {
+
+    /**
+     * Take a list of input separated by space, execute them one by one.
+     * @author Haoting Chen
+     * @param st current state
+     * @param in a list of input separated by space, e.g. "w s d t buy-1"
+     */
+    public static void inputReader(State st, String in){
+        String[] inputs = in.split(" ");
+        for (String input : inputs){
+            KeyEventHandler.keyEventHandler(st, input);
+        }
+    }
+
     public static List<String> Level0() {
         List<String> Level0 = new ArrayList<>();
         Level0.add("s");
@@ -62,7 +78,9 @@ public class RobotInstructions {
         Level2.add("dd");
         Level2.add("d");
         Level2.add("ss");
+        Level2.add("w");
         Level2.add("ss");
+        Level2.add("d");
         Level2.add("ss");
         Level2.add("a");
         return Level2;

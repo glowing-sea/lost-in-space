@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Albert Yu
- * @author Haoting Chen
+ * @author Haoting Chen (improvement)
  *
  */
 public class MapTests {

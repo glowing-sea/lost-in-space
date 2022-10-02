@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test functions in the GameLevelUpRequirementClass
+ * @author Haoting Chen
  */
 public class GameLevelUpTest {
 
