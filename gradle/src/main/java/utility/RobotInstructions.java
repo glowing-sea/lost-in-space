@@ -78,7 +78,7 @@ public class RobotInstructions {
         Level2.add("dd");
         Level2.add("d");
         Level2.add("ss");
-        Level2.add("w");
+        Level2.add("a");
         Level2.add("ss");
         Level2.add("d");
         Level2.add("ss");
