@@ -59,6 +59,7 @@ public class GameConfiguration {
         setLevel2();
         setLevel3();
         setLevel4();
+        setLevel5();
         groupAllLevel();
     }
 
@@ -204,8 +205,9 @@ public class GameConfiguration {
         merchants.add(new Merchant("Amy", new Location(1,0), new String[]{"Goodbye", "Hope to deal with you again!","Welcome to my store!"}, trades));
         merchants.add(new Merchant(null,new Location(5,0),null,null));
 
-        String story = "This is where your story written in GameConfiguration is displayed.\nYou can have up to three lines. In each line, you can write up to 103 character.\n" +
-                "If a line exceed 103 character, the exceed part will not be displayed........................................";
+        String story = "In 3022, earth has become hard to live due to a nuclear explosion causing ripples in the earth core.\n" +
+                "Due to this explosion the natural stability was destroyed causing multiple global disasters.\n" +
+                "Thus, to survive, earth formed an elite team of explorers";
         LEVEL0_INITIAL_STATE = new State(mapOBJ, story, 0, player, enemies, items, NPCs, merchants);
 
 
@@ -259,7 +261,9 @@ public class GameConfiguration {
         items.add(item);
 
 
-        String dialogue = "fight against an enemy\n>>>>>";
+        String dialogue = "when landing on xyz planet, some system malfunction and we crashed on this unknown planet.\n" +
+                "Now the ship fell away from the survival and one person must reach the ship and fix it\n"+
+                "I am the captain of the ship ";
         LEVEL1_INITIAL_STATE = new State(mapO1, dialogue, 1, player, enemies, items, NPCs, merchants);
 
         LEVEL1_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),null,null); // H is in 6,7
@@ -267,7 +271,7 @@ public class GameConfiguration {
 
 
     /**
-     * @designer
+     * @designer Zhishang Bian
      */
     private static void setLevel2 ()  {
         String[] map = new String[] {
@@ -309,10 +313,16 @@ public class GameConfiguration {
         NPCs.add(David);
         ArrayList<Merchant> merchants = new ArrayList<>();
 
-        String story = "continue adventure";
+        String story = "My crew were separated in the crash,i need them for future space travelling\n"+
+                "Luckily, My detector finds the signal of spaceship and one person must reach the ship and fix it\n"+
+                "It must be my job";
         LEVEL2_INITIAL_STATE = new State(mapO3, story, 2, player, enemies, items, NPCs , merchants);
         LEVEL2_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(6,7),null,null); // H is in 6,7
     }
+
+    /**
+     * @designer Zhishang Bian
+     */
     private static void setLevel3()  {
         String[] map = new String[] {
 
@@ -349,12 +359,69 @@ public class GameConfiguration {
         NPCs.add(new NPC("Ethan",new Location(0,8),Ethansays));
         ArrayList<Merchant> merchants = new ArrayList<>();
 
-        String story = "continue adventure";
+        String story = "Is he Doctor Ethan?\n"+"Please tell me he is fine\n"+"the signal disappeared on my detector just now";
         LEVEL3_INITIAL_STATE = new State(mapO4, story, 3, player, enemies, items, NPCs , merchants);
         LEVEL3_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(new Location(4,1),null,null); // H is in 6,7
     }
 
-    private static void setLevel4 ()  {
+    /**
+     * @designer Zhishang Bian
+     */
+    private static void setLevel4()  {
+        String[] map = new String[] {
+
+                " -__/   /",
+                "       < ",
+                "> --|   +",
+                "    +-   ",
+                "     N-_ ",
+                " _      |",
+                "/ +_   H ",
+                "---------",
+                "         "};
+        String[] Francissays = new String[]{
+                "Stay safe",
+                " ",
+                "Captain, I need help!",
+                "> Hold on, i am healing you",
+                "> Take a deep breath, i am here",
+                "< Thanks captain",
+                "< Thanks captain",
+                "`What had happened",
+                "The Goblin King, he is so strong",
+                "be careful when fighting against him",
+                "` Keep breathing, i will kill it",
+        };
+        Map mapO4 = new Map(5, map, new char[] {'-', '|','/','@','_'});
+        ArrayList<Enemy> enemies = new ArrayList<>();
+        Player player = new Player(new Location(4,1));
+        ArrayList<Item> items = new ArrayList<>(); // Must use empty list instead of null
+        ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
+        NPCs.add(new NPC("Francis",new Location(4,5),Francissays));
+        ArrayList<Merchant> merchants = new ArrayList<>();
+
+        Item item1 = new Item(new Location(5,5), ItemType.ATK_Boost);
+        Enemy goblinK = new Enemy("Goblin King",400,150,20,new Location(2,1),100,null);
+
+        String story = "What had happened to Francis\n"+"i get to check his state\n"+"i had a presentiment that spaceship is nearby";
+
+        items.add(item1);
+
+        enemies.add(goblinK);
+
+        Item item2 = new Item("Key", new Location(3,7));
+        items.add(item2);
+        Item itemRequired = new Item("Key", null);
+        LEVEL4_INITIAL_STATE = new State(mapO4, story, 4, player, enemies, items, NPCs , merchants);
+        Location destination = new Location(6,7);
+        List<Enemy> enemiesMustBeKilled = new ArrayList<>();
+        LEVEL4_LEVEL_UP_REQUIREMENT = new GameLevelUpRequirement(destination,enemiesMustBeKilled,itemRequired);
+    }
+
+    /**
+     * @designer Haoting Chen
+     */
+    private static void setLevel5 ()  {
         String[] map = new String[] {
                 "         ",
                 "         ",
@@ -372,8 +439,8 @@ public class GameConfiguration {
         ArrayList<NPC> NPCs = new ArrayList<>(); // using null will let the attribute of the previous state be carry over to this state.
         ArrayList<Merchant> merchants = new ArrayList<>();
         String dialogue = "You Win!";
-        LEVEL4_INITIAL_STATE = new State(mapOBJ, dialogue, 4, player, enemies, items, NPCs, merchants);
-        LEVEL4_LEVEL_UP_REQUIREMENT = null;
+        LEVEL5_INITIAL_STATE = new State(mapOBJ, dialogue, 5, player, enemies, items, NPCs, merchants);
+        LEVEL5_LEVEL_UP_REQUIREMENT = null;
     }
 
     private static void groupAllLevel () {
@@ -382,13 +449,16 @@ public class GameConfiguration {
                 LEVEL1_INITIAL_STATE,
                 LEVEL2_INITIAL_STATE,
                 LEVEL3_INITIAL_STATE,
-                LEVEL4_INITIAL_STATE};
+                LEVEL4_INITIAL_STATE,
+                LEVEL5_INITIAL_STATE,
+        };
 
         LEVEL_UP_REQUIREMENTS = new GameLevelUpRequirement[]{
                 LEVEL0_LEVEL_UP_REQUIREMENT,
                 LEVEL1_LEVEL_UP_REQUIREMENT,
                 LEVEL2_LEVEL_UP_REQUIREMENT,
                 LEVEL3_LEVEL_UP_REQUIREMENT,
+                LEVEL4_LEVEL_UP_REQUIREMENT,
                 null,
         };
         FINAL_LEVEL = GAME_STATES.length - 1;
