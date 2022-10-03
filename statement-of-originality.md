@@ -20,6 +20,9 @@ member_declaration:
   -
     name: Haoting Chen
     uid: u7227871
+  -
+    name: Mohan Balaji Paranthaman
+    uid: u7190806
 
 # list numbered references below (replace the example with your own references) 
 ---
