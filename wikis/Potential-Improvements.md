@@ -1,0 +1,10 @@
+- Create tests that are "out-of-the-box-thinking".
+- Make more complex maps
+- Create an opening page to show thenNew game, continue, story, and help sections, and based on the user's choice go to that page/game interface.
+- Implementing Natural Language Processing to provide a wider variety of inputs for a single action.
+- More interesting conversations with NPCs and the game progress based on the conversation.
+- Improve the message box to load old messages.
+- Improve the save and load function to support saving the message box texts and NPC conversations.
+- Flexibility to choose character name.
+- Add more items for inventory and improve the story progress based on items available.
+- Add a bag system to store the inventory items and choose/view as and when required.
